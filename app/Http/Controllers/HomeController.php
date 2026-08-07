@@ -124,6 +124,16 @@ class HomeController extends Controller
         return view('landing', compact('appData'));
     }
 
+    public function tentang()
+    {
+        return view('tentang');
+    }
+
+    public function modul()
+    {
+        return view('modul');
+    }
+
     public function download()
     {
         // GitHub Repository APK release link or download route

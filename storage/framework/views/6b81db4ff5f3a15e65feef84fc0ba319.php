@@ -6,10 +6,10 @@
     <title>SIPETRAN - Sistem Informasi & Edukasi Kesehatan, Ekraf, dan Lingkungan</title>
     <meta name="description" content="Aplikasi Sipetran Desa Gunungsari - Panduan Kesehatan Posyandu, Resep Gizi Nugget SIJAGO, Kopi SILOKA, PHBS, Biopori, dan Pengelolaan Sampah.">
 
-    <!-- Google Fonts: DM Sans + Inter (mengikuti style LastBite) -->
+    <!-- Google Fonts: Playfair Display + DM Sans + Inter + Caveat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,23 +18,22 @@
             theme: {
                 extend: {
                     fontFamily: {
+                        display: ['Playfair Display', 'serif'],
                         heading: ['DM Sans', 'sans-serif'],
                         body: ['Inter', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
                     },
                     colors: {
                         sipetran: {
-                            green: '#2b5219',
+                            green: '#203816',
+                            dark: '#14260d',
                             lightgreen: '#4a7c2f',
                             orange: '#d97706',
+                            redorange: '#c85a32',
                             darkorange: '#b45309',
-                            bg: '#f9f7f4',
-                            cardbg: '#F7FBF7',
+                            cream: '#FAF8F2',
+                            bg: '#FAF8F2',
                         }
-                    },
-                    borderRadius: {
-                        '3xl': '1.5rem',
-                        '4xl': '2rem',
-                        '5xl': '2.5rem',
                     }
                 }
             }
@@ -48,618 +47,636 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        body { background-color: #f9f7f4; }
-        .active-tab {
-            background: #fff;
-            color: #2b5219;
-            box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+        body { background-color: #FAF8F2; color: #1c2417; }
+
+        /* Wavy separator SVG */
+        .wave-separator {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        /* Circular text spin */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-slow { animation: spin-slow 18s linear infinite; }
+
+        /* Angled Sticker Badges (Ghia style) */
+        .ghia-badge-orange {
+            display: inline-block;
+            background: #d97706;
+            color: #ffffff;
+            border: 2.5px solid #ffffff;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(-1.5deg);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+        }
+
+        .ghia-badge-green {
+            display: inline-block;
+            background: #203816;
+            color: #ffffff;
+            border: 2.5px solid #FAF8F2;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(1.5deg);
+            box-shadow: 0 4px 12px rgba(32, 56, 22, 0.25);
+        }
+
+        .ghia-badge-terracotta {
+            display: inline-block;
+            background: #c85a32;
+            color: #ffffff;
+            border: 2.5px solid #FAF8F2;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(-2deg);
+            box-shadow: 0 4px 12px rgba(200, 90, 50, 0.3);
+        }
+
+        /* Floating animations */
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0px) rotate(3deg); }
+            50% { transform: translateY(12px) rotate(1deg); }
+        }
+        .float-left-card { animation: float-1 5s ease-in-out infinite; }
+        .float-right-card { animation: float-2 5.5s ease-in-out infinite; }
+
+        /* Overlapping fanned cards */
+        .fan-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: -15px;
+        }
+
+        .fan-card {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: bottom center;
+        }
+        .fan-card-1 { transform: rotate(-7deg) translateY(12px); z-index: 1; }
+        .fan-card-2 { transform: rotate(-3.5deg) translateY(4px); z-index: 2; }
+        .fan-card-3 { transform: rotate(0deg) translateY(0px); z-index: 3; }
+        .fan-card-4 { transform: rotate(3.5deg) translateY(4px); z-index: 4; }
+        .fan-card-5 { transform: rotate(7deg) translateY(12px); z-index: 5; }
+
+        .fan-card:hover {
+            transform: rotate(0deg) translateY(-20px) scale(1.05) !important;
+            z-index: 20 !important;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Marquee ticker */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            display: flex;
+            width: 200%;
+            animation: marquee 22s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        /* Inline chips inside text */
+        .inline-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #ffffff;
+            border: 1.5px solid #e5e0d8;
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            vertical-align: middle;
+            margin: 0 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 
-<body class="bg-sipetran-bg font-body text-gray-800 antialiased">
-
-    <div class="min-h-screen">
+<body class="font-body text-gray-800 antialiased">
 
     <!-- ============ NAVIGATION ============ -->
-    <header class="relative z-50" x-data="{ mobileOpen: false }">
+    <header class="absolute top-0 left-0 right-0 z-50" x-data="{ mobileOpen: false }">
         <nav class="flex items-center justify-between py-5 px-6 max-w-6xl mx-auto">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-                <div class="w-10 h-10 rounded-2xl bg-sipetran-green flex items-center justify-center text-white">
-                    <i class="fa-solid fa-leaf text-lg"></i>
-                </div>
-                <div>
-                    <div class="font-heading font-bold text-xl text-gray-900 leading-none">SIPETRAN</div>
-                    <div class="text-[10px] font-semibold text-sipetran-lightgreen tracking-wider">DESA GUNUNGSARI</div>
-                </div>
+                <span class="font-handwriting text-3.5xl text-amber-400 font-bold tracking-wide">Sipetran</span>
+                <span class="text-[10px] font-semibold text-green-300 tracking-widest uppercase border-l border-white/20 pl-2">Desa Gunungsari</span>
             </a>
 
-            <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center gap-8 font-body text-sm font-medium text-gray-700">
-                <a href="#modul" class="hover:text-sipetran-green transition-colors">Modul</a>
-                <a href="#kesehatan" class="hover:text-sipetran-green transition-colors">Kesehatan</a>
-                <a href="#ekraf" class="hover:text-sipetran-green transition-colors">Ekonomi Kreatif</a>
-                <a href="#lingkungan" class="hover:text-sipetran-green transition-colors">Lingkungan</a>
-                <a href="#unduh" class="bg-sipetran-green text-white font-semibold px-5 py-2.5 rounded-2xl hover:bg-sipetran-lightgreen transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-download text-xs"></i> Unduh Aplikasi
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-7 font-body text-sm font-medium text-white/80">
+                <a href="/" class="text-white font-bold border-b-2 border-amber-400 pb-0.5">Beranda</a>
+                <a href="<?php echo e(route('tentang')); ?>" class="hover:text-white transition-colors">Tentang Program</a>
+
+                <!-- Dropdown Mitra -->
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <button @click="open = !open" class="hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none">
+                        <span>Mitra</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-amber-400' : 'text-white/50'"></i>
+                    </button>
+
+                    <!-- Dropdown Card -->
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0 scale-100" x-transition:leave-end="opacity-0 translate-y-2 scale-95" class="absolute left-1/2 -translate-x-1/2 mt-3 w-72 bg-white rounded-3xl shadow-xl border border-stone-100 p-4 z-50 text-gray-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-3 px-2">Mitra & Pendukung Program</p>
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-emerald-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-building-columns text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-emerald-800">Kemendikbudristek</p>
+                                    <p class="text-[10px] text-gray-500">Penyelenggara PPK Ormawa</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-amber-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-amber-800">Perguruan Tinggi</p>
+                                    <p class="text-[10px] text-gray-500">Pembina & Pendamping</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-teal-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-users text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-teal-800">Tim PPK Ormawa</p>
+                                    <p class="text-[10px] text-gray-500">Pelaksana Pengabdian</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-green-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-green-100 text-green-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-tree-city text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-green-800">Pemdes Gunungsari</p>
+                                    <p class="text-[10px] text-gray-500">Pemerintah Desa Binaan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="<?php echo e(route('modul')); ?>" class="hover:text-white transition-colors">Program Modul</a>
+                <a href="<?php echo e(route('kegiatan.index')); ?>" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 font-semibold">
+                    <i class="fa-solid fa-folder-open text-amber-400 text-xs"></i> Kegiatan
+                </a>
+                <a href="<?php echo e(route('admin.login')); ?>" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
+                    <i class="fa-solid fa-user-shield text-xs text-amber-400"></i> Admin
                 </a>
             </div>
 
             <!-- Mobile Hamburger -->
-            <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-gray-900">
+            <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-white">
                 <i class="fa-solid text-xl" :class="mobileOpen ? 'fa-xmark' : 'fa-bars'"></i>
             </button>
         </nav>
 
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu Drawer -->
         <div x-show="mobileOpen" x-transition
-            class="fixed top-4 left-4 right-4 bg-white rounded-[2rem] shadow-2xl z-50 px-6 py-4 border border-gray-100 md:hidden">
+            class="fixed top-4 left-4 right-4 bg-white rounded-[2rem] shadow-2xl z-50 px-6 py-4 border border-gray-100 md:hidden text-gray-800">
             <div class="flex flex-col gap-0">
-                <a href="#modul" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Modul</a>
-                <a href="#kesehatan" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Kesehatan</a>
-                <a href="#ekraf" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Ekonomi Kreatif</a>
-                <a href="#lingkungan" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Lingkungan</a>
-                <a href="#unduh" @click="mobileOpen=false" class="mt-4 mb-2 bg-sipetran-green text-white font-semibold px-5 py-3 rounded-2xl text-center text-sm">
-                    <i class="fa-solid fa-download mr-1.5"></i> Unduh Aplikasi
+                <a href="/" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-green font-bold">Beranda</a>
+                <a href="<?php echo e(route('tentang')); ?>" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Tentang Program</a>
+                <div x-data="{ showMitra: false }" class="py-3 border-b border-gray-100">
+                    <button @click="showMitra = !showMitra" class="w-full flex items-center justify-between text-sm text-gray-700 font-medium">
+                        <span>Mitra Program</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform" :class="showMitra ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="showMitra" class="mt-3 space-y-2 pl-2">
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-building-columns text-emerald-700"></i> Kemendikbudristek</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-amber-700"></i> Perguruan Tinggi</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-users text-teal-700"></i> Tim PPK Ormawa</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-tree-city text-green-700"></i> Pemdes Gunungsari</div>
+                    </div>
+                </div>
+                <a href="<?php echo e(route('modul')); ?>" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Program Modul</a>
+                <a href="<?php echo e(route('kegiatan.index')); ?>" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-orange font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-xs"></i> Kegiatan
+                </a>
+                <a href="<?php echo e(route('admin.login')); ?>" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-xs text-sipetran-orange"></i> Admin Login
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- ============ HERO SECTION ============ -->
-    <main>
-        <section class="max-w-6xl mx-auto px-6 py-10 md:py-16 flex flex-col md:flex-row items-center gap-14">
+    <!-- ============ HERO SECTION (PPK Ormawa Photo Background) ============ -->
+    <section class="relative bg-sipetran-green overflow-hidden pt-36 pb-48 text-center">
 
-            <!-- LEFT: Text Content -->
-            <div class="flex-1 space-y-6">
-                <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-800 text-xs font-semibold px-4 py-2 rounded-full">
-                    <i class="fa-solid fa-map-pin text-amber-600"></i>
-                    Desa Gunungsari, Bondowoso — Jawa Timur
-                </div>
-
-                <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-gray-900">
-                    Sehat, Sejahtera,<br>
-                    <span class="text-sipetran-orange">Berdaya Ekraf.</span><br>
-                    <span class="text-sipetran-green">Lestari Lingkungan.</span>
-                </h1>
-
-                <p class="text-gray-600 font-body text-sm leading-relaxed max-w-md">
-                    Sipetran menghadirkan panduan gizi berbasis pangan lokal, resep Nugget SIJAGO & Kopi SILOKA, edukasi PHBS, serta modul pengelolaan lingkungan, semuanya dalam satu aplikasi untuk warga Desa Gunungsari. 🌱
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                    <a href="#unduh" class="bg-sipetran-green text-white font-semibold px-6 py-3.5 rounded-2xl flex justify-center items-center gap-2 hover:bg-sipetran-lightgreen transition-colors">
-                        <i class="fa-solid fa-cloud-arrow-down text-base"></i>
-                        Unduh Aplikasi (.APK)
-                    </a>
-                    <a href="#modul" class="bg-white border-2 border-gray-100 text-gray-800 font-semibold px-6 py-3.5 rounded-2xl flex justify-center items-center gap-2 shadow-sm hover:bg-gray-50 transition-colors">
-                        <i class="fa-solid fa-layer-group text-sipetran-green"></i>
-                        Jelajahi Modul
-                    </a>
-                </div>
-            </div>
-
-            <!-- RIGHT: Visual Card (gaya LastBite) -->
-            <div class="flex-1 w-full max-w-sm mx-auto md:max-w-none">
-                <div class="bg-sipetran-green rounded-[2.5rem] p-6 pb-10 relative shadow-xl w-full">
-
-                    <!-- Floating badge top right -->
-                    <div class="absolute -top-4 right-4 md:top-4 md:-right-6 bg-white rounded-2xl px-3 py-2 flex items-center gap-3 shadow-lg z-10 border border-gray-100">
-                        <div class="bg-amber-100 text-amber-700 rounded-full w-9 h-9 flex items-center justify-center font-bold text-xs">
-                            <i class="fa-solid fa-seedling"></i>
-                        </div>
-                        <div class="pr-2">
-                            <p class="text-[10px] text-gray-400 font-semibold mb-0.5">Kandungan Gizi</p>
-                            <p class="font-bold text-gray-900 text-sm leading-none">266.37 kkal</p>
-                        </div>
-                    </div>
-
-                    <!-- Cards grid inside hero visual -->
-                    <div class="grid grid-cols-2 gap-3 mt-8 mb-6">
-                        <div class="bg-white/15 rounded-3xl p-4 border border-white/20 backdrop-blur-sm">
-                            <div class="w-8 h-8 bg-amber-400 rounded-xl flex items-center justify-center text-white text-xs mb-2.5">
-                                <i class="fa-solid fa-bowl-food"></i>
-                            </div>
-                            <p class="text-white font-heading font-bold text-xs leading-tight">Nugget SIJAGO</p>
-                            <p class="text-green-200 text-[10px] mt-0.5">Protein 13.81g</p>
-                        </div>
-                        <div class="bg-white/15 rounded-3xl p-4 border border-white/20 backdrop-blur-sm">
-                            <div class="w-8 h-8 bg-amber-400 rounded-xl flex items-center justify-center text-white text-xs mb-2.5">
-                                <i class="fa-solid fa-mug-hot"></i>
-                            </div>
-                            <p class="text-white font-heading font-bold text-xs leading-tight">Kopi SILOKA</p>
-                            <p class="text-green-200 text-[10px] mt-0.5">Robusta + Jahe</p>
-                        </div>
-                        <div class="bg-white/15 rounded-3xl p-4 border border-white/20 backdrop-blur-sm">
-                            <div class="w-8 h-8 bg-teal-400 rounded-xl flex items-center justify-center text-white text-xs mb-2.5">
-                                <i class="fa-solid fa-heart-pulse"></i>
-                            </div>
-                            <p class="text-white font-heading font-bold text-xs leading-tight">PHBS & Gizi</p>
-                            <p class="text-green-200 text-[10px] mt-0.5">10 Indikator</p>
-                        </div>
-                        <div class="bg-white/15 rounded-3xl p-4 border border-white/20 backdrop-blur-sm">
-                            <div class="w-8 h-8 bg-sky-400 rounded-xl flex items-center justify-center text-white text-xs mb-2.5">
-                                <i class="fa-solid fa-recycle"></i>
-                            </div>
-                            <p class="text-white font-heading font-bold text-xs leading-tight">Biopori & Kompos</p>
-                            <p class="text-green-200 text-[10px] mt-0.5">Modul Lingkungan</p>
-                        </div>
-                    </div>
-
-                    <!-- Bottom floating pill -->
-                    <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white rounded-full p-1.5 flex items-center gap-3 pr-5 shadow-lg border border-gray-50 w-max">
-                        <div class="bg-sipetran-green text-white w-9 h-9 rounded-full flex items-center justify-center">
-                            <i class="fa-solid fa-leaf text-sm"></i>
-                        </div>
-                        <div>
-                            <p class="text-[10px] text-gray-400 font-medium mb-0.5">Sipetran</p>
-                            <p class="font-bold text-gray-900 text-xs leading-none">4 Modul Terintegrasi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ TWO-PILLAR SECTION ============ -->
-        <div class="bg-sipetran-cardbg pt-10 pb-20 mt-6">
-            <section class="max-w-6xl mx-auto px-6" id="modul">
-                <div class="mb-12 max-w-xl">
-                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
-                        Satu <span class="text-sipetran-green"> Aplikasi, </span> <br>
-                        Untuk Semua.
-                    </h2>
-                    <p class="text-gray-600 font-body text-sm md:text-base leading-relaxed">
-                        <span class="font-semibold text-gray-900">Sipetran</span> mendampingi warga Desa Gunungsari membangun kehidupan yang sehat, produktif, dan berwawasan lingkungan.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Card 1: Gizi & Kuliner -->
-                    <div class="rounded-4xl p-8 shadow-sm border flex flex-col h-full relative overflow-hidden bg-white border-gray-100">
-                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-amber-50 text-amber-600">
-                            <i class="fa-solid fa-bowl-food text-2xl"></i>
-                        </div>
-                        <h3 class="font-heading text-2xl font-bold text-gray-900 mb-3">Gizi & Kuliner Lokal</h3>
-                        <p class="font-body text-sm leading-relaxed mb-8 text-gray-500">
-                            Resep dan kalkulasi gizi Nugget SIJAGO berbasis Jagung + Singkong + Kelor untuk pencegahan stunting. Lengkap dengan takaran bahan dan panduan langkah demi langkah.
-                        </p>
-                        <ul class="space-y-4 mb-10 flex-1">
-                            <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-check text-sipetran-orange mt-0.5 flex-shrink-0"></i>
-                                Kalkulator gizi & %AKG akurat (23% Protein AKG)
-                            </li>
-                            <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-check text-sipetran-orange mt-0.5 flex-shrink-0"></i>
-                                Resep berbasis pangan lokal Desa Gunungsari
-                            </li>
-                            <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-check text-sipetran-orange mt-0.5 flex-shrink-0"></i>
-                                Panduan pembuatan langkah per langkah
-                            </li>
-                        </ul>
-                        <a href="#sijago" class="font-semibold py-3.5 rounded-2xl w-full transition-colors inline-block text-center bg-[#2B3019] hover:bg-black text-white text-sm">
-                            Lihat Resep SIJAGO
-                        </a>
-                    </div>
-
-                    <!-- Card 2: Ekraf Kopi -->
-                    <div class="rounded-4xl p-8 shadow-sm border flex flex-col h-full relative overflow-hidden bg-[#F5F8F2] border-green-100/50">
-                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 bg-sipetran-green/10 text-sipetran-green">
-                            <i class="fa-solid fa-mug-hot text-2xl"></i>
-                        </div>
-                        <h3 class="font-heading text-2xl font-bold text-gray-900 mb-3">Ekonomi Kreatif</h3>
-                        <p class="font-body text-sm leading-relaxed mb-8 text-amber-800 font-medium">
-                            Kopi SILOKA — Robusta Gunungsari + Jahe + Sereh! Panduan lengkap dari roasting hingga strategi pemasaran digital untuk meningkatkan nilai tambah produk UMKM lokal.
-                        </p>
-                        <ul class="space-y-4 mb-10 flex-1">
-                            <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-check text-sipetran-green mt-0.5 flex-shrink-0"></i>
-                                Formulasi kopi rempah khas Gunungsari
-                            </li>
-                            <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-check text-sipetran-green mt-0.5 flex-shrink-0"></i>
-                                Panduan roasting, resting 4–7 hari & rasio seduh
-                            </li>
-                            <li class="flex gap-3 font-body text-sm font-medium text-gray-800">
-                                <i class="fa-solid fa-circle-check text-sipetran-green mt-0.5 flex-shrink-0"></i>
-                                Strategi pemasaran offline & digital UMKM
-                            </li>
-                        </ul>
-                        <a href="#siloka" class="font-semibold py-3.5 rounded-2xl w-full transition-colors inline-block text-center bg-sipetran-green hover:bg-sipetran-lightgreen text-white text-sm">
-                            Lihat Panduan SILOKA
-                        </a>
-                    </div>
-                </div>
-            </section>
+        <!-- PPK Ormawa Team Photograph Background with Dark Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="<?php echo e(asset('images/hero_team.png')); ?>" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-25 scale-105 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/85 via-sipetran-green/75 to-sipetran-green"></div>
         </div>
 
-        <!-- ============ HOW IT WORKS / INTERACTIVE MODULES ============ -->
-        <section class="py-20 bg-white" id="cara-kerja" x-data="{ activeTab: 'sijago' }">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                        Isi Modul <span class="text-sipetran-green">Sipetran</span>
-                    </h2>
-                    <p class="font-body text-gray-500 text-sm md:text-base max-w-xl mx-auto">
-                        Pilih kategori modul di bawah untuk melihat panduan lengkap resep, kesehatan, maupun lingkungan.
-                    </p>
-                </div>
+        <!-- Organic Background Vignette & Radial Light -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none z-0"
+            style="background-image: radial-gradient(circle at 50% 30%, #4a7c2f 0%, transparent 60%),
+                   radial-gradient(circle at 10% 60%, #d97706 0%, transparent 45%),
+                   radial-gradient(circle at 90% 70%, #c85a32 0%, transparent 45%);"></div>
 
-                <!-- Tab Toggle (gaya LastBite) -->
-                <div class="flex justify-center mb-12">
-                    <div class="bg-gray-100 p-1 rounded-2xl flex gap-1 font-body flex-wrap justify-center">
-                        <button @click="activeTab='sijago'"
-                            :class="activeTab==='sijago' ? 'active-tab' : 'text-gray-500'"
-                            class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200">
-                            🌽 Nugget SIJAGO
-                        </button>
-                        <button @click="activeTab='siloka'"
-                            :class="activeTab==='siloka' ? 'active-tab' : 'text-gray-500'"
-                            class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200">
-                            ☕ Kopi SILOKA
-                        </button>
-                        <button @click="activeTab='phbs'"
-                            :class="activeTab==='phbs' ? 'active-tab' : 'text-gray-500'"
-                            class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200">
-                            🏥 PHBS & Kesehatan
-                        </button>
-                        <button @click="activeTab='lingkungan'"
-                            :class="activeTab==='lingkungan' ? 'active-tab' : 'text-gray-500'"
-                            class="px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200">
-                            🌱 Lingkungan
-                        </button>
+        <!-- Left Product Showcase Card (SIJAGO Nugget Photo) -->
+        <div class="hidden xl:block absolute left-6 top-36 z-20 float-left-card">
+            <div class="relative">
+                <!-- Circular Rotating Text Badge -->
+                <div class="absolute -top-8 -left-8 w-28 h-28 spin-slow opacity-90 pointer-events-none z-30">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path id="circlePathLeft" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                        <text font-size="8.5" font-weight="bold" fill="#fde68a" letter-spacing="2">
+                            <textPath href="#circlePathLeft">• NUGGET SIJAGO • PANGAN LOKAL • GIZI BALITA </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <!-- Card mockup with real image -->
+                <div class="bg-white/95 text-gray-900 rounded-[2.2rem] p-3.5 w-64 border-2 border-white/40 shadow-2xl backdrop-blur-md text-left overflow-hidden">
+                    <div class="rounded-2xl overflow-hidden h-36 relative mb-3">
+                        <img src="<?php echo e(asset('images/sijago_nugget.png')); ?>" alt="SIJAGO Nugget" class="w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-amber-500 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full shadow-xs">Formulasi Gizi</span>
+                    </div>
+                    <div class="px-1">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700">Resep Cegah Stunting</span>
+                        <h4 class="font-display font-black text-lg text-gray-900 leading-tight">Nugget SIJAGO</h4>
+                        <p class="text-[11px] text-gray-500 mt-0.5 leading-relaxed">Jagung + Singkong + Kelor kaya nutrisi balita.</p>
                     </div>
                 </div>
-
-                <!-- TAB: NUGGET SIJAGO -->
-                <div x-show="activeTab==='sijago'" x-transition id="sijago">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-sipetran-cardbg border border-amber-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">1</span>
-                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-seedling text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Siapkan Bahan</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Jagung segar 35g, Kelor 15g, Dada Ayam 30g, Tepung Tapioka 10g, Telur 15g, Bumbu secukupnya.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-sipetran-cardbg border border-amber-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">2</span>
-                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-blender text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Haluskan & Campur</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Haluskan jagung & kelor. Campurkan adonan ayam, telur, terigu, tapioka, dan bumbu hingga merata.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-sipetran-cardbg border border-amber-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">3</span>
-                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-fire-burner text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Kukus 25–30 Menit</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Tuang adonan ke loyang yang sudah diolesi minyak lalu kukus hingga matang sempurna.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-sipetran-cardbg border border-amber-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">4</span>
-                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-star text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Goreng & Sajikan</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Potong ±25g, balur tepung panir, goreng api sedang hingga kuning keemasan. Siap disajikan!</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Nutrition Info Cards -->
-                    <div class="mt-8 grid grid-cols-2 sm:grid-cols-5 gap-4">
-                        <div class="bg-amber-50 border border-amber-100 p-4 rounded-3xl text-center">
-                            <p class="text-[10px] font-semibold text-gray-500 mb-1">Energi</p>
-                            <p class="font-heading font-bold text-xl text-gray-900">266.37</p>
-                            <p class="text-xs text-gray-400">kkal (11.8% AKG)</p>
-                        </div>
-                        <div class="bg-emerald-50 border border-emerald-100 p-4 rounded-3xl text-center">
-                            <p class="text-[10px] font-semibold text-gray-500 mb-1">Protein</p>
-                            <p class="font-heading font-bold text-xl text-gray-900">13.81g</p>
-                            <p class="text-xs text-emerald-600 font-semibold">23% AKG</p>
-                        </div>
-                        <div class="bg-blue-50 border border-blue-100 p-4 rounded-3xl text-center">
-                            <p class="text-[10px] font-semibold text-gray-500 mb-1">Karbohidrat</p>
-                            <p class="font-heading font-bold text-xl text-gray-900">42.7g</p>
-                            <p class="text-xs text-gray-400">11.9% AKG</p>
-                        </div>
-                        <div class="bg-red-50 border border-red-100 p-4 rounded-3xl text-center">
-                            <p class="text-[10px] font-semibold text-gray-500 mb-1">Lemak</p>
-                            <p class="font-heading font-bold text-xl text-gray-900">5.11g</p>
-                            <p class="text-xs text-gray-400">7.9% AKG</p>
-                        </div>
-                        <div class="bg-purple-50 border border-purple-100 p-4 rounded-3xl text-center">
-                            <p class="text-[10px] font-semibold text-gray-500 mb-1">Zat Besi</p>
-                            <p class="font-heading font-bold text-xl text-gray-900">2.75mg</p>
-                            <p class="text-xs text-purple-600 font-semibold">15.3% AKG</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB: KOPI SILOKA -->
-                <div x-show="activeTab==='siloka'" x-transition id="siloka">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-[#F5F8F2] border border-green-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">1</span>
-                            <div class="w-12 h-12 rounded-2xl bg-sipetran-green/10 text-sipetran-green flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-sun text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Jemur & Kupas</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Jemur buah kopi matang hingga kadar air 12–13%. Kupas kulit untuk memperoleh green bean pilihan.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-[#F5F8F2] border border-green-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">2</span>
-                            <div class="w-12 h-12 rounded-2xl bg-sipetran-green/10 text-sipetran-green flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-fire text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Roasting Medium</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Sangrai green bean pada tingkat medium hingga aroma khas kopi keluar. Dinginkan, lalu resting 4–7 hari.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-[#F5F8F2] border border-green-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">3</span>
-                            <div class="w-12 h-12 rounded-2xl bg-sipetran-green/10 text-sipetran-green flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-mortar-pestle text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Giling & Campurkan</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">Giling kopi, campurkan dengan bubuk jahe kering & bubuk sereh sesuai formulasi SILOKA secara merata.</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start gap-4 p-6 rounded-4xl bg-[#F5F8F2] border border-green-100 relative">
-                            <span class="absolute top-4 right-5 font-heading font-bold text-5xl text-gray-100 select-none leading-none">4</span>
-                            <div class="w-12 h-12 rounded-2xl bg-sipetran-green/10 text-sipetran-green flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-mug-hot text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-bold text-gray-900 mb-1">Seduh & Nikmati</h3>
-                                <p class="font-body text-xs text-gray-500 leading-relaxed">10g bubuk SILOKA + 250ml air 90–95°C. Diamkan 2–3 menit, aduk rata, sajikan selagi hangat.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB: PHBS -->
-                <div x-show="activeTab==='phbs'" x-transition id="kesehatan">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-                        <?php
-                        $phbs = [
-                            'Persalinan ditolong tenaga kesehatan',
-                            'Memberi ASI eksklusif kepada bayi',
-                            'Menimbang balita setiap bulan',
-                            'Ketersediaan air bersih di rumah',
-                            'Cuci tangan pakai sabun & air mengalir',
-                            'Menggunakan jamban sehat',
-                            'Memberantas jentik nyamuk secara berkala',
-                            'Konsumsi buah & sayur setiap hari',
-                            'Aktivitas fisik setiap hari minimal 30 menit',
-                            'Tidak merokok di dalam rumah',
-                        ];
-                        ?>
-                        <?php $__currentLoopData = $phbs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="flex flex-col justify-between p-5 rounded-4xl bg-sipetran-cardbg border border-green-100 hover:bg-teal-50 hover:border-teal-200 transition-colors">
-                            <span class="w-8 h-8 rounded-full bg-teal-600 text-white font-bold text-xs flex items-center justify-center mb-3"><?php echo e($i + 1); ?></span>
-                            <p class="text-xs font-semibold text-gray-800 leading-snug"><?php echo e($item); ?></p>
-                        </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-
-                    <!-- Handwashing & Oralit -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <div class="bg-sipetran-cardbg rounded-4xl p-6 border border-green-100">
-                            <h4 class="font-heading font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                <i class="fa-solid fa-hands-bubbles text-teal-600"></i>
-                                6 Langkah Cuci Tangan WHO
-                            </h4>
-                            <div class="grid grid-cols-2 gap-2.5">
-                                <?php $__currentLoopData = ['Gosok sabun pada kedua telapak tangan', 'Gosok kedua punggung tangan bergantian', 'Gosok sela-sela jari hingga bersih', 'Bersihkan ujung jari dengan posisi mengunci', 'Gosok & putar kedua ibu jari bergantian', 'Gosok telapak tangan dengan ujung jari memutar']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c => $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="flex items-start gap-2 p-3 bg-white rounded-2xl border border-slate-100 text-xs text-gray-700">
-                                    <span class="font-bold text-teal-600 shrink-0"><?php echo e($c + 1); ?>.</span>
-                                    <span><?php echo e($step); ?></span>
-                                </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </div>
-                        </div>
-                        <div class="bg-sipetran-green rounded-4xl p-6 text-white">
-                            <h4 class="font-heading font-bold mb-4 flex items-center gap-2">
-                                <i class="fa-solid fa-glass-water text-green-200"></i>
-                                Panduan Larutan Oralit Darurat
-                            </h4>
-                            <p class="text-green-200 text-xs mb-4">Pertolongan pertama untuk mencegah dehidrasi akibat diare pada balita dan anggota keluarga:</p>
-                            <ul class="space-y-2.5 text-sm text-green-100">
-                                <?php $__currentLoopData = ['Siapkan air matang hangat sebanyak 1 gelas (200 ml)', 'Tambahkan gula pasir 1 sendok teh penuh', 'Tambahkan garam dapur ¼ sendok teh', 'Aduk hingga semua bahan larut sempurna']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $step): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li class="flex items-start gap-2">
-                                    <i class="fa-solid fa-check text-green-400 mt-0.5 shrink-0 text-xs"></i> <?php echo e($step); ?>
-
-                                </li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB: LINGKUNGAN -->
-                <div x-show="activeTab==='lingkungan'" x-transition id="lingkungan">
-                    <!-- Waste Classification -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div class="p-5 rounded-4xl bg-emerald-50 border border-emerald-200">
-                            <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider block mb-2">1. Sampah Organik</span>
-                            <p class="text-xs text-gray-600 mb-3">Mudah terurai — sisa makanan, daun, sayur, kulit buah.</p>
-                            <span class="text-[10px] font-bold bg-emerald-600 text-white px-2.5 py-1 rounded-full">→ Kompos / Biopori</span>
-                        </div>
-                        <div class="p-5 rounded-4xl bg-amber-50 border border-amber-200">
-                            <span class="text-xs font-bold text-amber-800 uppercase tracking-wider block mb-2">2. Sampah Anorganik</span>
-                            <p class="text-xs text-gray-600 mb-3">Sulit terurai — botol plastik, kaleng, kertas, kardus.</p>
-                            <span class="text-[10px] font-bold bg-amber-600 text-white px-2.5 py-1 rounded-full">→ Daur Ulang / Bank Sampah</span>
-                        </div>
-                        <div class="p-5 rounded-4xl bg-red-50 border border-red-200">
-                            <span class="text-xs font-bold text-red-800 uppercase tracking-wider block mb-2">3. Limbah B3</span>
-                            <p class="text-xs text-gray-600 mb-3">Berbahaya & beracun — baterai, popok, tisu, puntung.</p>
-                            <span class="text-[10px] font-bold bg-red-600 text-white px-2.5 py-1 rounded-full">→ TPS Khusus B3</span>
-                        </div>
-                        <div class="p-5 rounded-4xl bg-slate-100 border border-slate-300">
-                            <span class="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-2">4. Sampah Residu</span>
-                            <p class="text-xs text-gray-600 mb-3">Tidak dapat didaur ulang kembali dalam kondisi apapun.</p>
-                            <span class="text-[10px] font-bold bg-slate-700 text-white px-2.5 py-1 rounded-full">→ TPA Sesuai Ketentuan</span>
-                        </div>
-                    </div>
-
-                    <!-- Biopori & Incinerator -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div class="bg-sipetran-cardbg border border-green-100 p-6 rounded-4xl">
-                            <h4 class="font-heading font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                <i class="fa-solid fa-bore-hole text-sipetran-green"></i>
-                                Lubang Biopori — Spesifikasi Teknis
-                            </h4>
-                            <div class="space-y-2.5 text-xs text-gray-700">
-                                <div class="flex items-center justify-between bg-white p-3 rounded-2xl border border-gray-100">
-                                    <span class="font-semibold">Diameter Lubang</span>
-                                    <span class="font-bold text-sipetran-green">± 10 cm (Pipa PVC)</span>
-                                </div>
-                                <div class="flex items-center justify-between bg-white p-3 rounded-2xl border border-gray-100">
-                                    <span class="font-semibold">Kedalaman</span>
-                                    <span class="font-bold text-sipetran-green">80 – 100 cm</span>
-                                </div>
-                                <div class="flex items-center justify-between bg-white p-3 rounded-2xl border border-gray-100">
-                                    <span class="font-semibold">Isian</span>
-                                    <span class="font-bold text-gray-700">Sampah Organik (daun/rumput)</span>
-                                </div>
-                                <p class="text-gray-500 leading-relaxed pt-1">Air hujan meresap melalui pori alami tanah, sampah organik diurai menjadi kompos oleh fauna tanah (cacing).</p>
-                            </div>
-                        </div>
-                        <div class="bg-sipetran-green rounded-4xl p-6 text-white">
-                            <h4 class="font-heading font-bold mb-3 flex items-center gap-2">
-                                <i class="fa-solid fa-fire text-amber-300"></i>
-                                Incinerator Drum — Pembakaran Minim Asap
-                            </h4>
-                            <p class="text-green-200 text-xs mb-4 leading-relaxed">Dibuat dari drum bekas berkaki & roda dengan sirkulasi udara bawah dan cerobong asap untuk pembakaran lebih sempurna.</p>
-                            <div class="grid grid-cols-2 gap-3 text-xs">
-                                <div class="bg-emerald-900/60 border border-emerald-600/40 p-3 rounded-2xl">
-                                    <span class="font-bold text-emerald-300 block mb-1"><i class="fa-solid fa-circle-check mr-1"></i>Boleh Dibakar</span>
-                                    <span class="text-green-200">Daun kering, ranting kecil, rumput, serasah tanaman.</span>
-                                </div>
-                                <div class="bg-red-900/40 border border-red-500/40 p-3 rounded-2xl">
-                                    <span class="font-bold text-red-300 block mb-1"><i class="fa-solid fa-circle-xmark mr-1"></i>Dilarang Keras</span>
-                                    <span class="text-red-200">Plastik, karet, styrofoam, kaleng, kaca, B3.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ============ DOWNLOAD CTA ============ -->
-        <section class="py-20 px-6" id="unduh">
-            <div class="max-w-6xl mx-auto">
-                <div class="bg-sipetran-green rounded-[3rem] px-8 md:px-16 py-14 md:py-20 relative overflow-hidden flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                    <!-- Decorative blobs -->
-                    <div class="absolute -top-20 -right-20 w-72 h-72 bg-sipetran-lightgreen/20 rounded-full blur-3xl pointer-events-none"></div>
-                    <div class="absolute -bottom-20 -left-10 w-56 h-56 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="flex-1 relative z-10">
-                        <span class="inline-block text-xs font-semibold text-green-300 bg-sipetran-lightgreen/20 px-4 py-2 rounded-full mb-6 font-body border border-green-600/30">
-                            🌱 Gratis untuk Warga Desa!
-                        </span>
-                        <h2 class="font-heading text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
-                            Mulai Belajar,<br>Mulai <span class="text-sipetran-orange">Berkembang</span>.
-                        </h2>
-                        <p class="font-body text-green-200 text-sm md:text-base leading-relaxed max-w-md">
-                            Unduh aplikasi Sipetran dan akses semua modul gizi, ekonomi kreatif, serta lingkungan kapan saja dan di mana saja — langsung di smartphone Anda.
-                        </p>
-                    </div>
-
-                    <div class="relative z-10 flex flex-col gap-4 w-full md:w-auto">
-                        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
-                            <p class="text-white font-heading font-bold mb-4 text-sm">Dapatkan Aplikasi</p>
-                            <div class="flex flex-col gap-3">
-                                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank"
-                                    class="flex items-center justify-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-sm hover:bg-gray-50 transition-all hover:scale-[1.02] group">
-                                    <i class="fa-solid fa-download text-sipetran-green text-base"></i>
-                                    Unduh Sipetran (.APK)
-                                    <i class="fa-solid fa-arrow-right text-gray-400 text-xs ml-auto group-hover:translate-x-1 transition-transform"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="text-green-300 text-xs text-center">Kompatibel Android 7.0+ (Nougat ke atas)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ============ FOOTER ============ -->
-    <footer class="bg-sipetran-green text-white pt-16 pb-8 px-8 rounded-t-[3rem] md:rounded-t-[4rem]">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-            <div class="md:col-span-1">
-                <div class="flex items-center gap-2.5 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-                        <i class="fa-solid fa-leaf text-white text-lg"></i>
-                    </div>
-                    <span class="font-heading font-extrabold text-xl">SIPETRAN</span>
-                </div>
-                <p class="text-green-100 font-body text-sm leading-relaxed max-w-xs">
-                    Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso.
-                </p>
-            </div>
-
-            <div>
-                <h4 class="font-heading font-bold text-lg mb-5">Navigasi</h4>
-                <ul class="space-y-4 font-body text-green-200 text-sm">
-                    <li><a href="#sijago" class="hover:text-white transition-colors">Nugget SIJAGO & Gizi</a></li>
-                    <li><a href="#siloka" class="hover:text-white transition-colors">Kopi SILOKA & UMKM</a></li>
-                    <li><a href="#kesehatan" class="hover:text-white transition-colors">10 Indikator PHBS</a></li>
-                    <li><a href="#lingkungan" class="hover:text-white transition-colors">Modul Lingkungan</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-heading font-bold text-lg mb-5">Modul</h4>
-                <ul class="space-y-4 font-body text-green-200 text-sm">
-                    <li><a href="#lingkungan" class="hover:text-white transition-colors">Biopori & Kompos EM4</a></li>
-                    <li><a href="#lingkungan" class="hover:text-white transition-colors">Pemilahan Sampah</a></li>
-                    <li><a href="#lingkungan" class="hover:text-white transition-colors">Reboisasi Lahan</a></li>
-                    <li><a href="#lingkungan" class="hover:text-white transition-colors">Incinerator Minim Asap</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-heading font-bold text-lg mb-5">Sipetran</h4>
-                <ul class="space-y-4 font-body text-green-200 text-sm">
-                    <li><a href="#unduh" class="hover:text-white transition-colors">Unduh Aplikasi</a></li>
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-white transition-colors">Repository GitHub</a></li>
-                </ul>
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <p class="font-body text-green-300 text-xs">
-                &copy; <?php echo e(date('Y')); ?> SIPETRAN — Desa Gunungsari, Bondowoso.
+        <!-- Right Product Showcase Card (SILOKA Coffee Photo) -->
+        <div class="hidden xl:block absolute right-6 top-40 z-20 float-right-card">
+            <div class="relative">
+                <!-- Circular Rotating Text Badge -->
+                <div class="absolute -top-8 -right-8 w-28 h-28 spin-slow opacity-90 pointer-events-none z-30">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path id="circlePathRight" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                        <text font-size="8.5" font-weight="bold" fill="#6ee7b7" letter-spacing="2">
+                            <textPath href="#circlePathRight">• KOPI SILOKA • ARABIKA REMPAH • EKRAF DESA </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <!-- Card mockup with real image -->
+                <div class="bg-white/95 text-gray-900 rounded-[2.2rem] p-3.5 w-64 border-2 border-white/40 shadow-2xl backdrop-blur-md text-left overflow-hidden">
+                    <div class="rounded-2xl overflow-hidden h-36 relative mb-3">
+                        <img src="<?php echo e(asset('images/siloka_coffee.png')); ?>" alt="Kopi SILOKA" class="w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-teal-700 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full shadow-xs">Ekonomi Kreatif</span>
+                    </div>
+                    <div class="px-1">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800">Racikan Rempah Desa</span>
+                        <h4 class="font-display font-black text-lg text-gray-900 leading-tight">Kopi SILOKA</h4>
+                        <p class="text-[11px] text-gray-500 mt-0.5 leading-relaxed">Kopi Arabika khas Gunungsari dengan jahe & sereh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Editorial Hero Title -->
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <p class="text-xs font-bold text-amber-400 uppercase tracking-[0.35em] mb-4">PROGRAM PPK ORMAWA 2025</p>
+
+            <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.03] tracking-tight">
+                EDUKASI DIGITALE
+                <br>
+                <span class="ghia-badge-orange font-black my-2">TERPADU DESA</span>
+                <br>
+                GUNUNGSARI BINAAN
+            </h1>
+
+            <p class="mt-7 text-green-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-body">
+                Platform terintegrasi penguatan gizi balita Posyandu, resep inovasi <strong>Nugget SIJAGO</strong>, racikan khas <strong>Kopi SILOKA</strong>, dan tata kelola lingkungan berkelanjutan. 🌱
             </p>
-            <div class="flex gap-4 text-green-300">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-white transition-colors" aria-label="GitHub">
-                    <i class="fa-brands fa-github text-xl"></i>
+
+            <!-- Pill CTA Buttons -->
+            <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
+                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank"
+                    class="bg-amber-500 hover:bg-amber-400 text-white font-bold px-9 py-4 rounded-full flex items-center gap-3 transition-all duration-200 shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1">
+                    <i class="fa-solid fa-cloud-arrow-down text-base"></i>
+                    Unduh Aplikasi (.APK)
+                </a>
+                <a href="<?php echo e(route('tentang')); ?>"
+                    class="border-2 border-white/30 hover:border-white/70 text-white font-bold px-8 py-4 rounded-full flex items-center gap-3 transition-all duration-200 hover:bg-white/10 backdrop-blur-sm">
+                    <i class="fa-solid fa-sparkles text-base text-amber-400"></i>
+                    Pelajari Selengkapnya
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Wavy SVG Separator -->
+        <div class="wave-separator">
+            <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ INFINITE TICKER MARQUEE ============ -->
+    <div class="bg-amber-500 text-white py-4 overflow-hidden border-y-2 border-amber-600 font-heading font-black text-xs md:text-sm tracking-widest uppercase">
+        <div class="marquee-track flex items-center gap-8 whitespace-nowrap">
+            <span>🌱 SIPETRAN DESA GUNUNGSARI</span>
+            <span>•</span>
+            <span>🍏 NUGGET SIJAGO PENCEGAH STUNTING</span>
+            <span>•</span>
+            <span>☕ KOPI SILOKA ARABIKA REMPAH</span>
+            <span>•</span>
+            <span>💧 BIOPORI & KOMPOS EM4</span>
+            <span>•</span>
+            <span>🏥 10 INDIKATOR PHBS KELUARGA</span>
+            <span>•</span>
+            <span>PPK ORMAWA KEMENDIKBUDRISTEK 2025</span>
+            <span>•</span>
+            <span>🌱 SIPETRAN DESA GUNUNGSARI</span>
+            <span>•</span>
+            <span>🍏 NUGGET SIJAGO PENCEGAH STUNTING</span>
+            <span>•</span>
+            <span>☕ KOPI SILOKA ARABIKA REMPAH</span>
+            <span>•</span>
+            <span>💧 BIOPORI & KOMPOS EM4</span>
+            <span>•</span>
+            <span>🏥 10 INDIKATOR PHBS KELUARGA</span>
+            <span>•</span>
+            <span>PPK ORMAWA KEMENDIKBUDRISTEK 2025</span>
+            <span>•</span>
+        </div>
+    </div>
+
+    <!-- ============ INTERACTIVE PRODUCT & PROGRAM LAB (Interactive Tabs Showcase) ============ -->
+    <section class="bg-[#FAF8F2] py-24 px-6 relative overflow-hidden" x-data="{ activeTab: 'sijago' }">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="ghia-badge-green text-xs uppercase tracking-widest font-black mb-3">FITUR & INOVASI UNGGULAN</span>
+                <h2 class="font-display text-4xl md:text-5xl font-black text-gray-900 mt-2">
+                    EKSPLORASI <span class="text-sipetran-green italic">INOVASI SIPETRAN</span>
+                </h2>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center gap-2 md:gap-4 mb-12 flex-wrap">
+                <button @click="activeTab = 'sijago'"
+                    :class="activeTab === 'sijago' ? 'bg-amber-500 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-bowl-food"></i> Nugget SIJAGO
+                </button>
+                <button @click="activeTab = 'siloka'"
+                    :class="activeTab === 'siloka' ? 'bg-teal-700 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-mug-hot"></i> Kopi SILOKA
+                </button>
+                <button @click="activeTab = 'posyandu'"
+                    :class="activeTab === 'posyandu' ? 'bg-sipetran-green text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse"></i> Gizi Posyandu
+                </button>
+                <button @click="activeTab = 'biopori'"
+                    :class="activeTab === 'biopori' ? 'bg-emerald-800 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-seedling"></i> Lingkungan Biopori
+                </button>
+            </div>
+
+            <!-- Tab Content 1: SIJAGO -->
+            <div x-show="activeTab === 'sijago'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-amber-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-amber-100 aspect-[4/3] relative">
+                    <img src="<?php echo e(asset('images/sijago_nugget.png')); ?>" alt="Nugget SIJAGO" class="w-full h-full object-cover">
+                    <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl text-amber-800 font-bold text-xs shadow-md">
+                        ✨ Jagung + Singkong + Kelor
+                    </span>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-100 px-3.5 py-1 rounded-full border border-amber-200">Gizi & Pangan Lokal</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Formula Resep Nugget SIJAGO</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Diolah khusus dari komoditas pertanian lokal Desa Gunungsari. Kaya akan serat, protein, dan zat besi untuk mencegah resiko stunting pada anak balita.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100">
+                            <span class="text-amber-800 font-bold text-xs uppercase block">Tinggi Protein</span>
+                            <span class="text-gray-900 font-display font-black text-lg">12.8g / Porsi</span>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100">
+                            <span class="text-amber-800 font-bold text-xs uppercase block">Bahan 100% Lokal</span>
+                            <span class="text-gray-900 font-display font-black text-lg">Bebas Pengawet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: SILOKA -->
+            <div x-show="activeTab === 'siloka'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-teal-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-teal-100 aspect-[4/3] relative">
+                    <img src="<?php echo e(asset('images/siloka_coffee.png')); ?>" alt="Kopi SILOKA" class="w-full h-full object-cover">
+                    <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl text-teal-800 font-bold text-xs shadow-md">
+                        ☕ Arabika + Jahe + Sereh
+                    </span>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-teal-700 uppercase tracking-widest bg-teal-100 px-3.5 py-1 rounded-full border border-teal-200">Ekonomi Kreatif UMKM</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Racikan Herbal Kopi SILOKA</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Inovasi kopi lokal khas Gunungsari dipadukan dengan sensasi rempah jahe dan sereh pilihan. Membuka peluang UMKM pemasaran kopi khas daerah.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-teal-50 p-4 rounded-2xl border border-teal-100">
+                            <span class="text-teal-800 font-bold text-xs uppercase block">Aroma Rempah</span>
+                            <span class="text-gray-900 font-display font-black text-lg">Jahe & Sereh</span>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-2xl border border-teal-100">
+                            <span class="text-teal-800 font-bold text-xs uppercase block">Proses Olah</span>
+                            <span class="text-gray-900 font-display font-black text-lg">Medium Roasting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Posyandu -->
+            <div x-show="activeTab === 'posyandu'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-emerald-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="bg-emerald-50 rounded-3xl p-8 border border-emerald-100 flex flex-col justify-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h4 class="font-display font-black text-2xl text-emerald-900">Pemantauan Tumbuh Kembang Balita</h4>
+                    <p class="text-xs text-emerald-800 leading-relaxed font-body">Panduan praktis kader Posyandu untuk mengukur tinggi, berat badan, dan pemenuhan Angka Kecukupan Gizi (AKG).</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-emerald-800 uppercase tracking-widest bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">Kesehatan Ibu & Anak</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Posyandu Terintegrasi</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Mendukung pemantauan gizi berkala serta pencatatan digital tumbuh kembang balita desa Gunungsari.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tab Content 4: Biopori -->
+            <div x-show="activeTab === 'biopori'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-green-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="bg-green-50 rounded-3xl p-8 border border-green-100 flex flex-col justify-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-green-800 text-white flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-recycle"></i>
+                    </div>
+                    <h4 class="font-display font-black text-2xl text-green-900">Pemilahan Sampah & Lubang Biopori</h4>
+                    <p class="text-xs text-green-800 leading-relaxed font-body">Penerapan biopori resapan air hujan, pengelolaan pupuk kompos EM4, dan incinerator drum minim asap.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-green-800 uppercase tracking-widest bg-green-100 px-3.5 py-1 rounded-full border border-green-200">Keberlanjutan Lingkungan</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Desa Asri Berkelanjutan</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Mengubah limbah organik rumah tangga menjadi pupuk hijau bernilai guna tinggi bagi perkebunan desa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EDITORIAL IDENTITY SECTION (Ghia "Born from Love of Ritual") ============ -->
+    <section class="bg-[#FAF8F2] py-20 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 leading-tight">
+                LAHIR DARI CINTA PADA
+                <br>
+                <span class="ghia-badge-green font-black my-2">KEMANDIRIAN DESA</span>
+            </h2>
+
+            <p class="mt-8 text-gray-700 text-base md:text-xl font-display leading-relaxed max-w-3xl mx-auto">
+                SIPETRAN LAHIR DARI
+                <span class="inline-chip"><i class="fa-solid fa-seedling text-emerald-600"></i> PPK ORMAWA</span>
+                SEBUAH IDE SEDERHANA: MASYARAKAT DESA
+                <span class="inline-chip"><i class="fa-solid fa-house text-amber-600"></i> GUNUNGSARI</span>
+                BERHAK MENDAPATKAN AKSES INFORMASI GIZI BALITA
+                <span class="inline-chip"><i class="fa-solid fa-bowl-food text-yellow-600"></i> SIJAGO</span>,
+                RESEP KOPI REMPAH
+                <span class="inline-chip"><i class="fa-solid fa-mug-hot text-stone-700"></i> SILOKA</span>,
+                SERTA KETAHANAN LINGKUNGAN BERKELANJUTAN. 🌿
+            </p>
+        </div>
+    </section>
+
+
+
+    <!-- ============ PROCESS / APP STEPS ============ -->
+    <section class="bg-sipetran-green text-white py-24 px-6 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0" style="transform: rotate(180deg); margin-top:-2px;">
+            <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center pt-8">
+            <span class="ghia-badge-orange text-xs uppercase tracking-widest font-black mb-4">LANGKAH APLIKASI</span>
+            <h2 class="font-display text-4xl md:text-6xl font-black text-white mt-4 mb-16">
+                3 LANGKAH <span class="italic text-amber-400">MUDAH</span> AKSES
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30 text-2xl font-bold">
+                        01
+                    </div>
+                    <h3 class="font-display font-black text-xl text-white mb-2">Unduh .APK</h3>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Download file installer aplikasi Sipetran secara resmi dan gratis dari GitHub repository.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30 text-2xl font-bold">
+                        02
+                    </div>
+                    <h3 class="font-display font-black text-xl text-white mb-2">Install di Android</h3>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Pasang di perangkat smartphone warga desa. Ramah kuota dan cepat dibuka tanpa lag.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30 text-2xl font-bold">
+                        03
+                    </div>
+                    <h3 class="font-display font-black text-xl text-white mb-2">Belajar Kapan Saja</h3>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Akses modul Posyandu, kalkulator gizi SIJAGO, racikan Kopi SILOKA & lingkungan.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ ULTRA FOOTER ============ -->
+    <footer class="bg-[#FAF8F2] pt-20 pb-10 px-8 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-stone-300/60 pt-16">
+
+            <div class="md:col-span-1">
+                <a href="/" class="inline-block mb-4">
+                    <span class="font-handwriting text-4xl text-sipetran-green font-bold">Sipetran</span>
+                </a>
+                <p class="text-gray-600 text-xs leading-relaxed max-w-xs mb-4">
+                    Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso — Jawa Timur.
+                </p>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sipetran-green/10 px-3 py-1 rounded-full text-sipetran-green">
+                    PPK ORMAWA 2025
+                </span>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">NAVIGASI</h4>
+                <ul class="space-y-2.5 text-xs text-gray-600">
+                    <li><a href="/" class="hover:text-sipetran-green font-medium">Beranda</a></li>
+                    <li><a href="<?php echo e(route('tentang')); ?>" class="hover:text-sipetran-green font-medium">Tentang Program</a></li>
+                    <li><a href="<?php echo e(route('modul')); ?>" class="hover:text-sipetran-green font-medium">Program Modul PPK Ormawa</a></li>
+                    <li><a href="<?php echo e(route('kegiatan.index')); ?>" class="hover:text-sipetran-green font-medium">Dokumentasi Kegiatan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">PORTAL AKSES</h4>
+                <ul class="space-y-2.5 text-xs text-gray-600">
+                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
+                    <li><a href="<?php echo e(route('admin.login')); ?>" class="hover:text-sipetran-orange font-bold text-amber-700 flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
+                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Source Repository</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">SEKRETARIAT</h4>
+                <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                    <i class="fa-solid fa-location-dot text-amber-600 mr-1.5"></i>
+                    Balai Desa Gunungsari, Kec. Maesan, Kab. Bondowoso, Jawa Timur 68262
+                </p>
+                <p class="text-xs text-gray-600">
+                    <i class="fa-solid fa-envelope text-amber-600 mr-1.5"></i>
+                    ppkormawa.sipetran@gmail.com
+                </p>
+            </div>
+        </div>
+
+        <!-- Giant Ghia Style Script Watermark Logo -->
+        <div class="mt-16 text-center select-none opacity-15 pointer-events-none">
+            <span class="font-handwriting text-[120px] sm:text-[160px] md:text-[220px] text-sipetran-green leading-none">Sipetran</span>
+        </div>
+
+        <div class="max-w-6xl mx-auto border-t border-stone-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+            <p>&copy; <?php echo e(date('Y')); ?> SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-gray-700 flex items-center gap-1">
+                    <i class="fa-brands fa-github text-sm"></i> GitHub
                 </a>
             </div>
         </div>
     </footer>
 
-    </div>
 </body>
 </html>
 <?php /**PATH C:\Users\LENOVO\Desktop\Wesbite Sipetran\Website_Sipetran\resources\views/landing.blade.php ENDPATH**/ ?>

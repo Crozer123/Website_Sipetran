@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Program - SIPETRAN Desa Gunungsari</title>
+    <meta name="description" content="Tentang Program PPK ORMAWA SIPETRAN Desa Gunungsari Bondowoso.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        heading: ['DM Sans', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        sipetran: {
+                            green: '#203816',
+                            dark: '#14260d',
+                            lightgreen: '#4a7c2f',
+                            orange: '#d97706',
+                            redorange: '#c85a32',
+                            darkorange: '#b45309',
+                            cream: '#FAF8F2',
+                            bg: '#FAF8F2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body { background-color: #FAF8F2; color: #1c2417; }
+
+        .wave-separator {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .ghia-badge-orange {
+            display: inline-block;
+            background: #d97706;
+            color: #ffffff;
+            border: 2.5px solid #ffffff;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(-1.5deg);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+        }
+
+        .ghia-badge-green {
+            display: inline-block;
+            background: #203816;
+            color: #ffffff;
+            border: 2.5px solid #FAF8F2;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(1.5deg);
+            box-shadow: 0 4px 12px rgba(32, 56, 22, 0.25);
+        }
+
+        .feature-card { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease; }
+        .feature-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 24px 50px rgba(0,0,0,0.12); }
+    </style>
+</head>
+
+<body class="font-body text-gray-800 antialiased">
+
+    <!-- ============ NAVIGATION ============ -->
+    <header class="absolute top-0 left-0 right-0 z-50" x-data="{ mobileOpen: false }">
+        <nav class="flex items-center justify-between py-5 px-6 max-w-6xl mx-auto">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+                <span class="font-handwriting text-3xl text-amber-400 font-bold tracking-wide">Sipetran</span>
+                <span class="text-[10px] font-semibold text-green-300 tracking-widest uppercase border-l border-white/20 pl-2">Desa Gunungsari</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-7 font-body text-sm font-medium text-white/80">
+                <a href="/" class="hover:text-white transition-colors">Beranda</a>
+                <a href="{{ route('tentang') }}" class="text-white font-bold border-b-2 border-amber-400 pb-0.5">Tentang Program</a>
+
+                <!-- Dropdown Mitra -->
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <button @click="open = !open" class="hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none">
+                        <span>Mitra</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-amber-400' : 'text-white/50'"></i>
+                    </button>
+
+                    <!-- Dropdown Card -->
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0 scale-100" x-transition:leave-end="opacity-0 translate-y-2 scale-95" class="absolute left-1/2 -translate-x-1/2 mt-3 w-72 bg-white rounded-3xl shadow-xl border border-stone-100 p-4 z-50 text-gray-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-3 px-2">Mitra & Pendukung Program</p>
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-emerald-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-building-columns text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-emerald-800">Kemendikbudristek</p>
+                                    <p class="text-[10px] text-gray-500">Penyelenggara PPK Ormawa</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-amber-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-amber-800">Perguruan Tinggi</p>
+                                    <p class="text-[10px] text-gray-500">Pembina & Pendamping</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-teal-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-users text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-teal-800">Tim PPK Ormawa</p>
+                                    <p class="text-[10px] text-gray-500">Pelaksana Pengabdian</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-green-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-green-100 text-green-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-tree-city text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-green-800">Pemdes Gunungsari</p>
+                                    <p class="text-[10px] text-gray-500">Pemerintah Desa Binaan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{{ route('modul') }}" class="hover:text-white transition-colors">Program Modul</a>
+                <a href="{{ route('kegiatan.index') }}" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 font-semibold">
+                    <i class="fa-solid fa-folder-open text-amber-400 text-xs"></i> Kegiatan
+                </a>
+                <a href="{{ route('admin.login') }}" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
+                    <i class="fa-solid fa-user-shield text-xs text-amber-400"></i> Admin
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-white">
+                <i class="fa-solid text-xl" :class="mobileOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Drawer -->
+        <div x-show="mobileOpen" x-transition
+            class="fixed top-4 left-4 right-4 bg-white rounded-[2rem] shadow-2xl z-50 px-6 py-4 border border-gray-100 md:hidden text-gray-800">
+            <div class="flex flex-col gap-0">
+                <a href="/" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Beranda</a>
+                <a href="{{ route('tentang') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-green font-bold">Tentang Program</a>
+                <div x-data="{ showMitra: false }" class="py-3 border-b border-gray-100">
+                    <button @click="showMitra = !showMitra" class="w-full flex items-center justify-between text-sm text-gray-700 font-medium">
+                        <span>Mitra Program</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform" :class="showMitra ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="showMitra" class="mt-3 space-y-2 pl-2">
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-building-columns text-emerald-700"></i> Kemendikbudristek</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-amber-700"></i> Perguruan Tinggi</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-users text-teal-700"></i> Tim PPK Ormawa</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-tree-city text-green-700"></i> Pemdes Gunungsari</div>
+                    </div>
+                </div>
+                <a href="{{ route('modul') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Program Modul</a>
+                <a href="{{ route('kegiatan.index') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-orange font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-xs"></i> Kegiatan
+                </a>
+                <a href="{{ route('admin.login') }}" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-xs text-sipetran-orange"></i> Admin Login
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ HERO HEADER (Dark Green Ghia Style with Photo Background) ============ -->
+    <section class="relative bg-sipetran-green overflow-hidden pt-36 pb-40 text-center">
+
+        <!-- PPK Ormawa Team Photograph Background with Dark Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="{{ asset('images/hero_team.png') }}" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-25 scale-105 filter brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/85 via-sipetran-green/75 to-sipetran-green"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-[0.3em] mb-4 inline-block">PROFIL PROGRAM PPK ORMAWA 2025</span>
+
+            <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl font-black leading-tight tracking-tight">
+                MENGINSPIRASI
+                <br>
+                <span class="ghia-badge-orange font-black my-2">DESA BINAAN</span>
+            </h1>
+
+            <p class="mt-6 text-green-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-body">
+                Sistem Informasi & Edukasi Terpadu yang mengintegrasikan penguatan gizi anak, inovasi olahan lokal, kesadaran kesehatan keluarga, dan pemeliharaan kelestarian lingkungan.
+            </p>
+        </div>
+
+        <div class="wave-separator">
+            <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,50 C240,100 480,0 720,50 C960,100 1200,0 1440,50 L1440,100 L0,100 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+    </section>
+
+
+
+    <!-- ============ CALLOUT BANNER ============ -->
+    <section class="bg-sipetran-green text-white py-24 px-6 relative overflow-hidden text-center">
+        <div class="absolute top-0 left-0 right-0" style="transform: rotate(180deg); margin-top:-2px;">
+            <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+
+        <div class="max-w-4xl mx-auto pt-6 relative z-10">
+            <span class="ghia-badge-orange text-xs uppercase tracking-widest font-black mb-4">PENGABDIAN 2025</span>
+            <h2 class="font-display text-3xl md:text-5xl font-black text-white leading-tight mt-3 mb-6">
+                MEMBANGUN DESA BINAAN MANDIRI, SEHAT, DAN BERKELANJUTAN.
+            </h2>
+            <p class="text-green-200 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8 font-body">
+                Apresiasi setinggi-tingginya kepada seluruh warga Desa Gunungsari, kader posyandu, dan perangkat desa yang senantiasa bersinergi mensukseskan program PPK ORMAWA SIPETRAN.
+            </p>
+
+            <a href="{{ route('modul') }}" class="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-400 text-white font-bold px-8 py-4 rounded-full transition-all shadow-lg hover:-translate-y-1">
+                Buka 8 Modul Program
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+            </a>
+        </div>
+
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ ULTRA FOOTER ============ -->
+    <footer class="bg-[#FAF8F2] pt-20 pb-10 px-8 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-stone-300/60 pt-16">
+            <div class="md:col-span-1">
+                <a href="/" class="inline-block mb-4">
+                    <span class="font-handwriting text-4xl text-sipetran-green font-bold">Sipetran</span>
+                </a>
+                <p class="text-gray-600 text-xs leading-relaxed max-w-xs mb-4">
+                    Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso — Jawa Timur.
+                </p>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sipetran-green/10 px-3 py-1 rounded-full text-sipetran-green">
+                    PPK ORMAWA 2025
+                </span>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">NAVIGASI</h4>
+                <ul class="space-y-2.5 text-xs text-gray-600">
+                    <li><a href="/" class="hover:text-sipetran-green font-medium">Beranda</a></li>
+                    <li><a href="{{ route('tentang') }}" class="hover:text-sipetran-green font-medium">Tentang Program</a></li>
+                    <li><a href="{{ route('modul') }}" class="hover:text-sipetran-green font-medium">Program Modul PPK Ormawa</a></li>
+                    <li><a href="{{ route('kegiatan.index') }}" class="hover:text-sipetran-green font-medium">Dokumentasi Kegiatan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">PORTAL AKSES</h4>
+                <ul class="space-y-2.5 text-xs text-gray-600">
+                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
+                    <li><a href="{{ route('admin.login') }}" class="hover:text-sipetran-orange font-bold text-amber-700 flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
+                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Source Repository</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">SEKRETARIAT</h4>
+                <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                    <i class="fa-solid fa-location-dot text-amber-600 mr-1.5"></i>
+                    Balai Desa Gunungsari, Kec. Maesan, Kab. Bondowoso, Jawa Timur 68262
+                </p>
+                <p class="text-xs text-gray-600">
+                    <i class="fa-solid fa-envelope text-amber-600 mr-1.5"></i>
+                    ppkormawa.sipetran@gmail.com
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-16 text-center select-none opacity-15 pointer-events-none">
+            <span class="font-handwriting text-[120px] sm:text-[160px] md:text-[220px] text-sipetran-green leading-none">Sipetran</span>
+        </div>
+
+        <div class="max-w-6xl mx-auto border-t border-stone-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+            <p>&copy; {{ date('Y') }} SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-gray-700 flex items-center gap-1">
+                    <i class="fa-brands fa-github text-sm"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
