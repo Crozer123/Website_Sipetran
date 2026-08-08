@@ -1,9 +1,8 @@
 <?php
-echo "<h1>VERCEL PHP 0.9.0 IS WORKING!</h1>";
-echo "<p>If you see this, the server is fine, but Laravel is crashing it.</p>";
-exit;
 
-        '/tmp/storage/app',
+try {
+    // 1. Create full Laravel storage structure in /tmp
+    $storageDirs = [
         '/tmp/storage/framework/cache/data',
         '/tmp/storage/framework/sessions',
         '/tmp/storage/framework/views',
