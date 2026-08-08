@@ -1,4 +1,5 @@
 <?php
+// Forced redeploy after disabling Vercel Toolbar
 
 try {
     // 1. Create full Laravel storage structure in /tmp
@@ -46,10 +47,9 @@ try {
     require __DIR__ . '/../public/index.php';
 } catch (\Throwable $e) {
     http_response_code(500);
-    echo "<h1>Vercel Serverless PHP Crash</h1>";
+    echo "<h1>VERCEL PHP 0.9.0 IS WORKING WITHOUT TOOLBAR!</h1>";
     echo "<p><strong>Error:</strong> " . htmlspecialchars($e->getMessage()) . "</p>";
     echo "<p><strong>File:</strong> " . htmlspecialchars($e->getFile()) . " on line " . $e->getLine() . "</p>";
     echo "<h2>Stack Trace:</h2>";
     echo "<pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
 }
-
