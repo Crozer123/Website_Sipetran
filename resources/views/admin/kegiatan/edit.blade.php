@@ -103,7 +103,7 @@
                         <div>
                             <label class="block text-xs font-semibold text-gray-500 mb-1.5">Tanggal Kegiatan</label>
                             <input type="text" name="tanggal" value="{{ old('tanggal', $kegiatan->tanggal) }}"
-                                placeholder="Misal: 15 Januari 2025"
+                                placeholder="Misal: 15 Januari 2026"
                                 class="input-field w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm bg-gray-50">
                         </div>
                         <div>

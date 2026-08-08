@@ -173,20 +173,20 @@
         <nav class="flex items-center justify-between py-5 px-6 max-w-6xl mx-auto">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-                <span class="font-handwriting text-3.5xl text-amber-400 font-bold tracking-wide">Sipetran</span>
+                <span class="font-handwriting text-3.5xl text-emerald-300 font-bold tracking-wide">Sipetran</span>
                 <span class="text-[10px] font-semibold text-green-300 tracking-widest uppercase border-l border-white/20 pl-2">Desa Gunungsari</span>
             </a>
 
             <!-- Desktop Nav Links -->
             <div class="hidden md:flex items-center gap-7 font-body text-sm font-medium text-white/80">
-                <a href="/" class="text-white font-bold border-b-2 border-amber-400 pb-0.5">Beranda</a>
+                <a href="/" class="text-white font-bold border-b-2 border-white pb-0.5">Beranda</a>
                 <a href="{{ route('tentang') }}" class="hover:text-white transition-colors">Tentang Program</a>
 
                 <!-- Dropdown Mitra -->
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
                     <button @click="open = !open" class="hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none">
                         <span>Mitra</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-amber-400' : 'text-white/50'"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-emerald-300' : 'text-white/50'"></i>
                     </button>
 
                     <!-- Dropdown Card -->
@@ -202,12 +202,12 @@
                                     <p class="text-[10px] text-gray-500">Penyelenggara PPK Ormawa</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-amber-50/60 transition-colors group cursor-default">
-                                <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-emerald-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
                                     <i class="fa-solid fa-graduation-cap text-xs"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-amber-800">Perguruan Tinggi</p>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-emerald-800">Perguruan Tinggi</p>
                                     <p class="text-[10px] text-gray-500">Pembina & Pendamping</p>
                                 </div>
                             </div>
@@ -234,11 +234,12 @@
                 </div>
 
                 <a href="{{ route('modul') }}" class="hover:text-white transition-colors">Program Modul</a>
-                <a href="{{ route('kegiatan.index') }}" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 font-semibold">
-                    <i class="fa-solid fa-folder-open text-amber-400 text-xs"></i> Kegiatan
+                <a href="{{ route('kegiatan.index') }}"
+                    class="font-medium hover:text-white transition-colors py-1 flex items-center gap-1.5 {{ request()->routeIs('kegiatan.*') ? 'border-b-2 border-white font-bold text-white' : '' }}">
+                    Kegiatan
                 </a>
                 <a href="{{ route('admin.login') }}" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
-                    <i class="fa-solid fa-user-shield text-xs text-amber-400"></i> Admin
+                    <i class="fa-solid fa-user-shield text-xs text-emerald-300"></i> Admin
                 </a>
             </div>
 
@@ -261,17 +262,15 @@
                     </button>
                     <div x-show="showMitra" class="mt-3 space-y-2 pl-2">
                         <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-building-columns text-emerald-700"></i> Kemendikbudristek</div>
-                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-amber-700"></i> Perguruan Tinggi</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-emerald-700"></i> Perguruan Tinggi</div>
                         <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-users text-teal-700"></i> Tim PPK Ormawa</div>
                         <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-tree-city text-green-700"></i> Pemdes Gunungsari</div>
                     </div>
                 </div>
                 <a href="{{ route('modul') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Program Modul</a>
-                <a href="{{ route('kegiatan.index') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-orange font-semibold flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-xs"></i> Kegiatan
-                </a>
+                <a href="{{ route('kegiatan.index') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm font-medium">Kegiatan</a>
                 <a href="{{ route('admin.login') }}" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-xs text-sipetran-orange"></i> Admin Login
+                    <i class="fa-solid fa-user-shield text-xs text-sipetran-green"></i> Admin Login
                 </a>
             </div>
         </div>
@@ -282,15 +281,15 @@
 
         <!-- PPK Ormawa Team Photograph Background with Dark Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/hero_team.png') }}" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-25 scale-105 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/85 via-sipetran-green/75 to-sipetran-green"></div>
+            <img src="{{ asset('images/hero_team.png') }}" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-55 scale-105 filter brightness-110 contrast-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/60 via-sipetran-green/50 to-sipetran-green/85"></div>
         </div>
 
         <!-- Organic Background Vignette & Radial Light -->
         <div class="absolute inset-0 opacity-20 pointer-events-none z-0"
             style="background-image: radial-gradient(circle at 50% 30%, #4a7c2f 0%, transparent 60%),
-                   radial-gradient(circle at 10% 60%, #d97706 0%, transparent 45%),
-                   radial-gradient(circle at 90% 70%, #c85a32 0%, transparent 45%);"></div>
+                   radial-gradient(circle at 10% 60%, #10b981 0%, transparent 45%),
+                   radial-gradient(circle at 90% 70%, #059669 0%, transparent 45%);"></div>
 
         <!-- Left Product Showcase Card (SIJAGO Nugget Photo) -->
         <div class="hidden xl:block absolute left-6 top-36 z-20 float-left-card">
@@ -299,7 +298,7 @@
                 <div class="absolute -top-8 -left-8 w-28 h-28 spin-slow opacity-90 pointer-events-none z-30">
                     <svg viewBox="0 0 100 100" class="w-full h-full">
                         <path id="circlePathLeft" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
-                        <text font-size="8.5" font-weight="bold" fill="#fde68a" letter-spacing="2">
+                        <text font-size="8.5" font-weight="bold" fill="#6ee7b7" letter-spacing="2">
                             <textPath href="#circlePathLeft">• NUGGET SIJAGO • PANGAN LOKAL • GIZI BALITA </textPath>
                         </text>
                     </svg>
@@ -308,10 +307,10 @@
                 <div class="bg-white/95 text-gray-900 rounded-[2.2rem] p-3.5 w-64 border-2 border-white/40 shadow-2xl backdrop-blur-md text-left overflow-hidden">
                     <div class="rounded-2xl overflow-hidden h-36 relative mb-3">
                         <img src="{{ asset('images/sijago_nugget.png') }}" alt="SIJAGO Nugget" class="w-full h-full object-cover">
-                        <span class="absolute top-2 left-2 bg-amber-500 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full shadow-xs">Formulasi Gizi</span>
+                        <span class="absolute top-2 left-2 bg-emerald-700 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full shadow-xs">Formulasi Gizi</span>
                     </div>
                     <div class="px-1">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700">Resep Cegah Stunting</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Resep Cegah Stunting</span>
                         <h4 class="font-display font-black text-lg text-gray-900 leading-tight">Nugget SIJAGO</h4>
                         <p class="text-[11px] text-gray-500 mt-0.5 leading-relaxed">Jagung + Singkong + Kelor kaya nutrisi balita.</p>
                     </div>
@@ -347,31 +346,28 @@
         </div>
 
         <!-- Center Editorial Hero Title -->
-        <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <p class="text-xs font-bold text-amber-400 uppercase tracking-[0.35em] mb-4">PROGRAM PPK ORMAWA 2025</p>
+        <div class="relative z-10 max-w-4xl mx-            <p class="text-xs font-bold text-emerald-300 uppercase tracking-[0.35em] mb-4">PROGRAM PPK ORMAWA 2026</p>
 
             <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.03] tracking-tight">
                 EDUKASI DIGITALE
                 <br>
-                <span class="ghia-badge-orange font-black my-2">TERPADU DESA</span>
+                <span class="ghia-badge-green font-black my-2">TERPADU DESA</span>
                 <br>
                 GUNUNGSARI BINAAN
             </h1>
 
-            <p class="mt-7 text-green-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-body">
-                Platform terintegrasi penguatan gizi balita Posyandu, resep inovasi <strong>Nugget SIJAGO</strong>, racikan khas <strong>Kopi SILOKA</strong>, dan tata kelola lingkungan berkelanjutan. 🌱
-            </p>
+
 
             <!-- Pill CTA Buttons -->
             <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank"
-                    class="bg-amber-500 hover:bg-amber-400 text-white font-bold px-9 py-4 rounded-full flex items-center gap-3 transition-all duration-200 shadow-xl hover:shadow-amber-500/40 hover:-translate-y-1">
+                <a href="#download"
+                    class="bg-sipetran-green hover:bg-emerald-800 text-white font-bold px-9 py-4 rounded-full flex items-center gap-3 transition-all duration-200 shadow-xl border-2 border-white/30 hover:-translate-y-1">
                     <i class="fa-solid fa-cloud-arrow-down text-base"></i>
                     Unduh Aplikasi (.APK)
                 </a>
                 <a href="{{ route('tentang') }}"
                     class="border-2 border-white/30 hover:border-white/70 text-white font-bold px-8 py-4 rounded-full flex items-center gap-3 transition-all duration-200 hover:bg-white/10 backdrop-blur-sm">
-                    <i class="fa-solid fa-sparkles text-base text-amber-400"></i>
+                    <i class="fa-solid fa-sparkles text-base text-emerald-300"></i>
                     Pelajari Selengkapnya
                 </a>
             </div>
@@ -384,36 +380,6 @@
             </svg>
         </div>
     </section>
-
-    <!-- ============ INFINITE TICKER MARQUEE ============ -->
-    <div class="bg-amber-500 text-white py-4 overflow-hidden border-y-2 border-amber-600 font-heading font-black text-xs md:text-sm tracking-widest uppercase">
-        <div class="marquee-track flex items-center gap-8 whitespace-nowrap">
-            <span>🌱 SIPETRAN DESA GUNUNGSARI</span>
-            <span>•</span>
-            <span>🍏 NUGGET SIJAGO PENCEGAH STUNTING</span>
-            <span>•</span>
-            <span>☕ KOPI SILOKA ARABIKA REMPAH</span>
-            <span>•</span>
-            <span>💧 BIOPORI & KOMPOS EM4</span>
-            <span>•</span>
-            <span>🏥 10 INDIKATOR PHBS KELUARGA</span>
-            <span>•</span>
-            <span>PPK ORMAWA KEMENDIKBUDRISTEK 2025</span>
-            <span>•</span>
-            <span>🌱 SIPETRAN DESA GUNUNGSARI</span>
-            <span>•</span>
-            <span>🍏 NUGGET SIJAGO PENCEGAH STUNTING</span>
-            <span>•</span>
-            <span>☕ KOPI SILOKA ARABIKA REMPAH</span>
-            <span>•</span>
-            <span>💧 BIOPORI & KOMPOS EM4</span>
-            <span>•</span>
-            <span>🏥 10 INDIKATOR PHBS KELUARGA</span>
-            <span>•</span>
-            <span>PPK ORMAWA KEMENDIKBUDRISTEK 2025</span>
-            <span>•</span>
-        </div>
-    </div>
 
     <!-- ============ INTERACTIVE PRODUCT & PROGRAM LAB (Interactive Tabs Showcase) ============ -->
     <section class="bg-[#FAF8F2] py-24 px-6 relative overflow-hidden" x-data="{ activeTab: 'sijago' }">
@@ -428,7 +394,7 @@
             <!-- Tab Buttons -->
             <div class="flex justify-center gap-2 md:gap-4 mb-12 flex-wrap">
                 <button @click="activeTab = 'sijago'"
-                    :class="activeTab === 'sijago' ? 'bg-amber-500 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    :class="activeTab === 'sijago' ? 'bg-emerald-700 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
                     class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
                     <i class="fa-solid fa-bowl-food"></i> Nugget SIJAGO
                 </button>
@@ -450,26 +416,26 @@
             </div>
 
             <!-- Tab Content 1: SIJAGO -->
-            <div x-show="activeTab === 'sijago'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-amber-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div class="rounded-3xl overflow-hidden shadow-lg border border-amber-100 aspect-[4/3] relative">
+            <div x-show="activeTab === 'sijago'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-emerald-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-emerald-100 aspect-[4/3] relative">
                     <img src="{{ asset('images/sijago_nugget.png') }}" alt="Nugget SIJAGO" class="w-full h-full object-cover">
-                    <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl text-amber-800 font-bold text-xs shadow-md">
+                    <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl text-emerald-800 font-bold text-xs shadow-md">
                         ✨ Jagung + Singkong + Kelor
                     </span>
                 </div>
                 <div class="space-y-4">
-                    <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-100 px-3.5 py-1 rounded-full border border-amber-200">Gizi & Pangan Lokal</span>
+                    <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">Gizi & Pangan Lokal</span>
                     <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Formula Resep Nugget SIJAGO</h3>
                     <p class="text-gray-600 text-sm leading-relaxed font-body">
                         Diolah khusus dari komoditas pertanian lokal Desa Gunungsari. Kaya akan serat, protein, dan zat besi untuk mencegah resiko stunting pada anak balita.
                     </p>
                     <div class="grid grid-cols-2 gap-3 pt-2">
-                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100">
-                            <span class="text-amber-800 font-bold text-xs uppercase block">Tinggi Protein</span>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <span class="text-emerald-800 font-bold text-xs uppercase block">Tinggi Protein</span>
                             <span class="text-gray-900 font-display font-black text-lg">12.8g / Porsi</span>
                         </div>
-                        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100">
-                            <span class="text-amber-800 font-bold text-xs uppercase block">Bahan 100% Lokal</span>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <span class="text-emerald-800 font-bold text-xs uppercase block">Bahan 100% Lokal</span>
                             <span class="text-gray-900 font-display font-black text-lg">Bebas Pengawet</span>
                         </div>
                     </div>
@@ -554,9 +520,9 @@
                 SIPETRAN LAHIR DARI
                 <span class="inline-chip"><i class="fa-solid fa-seedling text-emerald-600"></i> PPK ORMAWA</span>
                 SEBUAH IDE SEDERHANA: MASYARAKAT DESA
-                <span class="inline-chip"><i class="fa-solid fa-house text-amber-600"></i> GUNUNGSARI</span>
+                <span class="inline-chip"><i class="fa-solid fa-house text-emerald-600"></i> GUNUNGSARI</span>
                 BERHAK MENDAPATKAN AKSES INFORMASI GIZI BALITA
-                <span class="inline-chip"><i class="fa-solid fa-bowl-food text-yellow-600"></i> SIJAGO</span>,
+                <span class="inline-chip"><i class="fa-solid fa-bowl-food text-emerald-600"></i> SIJAGO</span>,
                 RESEP KOPI REMPAH
                 <span class="inline-chip"><i class="fa-solid fa-mug-hot text-stone-700"></i> SILOKA</span>,
                 SERTA KETAHANAN LINGKUNGAN BERKELANJUTAN. 🌿
@@ -564,10 +530,8 @@
         </div>
     </section>
 
-
-
     <!-- ============ PROCESS / APP STEPS ============ -->
-    <section class="bg-sipetran-green text-white py-24 px-6 relative overflow-hidden">
+    <section class="bg-sipetran-green text-white py-24 px-6 relative overflow-hidden" id="download">
         <div class="absolute top-0 left-0 right-0" style="transform: rotate(180deg); margin-top:-2px;">
             <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                 <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FAF8F2"/>
@@ -575,22 +539,22 @@
         </div>
 
         <div class="max-w-5xl mx-auto text-center pt-8">
-            <span class="ghia-badge-orange text-xs uppercase tracking-widest font-black mb-4">LANGKAH APLIKASI</span>
+            <span class="ghia-badge-green text-xs uppercase tracking-widest font-black mb-4">LANGKAH APLIKASI</span>
             <h2 class="font-display text-4xl md:text-6xl font-black text-white mt-4 mb-16">
-                3 LANGKAH <span class="italic text-amber-400">MUDAH</span> AKSES
+                3 LANGKAH <span class="italic text-emerald-300">MUDAH</span> AKSES
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
-                    <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30 text-2xl font-bold">
+                    <div class="w-16 h-16 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center mx-auto mb-4 border border-white/30 text-2xl font-bold">
                         01
                     </div>
                     <h3 class="font-display font-black text-xl text-white mb-2">Unduh .APK</h3>
-                    <p class="text-green-200 text-xs leading-relaxed font-body">Download file installer aplikasi Sipetran secara resmi dan gratis dari GitHub repository.</p>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Download file installer aplikasi Sipetran secara resmi dan gratis.</p>
                 </div>
 
                 <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
-                    <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30 text-2xl font-bold">
+                    <div class="w-16 h-16 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center mx-auto mb-4 border border-white/30 text-2xl font-bold">
                         02
                     </div>
                     <h3 class="font-display font-black text-xl text-white mb-2">Install di Android</h3>
@@ -598,7 +562,7 @@
                 </div>
 
                 <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
-                    <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30 text-2xl font-bold">
+                    <div class="w-16 h-16 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center mx-auto mb-4 border border-white/30 text-2xl font-bold">
                         03
                     </div>
                     <h3 class="font-display font-black text-xl text-white mb-2">Belajar Kapan Saja</h3>
@@ -626,7 +590,7 @@
                     Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso — Jawa Timur.
                 </p>
                 <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sipetran-green/10 px-3 py-1 rounded-full text-sipetran-green">
-                    PPK ORMAWA 2025
+                    PPK ORMAWA 2026
                 </span>
             </div>
 
@@ -643,21 +607,23 @@
             <div>
                 <h4 class="font-display font-black text-gray-900 text-base mb-4">PORTAL AKSES</h4>
                 <ul class="space-y-2.5 text-xs text-gray-600">
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
-                    <li><a href="{{ route('admin.login') }}" class="hover:text-sipetran-orange font-bold text-amber-700 flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Source Repository</a></li>
+                    <li><a href="#download" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-sipetran-green"></i> Unduh APK</a></li>
+                    <li><a href="{{ route('admin.login') }}" class="hover:text-sipetran-green font-bold text-sipetran-green flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
                 </ul>
             </div>
 
             <div>
                 <h4 class="font-display font-black text-gray-900 text-base mb-4">SEKRETARIAT</h4>
                 <p class="text-xs text-gray-600 leading-relaxed mb-3">
-                    <i class="fa-solid fa-location-dot text-amber-600 mr-1.5"></i>
+                    <i class="fa-solid fa-location-dot text-sipetran-green mr-1.5"></i>
                     Balai Desa Gunungsari, Kec. Maesan, Kab. Bondowoso, Jawa Timur 68262
                 </p>
                 <p class="text-xs text-gray-600">
-                    <i class="fa-solid fa-envelope text-amber-600 mr-1.5"></i>
+                    <i class="fa-solid fa-envelope text-sipetran-green mr-1.5"></i>
                     ppkormawa.sipetran@gmail.com
+                </p>
+            </div>
+        </div>sipetran@gmail.com
                 </p>
             </div>
         </div>
@@ -669,11 +635,6 @@
 
         <div class="max-w-6xl mx-auto border-t border-stone-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
             <p>&copy; {{ date('Y') }} SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
-            <div class="flex items-center gap-4">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-gray-700 flex items-center gap-1">
-                    <i class="fa-brands fa-github text-sm"></i> GitHub
-                </a>
-            </div>
         </div>
     </footer>
 

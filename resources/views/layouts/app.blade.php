@@ -109,9 +109,6 @@
             </nav>
 
             <div class="hidden md:flex items-center gap-4">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="p-2.5 text-slate-600 hover:text-slate-900 transition-colors" title="GitHub Repository">
-                    <i class="fa-brands fa-github text-xl"></i>
-                </a>
                 <a href="#unduh" class="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 hover:shadow-lg transition-all flex items-center gap-2">
                     <i class="fa-solid fa-download"></i> Unduh APK
                 </a>
@@ -132,9 +129,6 @@
             <a href="#lingkungan" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 hover:text-emerald-600 font-medium">Lingkungan</a>
             <a href="#unduh" @click="mobileMenuOpen = false" class="block py-2 text-slate-700 hover:text-emerald-600 font-medium">Unduh App</a>
             <div class="pt-2 flex flex-col gap-2">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="w-full text-center py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-sm flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-github"></i> Repository GitHub
-                </a>
                 <a href="#unduh" @click="mobileMenuOpen = false" class="w-full text-center py-2.5 rounded-xl bg-emerald-600 text-white font-semibold text-sm flex items-center justify-center gap-2">
                     <i class="fa-solid fa-download"></i> Unduh APK Android
                 </a>
@@ -162,9 +156,6 @@
                         Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari. Aplikasi pendamping masyarakat untuk pencegahan stunting, pengembangan UMKM kopi & kuliner lokal, serta kelestarian lingkungan biopori & pemilahan sampah.
                     </p>
                     <div class="flex items-center gap-4 pt-2">
-                        <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-400 flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-github text-lg"></i>
-                        </a>
                         <a href="#unduh" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-400 flex items-center justify-center transition-colors">
                             <i class="fa-solid fa-android text-lg"></i>
                         </a>
@@ -184,9 +175,9 @@
 
                 <div>
                     <h4 class="font-heading font-bold text-white mb-4">Aplikasi Mobile</h4>
-                    <p class="text-sm text-slate-400 mb-4">Dapatkan aplikasi Sipetran versi Android langsung melalui repository official GitHub.</p>
-                    <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg transition-colors">
-                        <i class="fa-brands fa-github text-base"></i> Github Sipetran Repository
+                    <p class="text-sm text-slate-400 mb-4">Dapatkan aplikasi Sipetran versi Android gratis untuk perangkat warga desa.</p>
+                    <a href="#unduh" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg transition-colors">
+                        <i class="fa-solid fa-download text-base"></i> Unduh Aplikasi Android
                     </a>
                 </div>
             </div>

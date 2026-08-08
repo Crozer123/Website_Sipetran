@@ -130,7 +130,7 @@
         <nav class="flex items-center justify-between py-5 px-6 max-w-6xl mx-auto">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
-                <span class="font-handwriting text-3.5xl text-amber-400 font-bold tracking-wide">Sipetran</span>
+                <span class="font-handwriting text-3.5xl text-emerald-300 font-bold tracking-wide">Sipetran</span>
                 <span class="text-[10px] font-semibold text-green-300 tracking-widest uppercase border-l border-white/20 pl-2">Desa Gunungsari</span>
             </a>
 
@@ -143,7 +143,7 @@
                 <div class="relative" x-data="{ open: false }" @click.outside="open = false">
                     <button @click="open = !open" class="hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none">
                         <span>Mitra</span>
-                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-amber-400' : 'text-white/50'"></i>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-emerald-300' : 'text-white/50'"></i>
                     </button>
 
                     <!-- Dropdown Card -->
@@ -159,12 +159,12 @@
                                     <p class="text-[10px] text-gray-500">Penyelenggara PPK Ormawa</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-amber-50/60 transition-colors group cursor-default">
-                                <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-emerald-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
                                     <i class="fa-solid fa-graduation-cap text-xs"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-amber-800">Perguruan Tinggi</p>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-emerald-800">Perguruan Tinggi</p>
                                     <p class="text-[10px] text-gray-500">Pembina & Pendamping</p>
                                 </div>
                             </div>
@@ -190,12 +190,10 @@
                     </div>
                 </div>
 
-                <a href="{{ route('modul') }}" class="text-white font-bold border-b-2 border-amber-400 pb-0.5">Program Modul</a>
-                <a href="{{ route('kegiatan.index') }}" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 font-semibold">
-                    <i class="fa-solid fa-folder-open text-amber-400 text-xs"></i> Kegiatan
-                </a>
+                <a href="{{ route('modul') }}" class="text-white font-bold border-b-2 border-white pb-0.5">Program Modul</a>
+                <a href="{{ route('kegiatan.index') }}" class="hover:text-white transition-colors">Kegiatan</a>
                 <a href="{{ route('admin.login') }}" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
-                    <i class="fa-solid fa-user-shield text-xs text-amber-400"></i> Admin
+                    <i class="fa-solid fa-user-shield text-xs text-emerald-300"></i> Admin
                 </a>
             </div>
 
@@ -218,29 +216,27 @@
                     </button>
                     <div x-show="showMitra" class="mt-3 space-y-2 pl-2">
                         <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-building-columns text-emerald-700"></i> Kemendikbudristek</div>
-                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-amber-700"></i> Perguruan Tinggi</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-emerald-700"></i> Perguruan Tinggi</div>
                         <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-users text-teal-700"></i> Tim PPK Ormawa</div>
                         <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-tree-city text-green-700"></i> Pemdes Gunungsari</div>
                     </div>
                 </div>
                 <a href="{{ route('modul') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-green font-bold">Program Modul</a>
-                <a href="{{ route('kegiatan.index') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-orange font-semibold flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-xs"></i> Kegiatan
-                </a>
+                <a href="{{ route('kegiatan.index') }}" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Kegiatan</a>
                 <a href="{{ route('admin.login') }}" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-xs text-sipetran-orange"></i> Admin Login
+                    <i class="fa-solid fa-user-shield text-xs text-sipetran-green"></i> Admin Login
                 </a>
             </div>
         </div>
     </header>
 
     <!-- ============ HERO HEADER (Dark Green Ghia Style with Photo Background) ============ -->
-    <section class="relative bg-sipetran-green overflow-hidden pt-36 pb-44 text-center">
+    <section class="relative bg-sipetran-green overflow-hidden pt-36 pb-40 text-center">
 
         <!-- PPK Ormawa Team Photograph Background with Dark Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="{{ asset('images/hero_team.png') }}" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-25 scale-105 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/85 via-sipetran-green/75 to-sipetran-green"></div>
+            <img src="{{ asset('images/hero_team.png') }}" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-55 scale-105 filter brightness-110 contrast-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/60 via-sipetran-green/50 to-sipetran-green/85"></div>
         </div>
 
         <!-- Organic Glow Vignette -->
@@ -263,10 +259,10 @@
                 <div class="bg-white/95 text-gray-900 rounded-[2.2rem] p-3.5 w-60 border-2 border-white/40 shadow-2xl backdrop-blur-md text-left overflow-hidden">
                     <div class="rounded-2xl overflow-hidden h-36 relative mb-3">
                         <img src="{{ asset('images/sijago_nugget.png') }}" alt="SIJAGO Nugget" class="w-full h-full object-cover">
-                        <span class="absolute top-2 left-2 bg-amber-500 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full">Resep Gizi</span>
+                        <span class="absolute top-2 left-2 bg-emerald-700 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full">Resep Gizi</span>
                     </div>
                     <div class="px-1">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700">Pangan Lokal</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Pangan Lokal</span>
                         <h4 class="font-display font-black text-lg text-gray-900 leading-tight">Modul 01: SIJAGO</h4>
                     </div>
                 </div>
@@ -299,12 +295,12 @@
 
         <!-- Hero Content -->
         <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-[0.3em] mb-4 inline-block">KATALOG 8 MODUL EDUSIP</span>
+            <span class="text-xs font-bold text-emerald-300 uppercase tracking-[0.3em] mb-4 inline-block">KATALOG 8 MODUL EDUSIP</span>
 
             <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl font-black leading-tight tracking-tight">
                 MODUL EDUKASI
                 <br>
-                <span class="ghia-badge-orange font-black my-2">TERPADU DESA</span>
+                <span class="ghia-badge-green font-black my-2">TERPADU DESA</span>
             </h1>
 
             <p class="mt-6 text-green-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-body">
@@ -319,36 +315,6 @@
         </div>
     </section>
 
-    <!-- ============ INFINITE TICKER MARQUEE ============ -->
-    <div class="bg-amber-500 text-white py-4 overflow-hidden border-y-2 border-amber-600 font-heading font-black text-xs md:text-sm tracking-widest uppercase">
-        <div class="marquee-track flex items-center gap-8 whitespace-nowrap">
-            <span>🌱 KATALOG 8 MODUL SIPETRAN</span>
-            <span>•</span>
-            <span>🍏 NUGGET SIJAGO</span>
-            <span>•</span>
-            <span>☕ KOPI SILOKA</span>
-            <span>•</span>
-            <span>🏥 POSYANDU & AKG BALITA</span>
-            <span>•</span>
-            <span>💧 LUBANG RESAPAN BIOPORI</span>
-            <span>•</span>
-            <span>🔥 INCINERATOR MINIM ASAP</span>
-            <span>•</span>
-            <span>🌱 KATALOG 8 MODUL SIPETRAN</span>
-            <span>•</span>
-            <span>🍏 NUGGET SIJAGO</span>
-            <span>•</span>
-            <span>☕ KOPI SILOKA</span>
-            <span>•</span>
-            <span>🏥 POSYANDU & AKG BALITA</span>
-            <span>•</span>
-            <span>💧 LUBANG RESAPAN BIOPORI</span>
-            <span>•</span>
-            <span>🔥 INCINERATOR MINIM ASAP</span>
-            <span>•</span>
-        </div>
-    </div>
-
     <!-- ============ FILTERABLE MODULE GRID SECTION ============ -->
     <section class="bg-[#FAF8F2] pt-16 pb-24 px-6">
         <div class="max-w-6xl mx-auto">
@@ -361,7 +327,7 @@
                     <i class="fa-solid fa-border-all"></i> Semua Modul (8)
                 </button>
                 <button @click="activeCat = 'gizi'"
-                    :class="activeCat === 'gizi' ? 'bg-amber-500 text-white shadow-lg scale-105 font-black' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50 font-semibold'"
+                    :class="activeCat === 'gizi' ? 'bg-emerald-700 text-white shadow-lg scale-105 font-black' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50 font-semibold'"
                     class="text-xs md:text-sm px-6 py-3 rounded-full transition-all flex items-center gap-2">
                     <i class="fa-solid fa-bowl-food"></i> Gizi & Pangan (2)
                 </button>
@@ -534,7 +500,7 @@
                     Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso — Jawa Timur.
                 </p>
                 <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sipetran-green/10 px-3 py-1 rounded-full text-sipetran-green">
-                    PPK ORMAWA 2025
+                    PPK ORMAWA 2026
                 </span>
             </div>
 
@@ -551,9 +517,8 @@
             <div>
                 <h4 class="font-display font-black text-gray-900 text-base mb-4">PORTAL AKSES</h4>
                 <ul class="space-y-2.5 text-xs text-gray-600">
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
+                    <li><a href="/#download" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
                     <li><a href="{{ route('admin.login') }}" class="hover:text-sipetran-orange font-bold text-amber-700 flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Source Repository</a></li>
                 </ul>
             </div>
 
@@ -576,11 +541,6 @@
 
         <div class="max-w-6xl mx-auto border-t border-stone-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
             <p>&copy; {{ date('Y') }} SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
-            <div class="flex items-center gap-4">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-gray-700 flex items-center gap-1">
-                    <i class="fa-brands fa-github text-sm"></i> GitHub
-                </a>
-            </div>
         </div>
     </footer>
 

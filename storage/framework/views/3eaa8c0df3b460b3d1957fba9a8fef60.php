@@ -153,9 +153,7 @@
                 </div>
 
                 <a href="<?php echo e(route('modul')); ?>" class="hover:text-white transition-colors">Program Modul</a>
-                <a href="<?php echo e(route('kegiatan.index')); ?>" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 font-semibold">
-                    <i class="fa-solid fa-folder-open text-amber-400 text-xs"></i> Kegiatan
-                </a>
+                <a href="<?php echo e(route('kegiatan.index')); ?>" class="hover:text-white transition-colors">Kegiatan</a>
                 <a href="<?php echo e(route('admin.login')); ?>" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
                     <i class="fa-solid fa-user-shield text-xs text-amber-400"></i> Admin
                 </a>
@@ -186,9 +184,7 @@
                     </div>
                 </div>
                 <a href="<?php echo e(route('modul')); ?>" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Program Modul</a>
-                <a href="<?php echo e(route('kegiatan.index')); ?>" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-orange font-semibold flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open text-xs"></i> Kegiatan
-                </a>
+                <a href="<?php echo e(route('kegiatan.index')); ?>" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Kegiatan</a>
                 <a href="<?php echo e(route('admin.login')); ?>" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium flex items-center gap-2">
                     <i class="fa-solid fa-user-shield text-xs text-sipetran-orange"></i> Admin Login
                 </a>
@@ -201,12 +197,12 @@
 
         <!-- PPK Ormawa Team Photograph Background with Dark Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="<?php echo e(asset('images/hero_team.png')); ?>" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-25 scale-105 filter brightness-90">
-            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/85 via-sipetran-green/75 to-sipetran-green"></div>
+            <img src="<?php echo e(asset('images/hero_team.png')); ?>" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-55 scale-105 filter brightness-110 contrast-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/60 via-sipetran-green/50 to-sipetran-green/85"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-[0.3em] mb-4 inline-block">PROFIL PROGRAM PPK ORMAWA 2025</span>
+            <span class="text-xs font-bold text-amber-400 uppercase tracking-[0.3em] mb-4 inline-block">PROFIL PROGRAM PPK ORMAWA 2026</span>
 
             <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl font-black leading-tight tracking-tight">
                 MENGINSPIRASI
@@ -237,7 +233,7 @@
         </div>
 
         <div class="max-w-4xl mx-auto pt-6 relative z-10">
-            <span class="ghia-badge-orange text-xs uppercase tracking-widest font-black mb-4">PENGABDIAN 2025</span>
+            <span class="ghia-badge-orange text-xs uppercase tracking-widest font-black mb-4">PENGABDIAN 2026</span>
             <h2 class="font-display text-3xl md:text-5xl font-black text-white leading-tight mt-3 mb-6">
                 MEMBANGUN DESA BINAAN MANDIRI, SEHAT, DAN BERKELANJUTAN.
             </h2>
@@ -269,7 +265,7 @@
                     Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso — Jawa Timur.
                 </p>
                 <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sipetran-green/10 px-3 py-1 rounded-full text-sipetran-green">
-                    PPK ORMAWA 2025
+                    PPK ORMAWA 2026
                 </span>
             </div>
 
@@ -286,9 +282,8 @@
             <div>
                 <h4 class="font-display font-black text-gray-900 text-base mb-4">PORTAL AKSES</h4>
                 <ul class="space-y-2.5 text-xs text-gray-600">
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
+                    <li><a href="/#download" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-amber-600"></i> Unduh APK</a></li>
                     <li><a href="<?php echo e(route('admin.login')); ?>" class="hover:text-sipetran-orange font-bold text-amber-700 flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
-                    <li><a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-brands fa-github"></i> Source Repository</a></li>
                 </ul>
             </div>
 
@@ -311,11 +306,6 @@
 
         <div class="max-w-6xl mx-auto border-t border-stone-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
             <p>&copy; <?php echo e(date('Y')); ?> SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
-            <div class="flex items-center gap-4">
-                <a href="https://github.com/Crozer123/Sipetran.git" target="_blank" class="hover:text-gray-700 flex items-center gap-1">
-                    <i class="fa-brands fa-github text-sm"></i> GitHub
-                </a>
-            </div>
         </div>
     </footer>
 
