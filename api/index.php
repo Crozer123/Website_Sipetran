@@ -1,9 +1,8 @@
 <?php
+echo "<h1>VERCEL PHP 0.9.0 IS WORKING!</h1>";
+echo "<p>If you see this, the server is fine, but Laravel is crashing it.</p>";
+exit;
 
-try {
-    // 1. Create full Laravel storage structure in /tmp (Vercel Serverless environment)
-    // Force a git commit
-    $storageDirs = [
         '/tmp/storage/app',
         '/tmp/storage/framework/cache/data',
         '/tmp/storage/framework/sessions',
