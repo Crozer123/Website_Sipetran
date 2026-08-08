@@ -17,6 +17,11 @@ $app = Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
+// Ensure Laravel uses /tmp/storage in Vercel serverless environment
+if (isset($_ENV['VERCEL']) || getenv('VERCEL')) {
+    $app->useStoragePath('/tmp/storage');
+}
+
 // Bind config repository
 $config = new Illuminate\Config\Repository([
     'app' => require __DIR__.'/../config/app.php',
