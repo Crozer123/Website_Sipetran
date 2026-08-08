@@ -1,7 +1,8 @@
 <?php
+echo "<h1>HELLO FROM VERCEL PHP!</h1>";
+echo "<p>If you see this, PHP is working and Laravel is the problem.</p>";
+exit;
 
-try {
-    // 1. Create full Laravel storage structure in /tmp
     $storageDirs = [
         '/tmp/storage/app',
         '/tmp/storage/framework/cache/data',
