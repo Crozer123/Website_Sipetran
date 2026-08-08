@@ -1,0 +1,645 @@
+---
+---
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPETRAN - Sistem Informasi & Edukasi Kesehatan, Ekraf, dan Lingkungan</title>
+    <meta name="description" content="Aplikasi Sipetran Desa Gunungsari - Panduan Kesehatan Posyandu, Resep Gizi Nugget SIJAGO, Kopi SILOKA, PHBS, Biopori, dan Pengelolaan Sampah.">
+
+    <!-- Google Fonts: Playfair Display + DM Sans + Inter + Caveat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        heading: ['DM Sans', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        sipetran: {
+                            green: '#203816',
+                            dark: '#14260d',
+                            lightgreen: '#4a7c2f',
+                            orange: '#d97706',
+                            redorange: '#c85a32',
+                            darkorange: '#b45309',
+                            cream: '#FAF8F2',
+                            bg: '#FAF8F2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body { background-color: #FAF8F2; color: #1c2417; }
+
+        /* Wavy separator SVG */
+        .wave-separator {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        /* Circular text spin */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-slow { animation: spin-slow 18s linear infinite; }
+
+        /* Angled Sticker Badges (Ghia style) */
+        .ghia-badge-orange {
+            display: inline-block;
+            background: #d97706;
+            color: #ffffff;
+            border: 2.5px solid #ffffff;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(-1.5deg);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
+        }
+
+        .ghia-badge-green {
+            display: inline-block;
+            background: #203816;
+            color: #ffffff;
+            border: 2.5px solid #FAF8F2;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(1.5deg);
+            box-shadow: 0 4px 12px rgba(32, 56, 22, 0.25);
+        }
+
+        .ghia-badge-terracotta {
+            display: inline-block;
+            background: #c85a32;
+            color: #ffffff;
+            border: 2.5px solid #FAF8F2;
+            padding: 4px 18px;
+            border-radius: 8px;
+            transform: rotate(-2deg);
+            box-shadow: 0 4px 12px rgba(200, 90, 50, 0.3);
+        }
+
+        /* Floating animations */
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0px) rotate(3deg); }
+            50% { transform: translateY(12px) rotate(1deg); }
+        }
+        .float-left-card { animation: float-1 5s ease-in-out infinite; }
+        .float-right-card { animation: float-2 5.5s ease-in-out infinite; }
+
+        /* Overlapping fanned cards */
+        .fan-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: -15px;
+        }
+
+        .fan-card {
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: bottom center;
+        }
+        .fan-card-1 { transform: rotate(-7deg) translateY(12px); z-index: 1; }
+        .fan-card-2 { transform: rotate(-3.5deg) translateY(4px); z-index: 2; }
+        .fan-card-3 { transform: rotate(0deg) translateY(0px); z-index: 3; }
+        .fan-card-4 { transform: rotate(3.5deg) translateY(4px); z-index: 4; }
+        .fan-card-5 { transform: rotate(7deg) translateY(12px); z-index: 5; }
+
+        .fan-card:hover {
+            transform: rotate(0deg) translateY(-20px) scale(1.05) !important;
+            z-index: 20 !important;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Marquee ticker */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            display: flex;
+            width: 200%;
+            animation: marquee 22s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        /* Inline chips inside text */
+        .inline-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #ffffff;
+            border: 1.5px solid #e5e0d8;
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            vertical-align: middle;
+            margin: 0 3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+
+<body class="font-body text-gray-800 antialiased">
+
+    <!-- ============ NAVIGATION ============ -->
+    <header class="absolute top-0 left-0 right-0 z-50" x-data="{ mobileOpen: false }">
+        <nav class="flex items-center justify-between py-5 px-6 max-w-6xl mx-auto">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+                <span class="font-handwriting text-3.5xl text-emerald-300 font-bold tracking-wide">Sipetran</span>
+                <span class="text-[10px] font-semibold text-green-300 tracking-widest uppercase border-l border-white/20 pl-2">Desa Gunungsari</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center gap-7 font-body text-sm font-medium text-white/80">
+                <a href="/" class="text-white font-bold border-b-2 border-white pb-0.5">Beranda</a>
+                <a href="/tentang" class="hover:text-white transition-colors">Tentang Program</a>
+
+                <!-- Dropdown Mitra -->
+                <div class="relative" x-data="{ open: false }" @click.outside="open = false">
+                    <button @click="open = !open" class="hover:text-white transition-colors flex items-center gap-1.5 focus:outline-none">
+                        <span>Mitra</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" :class="open ? 'rotate-180 text-emerald-300' : 'text-white/50'"></i>
+                    </button>
+
+                    <!-- Dropdown Card -->
+                    <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2 scale-95" x-transition:enter-end="opacity-100 translate-y-0 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0 scale-100" x-transition:leave-end="opacity-0 translate-y-2 scale-95" class="absolute left-1/2 -translate-x-1/2 mt-3 w-72 bg-white rounded-3xl shadow-xl border border-stone-100 p-4 z-50 text-gray-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-3 px-2">Mitra & Pendukung Program</p>
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-emerald-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-building-columns text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-emerald-800">Kemendikbudristek</p>
+                                    <p class="text-[10px] text-gray-500">Penyelenggara PPK Ormawa</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-emerald-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-graduation-cap text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-emerald-800">Perguruan Tinggi</p>
+                                    <p class="text-[10px] text-gray-500">Pembina & Pendamping</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-teal-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-users text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-teal-800">Tim PPK Ormawa</p>
+                                    <p class="text-[10px] text-gray-500">Pelaksana Pengabdian</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-2.5 rounded-2xl hover:bg-green-50/60 transition-colors group cursor-default">
+                                <div class="w-8 h-8 rounded-xl bg-green-100 text-green-800 flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-tree-city text-xs"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-900 leading-none mb-1 group-hover:text-green-800">Pemdes Gunungsari</p>
+                                    <p class="text-[10px] text-gray-500">Pemerintah Desa Binaan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/modul" class="hover:text-white transition-colors">Program Modul</a>
+                <a href="/kegiatan"
+                    class="font-medium hover:text-white transition-colors py-1 flex items-center gap-1.5 ">
+                    Kegiatan
+                </a>
+                <a href="/admin" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
+                    <i class="fa-solid fa-user-shield text-xs text-emerald-300"></i> Admin
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-white">
+                <i class="fa-solid text-xl" :class="mobileOpen ? 'fa-xmark' : 'fa-bars'"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Drawer -->
+        <div x-show="mobileOpen" x-transition
+            class="fixed top-4 left-4 right-4 bg-white rounded-[2rem] shadow-2xl z-50 px-6 py-4 border border-gray-100 md:hidden text-gray-800">
+            <div class="flex flex-col gap-0">
+                <a href="/" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-green font-bold">Beranda</a>
+                <a href="/tentang" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Tentang Program</a>
+                <div x-data="{ showMitra: false }" class="py-3 border-b border-gray-100">
+                    <button @click="showMitra = !showMitra" class="w-full flex items-center justify-between text-sm text-gray-700 font-medium">
+                        <span>Mitra Program</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform" :class="showMitra ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="showMitra" class="mt-3 space-y-2 pl-2">
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-building-columns text-emerald-700"></i> Kemendikbudristek</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-emerald-700"></i> Perguruan Tinggi</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-users text-teal-700"></i> Tim PPK Ormawa</div>
+                        <div class="text-xs font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-tree-city text-green-700"></i> Pemdes Gunungsari</div>
+                    </div>
+                </div>
+                <a href="/modul" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Program Modul</a>
+                <a href="/kegiatan" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm font-medium">Kegiatan</a>
+                <a href="/admin" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-xs text-sipetran-green"></i> Admin Login
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ HERO SECTION (PPK Ormawa Photo Background) ============ -->
+    <section class="relative bg-sipetran-green overflow-hidden pt-36 pb-48 text-center">
+
+        <!-- PPK Ormawa Team Photograph Background with Dark Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="/images/hero_team.png" alt="PPK Ormawa Team" class="w-full h-full object-cover opacity-55 scale-105 filter brightness-110 contrast-105">
+            <div class="absolute inset-0 bg-gradient-to-b from-sipetran-green/60 via-sipetran-green/50 to-sipetran-green/85"></div>
+        </div>
+
+        <!-- Organic Background Vignette & Radial Light -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none z-0"
+            style="background-image: radial-gradient(circle at 50% 30%, #4a7c2f 0%, transparent 60%),
+                   radial-gradient(circle at 10% 60%, #10b981 0%, transparent 45%),
+                   radial-gradient(circle at 90% 70%, #059669 0%, transparent 45%);"></div>
+
+        <!-- Left Product Showcase Card (SIJAGO Nugget Photo) -->
+        <div class="hidden xl:block absolute left-6 top-36 z-20 float-left-card">
+            <div class="relative">
+                <!-- Circular Rotating Text Badge -->
+                <div class="absolute -top-8 -left-8 w-28 h-28 spin-slow opacity-90 pointer-events-none z-30">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path id="circlePathLeft" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                        <text font-size="8.5" font-weight="bold" fill="#6ee7b7" letter-spacing="2">
+                            <textPath href="#circlePathLeft">• NUGGET SIJAGO • PANGAN LOKAL • GIZI BALITA </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <!-- Card mockup with real image -->
+                <div class="bg-white/95 text-gray-900 rounded-[2.2rem] p-3.5 w-64 border-2 border-white/40 shadow-2xl backdrop-blur-md text-left overflow-hidden">
+                    <div class="rounded-2xl overflow-hidden h-36 relative mb-3">
+                        <img src="/images/sijago_nugget.png" alt="SIJAGO Nugget" class="w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-emerald-700 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full shadow-xs">Formulasi Gizi</span>
+                    </div>
+                    <div class="px-1">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Resep Cegah Stunting</span>
+                        <h4 class="font-display font-black text-lg text-gray-900 leading-tight">Nugget SIJAGO</h4>
+                        <p class="text-[11px] text-gray-500 mt-0.5 leading-relaxed">Jagung + Singkong + Kelor kaya nutrisi balita.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Product Showcase Card (SILOKA Coffee Photo) -->
+        <div class="hidden xl:block absolute right-6 top-40 z-20 float-right-card">
+            <div class="relative">
+                <!-- Circular Rotating Text Badge -->
+                <div class="absolute -top-8 -right-8 w-28 h-28 spin-slow opacity-90 pointer-events-none z-30">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path id="circlePathRight" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                        <text font-size="8.5" font-weight="bold" fill="#6ee7b7" letter-spacing="2">
+                            <textPath href="#circlePathRight">• KOPI SILOKA • ARABIKA REMPAH • EKRAF DESA </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <!-- Card mockup with real image -->
+                <div class="bg-white/95 text-gray-900 rounded-[2.2rem] p-3.5 w-64 border-2 border-white/40 shadow-2xl backdrop-blur-md text-left overflow-hidden">
+                    <div class="rounded-2xl overflow-hidden h-36 relative mb-3">
+                        <img src="/images/siloka_coffee.png" alt="Kopi SILOKA" class="w-full h-full object-cover">
+                        <span class="absolute top-2 left-2 bg-teal-700 text-white font-bold text-[9px] uppercase px-2.5 py-0.5 rounded-full shadow-xs">Ekonomi Kreatif</span>
+                    </div>
+                    <div class="px-1">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-800">Racikan Rempah Desa</span>
+                        <h4 class="font-display font-black text-lg text-gray-900 leading-tight">Kopi SILOKA</h4>
+                        <p class="text-[11px] text-gray-500 mt-0.5 leading-relaxed">Kopi Arabika khas Gunungsari dengan jahe & sereh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Editorial Hero Title -->
+        <div class="relative z-10 max-w-4xl mx-            <p class="text-xs font-bold text-emerald-300 uppercase tracking-[0.35em] mb-4">PROGRAM PPK ORMAWA 2026</p>
+
+            <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.03] tracking-tight">
+                EDUKASI DIGITALE
+                <br>
+                <span class="ghia-badge-green font-black my-2">TERPADU DESA</span>
+                <br>
+                GUNUNGSARI BINAAN
+            </h1>
+
+
+
+            <!-- Pill CTA Buttons -->
+            <div class="mt-10 flex flex-wrap justify-center items-center gap-4">
+                <a href="#download"
+                    class="bg-sipetran-green hover:bg-emerald-800 text-white font-bold px-9 py-4 rounded-full flex items-center gap-3 transition-all duration-200 shadow-xl border-2 border-white/30 hover:-translate-y-1">
+                    <i class="fa-solid fa-cloud-arrow-down text-base"></i>
+                    Unduh Aplikasi (.APK)
+                </a>
+                <a href="/tentang"
+                    class="border-2 border-white/30 hover:border-white/70 text-white font-bold px-8 py-4 rounded-full flex items-center gap-3 transition-all duration-200 hover:bg-white/10 backdrop-blur-sm">
+                    <i class="fa-solid fa-sparkles text-base text-emerald-300"></i>
+                    Pelajari Selengkapnya
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Wavy SVG Separator -->
+        <div class="wave-separator">
+            <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ INTERACTIVE PRODUCT & PROGRAM LAB (Interactive Tabs Showcase) ============ -->
+    <section class="bg-[#FAF8F2] py-24 px-6 relative overflow-hidden" x-data="{ activeTab: 'sijago' }">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="ghia-badge-green text-xs uppercase tracking-widest font-black mb-3">FITUR & INOVASI UNGGULAN</span>
+                <h2 class="font-display text-4xl md:text-5xl font-black text-gray-900 mt-2">
+                    EKSPLORASI <span class="text-sipetran-green italic">INOVASI SIPETRAN</span>
+                </h2>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex justify-center gap-2 md:gap-4 mb-12 flex-wrap">
+                <button @click="activeTab = 'sijago'"
+                    :class="activeTab === 'sijago' ? 'bg-emerald-700 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-bowl-food"></i> Nugget SIJAGO
+                </button>
+                <button @click="activeTab = 'siloka'"
+                    :class="activeTab === 'siloka' ? 'bg-teal-700 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-mug-hot"></i> Kopi SILOKA
+                </button>
+                <button @click="activeTab = 'posyandu'"
+                    :class="activeTab === 'posyandu' ? 'bg-sipetran-green text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse"></i> Gizi Posyandu
+                </button>
+                <button @click="activeTab = 'biopori'"
+                    :class="activeTab === 'biopori' ? 'bg-emerald-800 text-white shadow-lg scale-105' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50'"
+                    class="font-bold text-xs md:text-sm px-6 py-3.5 rounded-full transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-seedling"></i> Lingkungan Biopori
+                </button>
+            </div>
+
+            <!-- Tab Content 1: SIJAGO -->
+            <div x-show="activeTab === 'sijago'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-emerald-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-emerald-100 aspect-[4/3] relative">
+                    <img src="/images/sijago_nugget.png" alt="Nugget SIJAGO" class="w-full h-full object-cover">
+                    <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl text-emerald-800 font-bold text-xs shadow-md">
+                        ✨ Jagung + Singkong + Kelor
+                    </span>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">Gizi & Pangan Lokal</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Formula Resep Nugget SIJAGO</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Diolah khusus dari komoditas pertanian lokal Desa Gunungsari. Kaya akan serat, protein, dan zat besi untuk mencegah resiko stunting pada anak balita.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <span class="text-emerald-800 font-bold text-xs uppercase block">Tinggi Protein</span>
+                            <span class="text-gray-900 font-display font-black text-lg">12.8g / Porsi</span>
+                        </div>
+                        <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                            <span class="text-emerald-800 font-bold text-xs uppercase block">Bahan 100% Lokal</span>
+                            <span class="text-gray-900 font-display font-black text-lg">Bebas Pengawet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: SILOKA -->
+            <div x-show="activeTab === 'siloka'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-teal-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="rounded-3xl overflow-hidden shadow-lg border border-teal-100 aspect-[4/3] relative">
+                    <img src="/images/siloka_coffee.png" alt="Kopi SILOKA" class="w-full h-full object-cover">
+                    <span class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl text-teal-800 font-bold text-xs shadow-md">
+                        ☕ Arabika + Jahe + Sereh
+                    </span>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-teal-700 uppercase tracking-widest bg-teal-100 px-3.5 py-1 rounded-full border border-teal-200">Ekonomi Kreatif UMKM</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Racikan Herbal Kopi SILOKA</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Inovasi kopi lokal khas Gunungsari dipadukan dengan sensasi rempah jahe dan sereh pilihan. Membuka peluang UMKM pemasaran kopi khas daerah.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-teal-50 p-4 rounded-2xl border border-teal-100">
+                            <span class="text-teal-800 font-bold text-xs uppercase block">Aroma Rempah</span>
+                            <span class="text-gray-900 font-display font-black text-lg">Jahe & Sereh</span>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-2xl border border-teal-100">
+                            <span class="text-teal-800 font-bold text-xs uppercase block">Proses Olah</span>
+                            <span class="text-gray-900 font-display font-black text-lg">Medium Roasting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Posyandu -->
+            <div x-show="activeTab === 'posyandu'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-emerald-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="bg-emerald-50 rounded-3xl p-8 border border-emerald-100 flex flex-col justify-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h4 class="font-display font-black text-2xl text-emerald-900">Pemantauan Tumbuh Kembang Balita</h4>
+                    <p class="text-xs text-emerald-800 leading-relaxed font-body">Panduan praktis kader Posyandu untuk mengukur tinggi, berat badan, dan pemenuhan Angka Kecukupan Gizi (AKG).</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-emerald-800 uppercase tracking-widest bg-emerald-100 px-3.5 py-1 rounded-full border border-emerald-200">Kesehatan Ibu & Anak</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Posyandu Terintegrasi</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Mendukung pemantauan gizi berkala serta pencatatan digital tumbuh kembang balita desa Gunungsari.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tab Content 4: Biopori -->
+            <div x-show="activeTab === 'biopori'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="bg-white rounded-[2.5rem] p-8 md:p-12 border-2 border-green-200 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="bg-green-50 rounded-3xl p-8 border border-green-100 flex flex-col justify-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-green-800 text-white flex items-center justify-center text-2xl font-bold">
+                        <i class="fa-solid fa-recycle"></i>
+                    </div>
+                    <h4 class="font-display font-black text-2xl text-green-900">Pemilahan Sampah & Lubang Biopori</h4>
+                    <p class="text-xs text-green-800 leading-relaxed font-body">Penerapan biopori resapan air hujan, pengelolaan pupuk kompos EM4, dan incinerator drum minim asap.</p>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-green-800 uppercase tracking-widest bg-green-100 px-3.5 py-1 rounded-full border border-green-200">Keberlanjutan Lingkungan</span>
+                    <h3 class="font-display font-black text-3xl md:text-4xl text-gray-900 leading-tight">Desa Asri Berkelanjutan</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed font-body">
+                        Mengubah limbah organik rumah tangga menjadi pupuk hijau bernilai guna tinggi bagi perkebunan desa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EDITORIAL IDENTITY SECTION (Ghia "Born from Love of Ritual") ============ -->
+    <section class="bg-[#FAF8F2] py-20 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 leading-tight">
+                LAHIR DARI CINTA PADA
+                <br>
+                <span class="ghia-badge-green font-black my-2">KEMANDIRIAN DESA</span>
+            </h2>
+
+            <p class="mt-8 text-gray-700 text-base md:text-xl font-display leading-relaxed max-w-3xl mx-auto">
+                SIPETRAN LAHIR DARI
+                <span class="inline-chip"><i class="fa-solid fa-seedling text-emerald-600"></i> PPK ORMAWA</span>
+                SEBUAH IDE SEDERHANA: MASYARAKAT DESA
+                <span class="inline-chip"><i class="fa-solid fa-house text-emerald-600"></i> GUNUNGSARI</span>
+                BERHAK MENDAPATKAN AKSES INFORMASI GIZI BALITA
+                <span class="inline-chip"><i class="fa-solid fa-bowl-food text-emerald-600"></i> SIJAGO</span>,
+                RESEP KOPI REMPAH
+                <span class="inline-chip"><i class="fa-solid fa-mug-hot text-stone-700"></i> SILOKA</span>,
+                SERTA KETAHANAN LINGKUNGAN BERKELANJUTAN. 🌿
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ PROCESS / APP STEPS ============ -->
+    <section class="bg-sipetran-green text-white py-24 px-6 relative overflow-hidden" id="download">
+        <div class="absolute top-0 left-0 right-0" style="transform: rotate(180deg); margin-top:-2px;">
+            <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto text-center pt-8">
+            <span class="ghia-badge-green text-xs uppercase tracking-widest font-black mb-4">LANGKAH APLIKASI</span>
+            <h2 class="font-display text-4xl md:text-6xl font-black text-white mt-4 mb-16">
+                3 LANGKAH <span class="italic text-emerald-300">MUDAH</span> AKSES
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center mx-auto mb-4 border border-white/30 text-2xl font-bold">
+                        01
+                    </div>
+                    <h3 class="font-display font-black text-xl text-white mb-2">Unduh .APK</h3>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Download file installer aplikasi Sipetran secara resmi dan gratis.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center mx-auto mb-4 border border-white/30 text-2xl font-bold">
+                        02
+                    </div>
+                    <h3 class="font-display font-black text-xl text-white mb-2">Install di Android</h3>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Pasang di perangkat smartphone warga desa. Ramah kuota dan cepat dibuka tanpa lag.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.2rem] p-8 border border-white/20 text-center">
+                    <div class="w-16 h-16 rounded-2xl bg-white/15 text-emerald-300 flex items-center justify-center mx-auto mb-4 border border-white/30 text-2xl font-bold">
+                        03
+                    </div>
+                    <h3 class="font-display font-black text-xl text-white mb-2">Belajar Kapan Saja</h3>
+                    <p class="text-green-200 text-xs leading-relaxed font-body">Akses modul Posyandu, kalkulator gizi SIJAGO, racikan Kopi SILOKA & lingkungan.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FAF8F2"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ ULTRA FOOTER ============ -->
+    <footer class="bg-[#FAF8F2] pt-20 pb-10 px-8 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-stone-300/60 pt-16">
+
+            <div class="md:col-span-1">
+                <a href="/" class="inline-block mb-4">
+                    <span class="font-handwriting text-4xl text-sipetran-green font-bold">Sipetran</span>
+                </a>
+                <p class="text-gray-600 text-xs leading-relaxed max-w-xs mb-4">
+                    Sistem Informasi & Edukasi Kesehatan, Ekonomi Kreatif, dan Lingkungan Desa Gunungsari, Bondowoso — Jawa Timur.
+                </p>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-sipetran-green/10 px-3 py-1 rounded-full text-sipetran-green">
+                    PPK ORMAWA 2026
+                </span>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">NAVIGASI</h4>
+                <ul class="space-y-2.5 text-xs text-gray-600">
+                    <li><a href="/" class="hover:text-sipetran-green font-medium">Beranda</a></li>
+                    <li><a href="/tentang" class="hover:text-sipetran-green font-medium">Tentang Program</a></li>
+                    <li><a href="/modul" class="hover:text-sipetran-green font-medium">Program Modul PPK Ormawa</a></li>
+                    <li><a href="/kegiatan" class="hover:text-sipetran-green font-medium">Dokumentasi Kegiatan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">PORTAL AKSES</h4>
+                <ul class="space-y-2.5 text-xs text-gray-600">
+                    <li><a href="#download" class="hover:text-sipetran-green font-medium flex items-center gap-1.5"><i class="fa-solid fa-download text-sipetran-green"></i> Unduh APK</a></li>
+                    <li><a href="/admin" class="hover:text-sipetran-green font-bold text-sipetran-green flex items-center gap-1.5"><i class="fa-solid fa-user-shield"></i> Portal Admin Login</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-display font-black text-gray-900 text-base mb-4">SEKRETARIAT</h4>
+                <p class="text-xs text-gray-600 leading-relaxed mb-3">
+                    <i class="fa-solid fa-location-dot text-sipetran-green mr-1.5"></i>
+                    Balai Desa Gunungsari, Kec. Maesan, Kab. Bondowoso, Jawa Timur 68262
+                </p>
+                <p class="text-xs text-gray-600">
+                    <i class="fa-solid fa-envelope text-sipetran-green mr-1.5"></i>
+                    ppkormawa.sipetran@gmail.com
+                </p>
+            </div>
+        </div>sipetran@gmail.com
+                </p>
+            </div>
+        </div>
+
+        <!-- Giant Ghia Style Script Watermark Logo -->
+        <div class="mt-16 text-center select-none opacity-15 pointer-events-none">
+            <span class="font-handwriting text-[120px] sm:text-[160px] md:text-[220px] text-sipetran-green leading-none">Sipetran</span>
+        </div>
+
+        <div class="max-w-6xl mx-auto border-t border-stone-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+            <p>&copy; {new Date().getFullYear()} SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
