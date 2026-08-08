@@ -1,7 +1,9 @@
 <?php
 
 try {
-    // 1. Create full Laravel storage structure in /tmp
+    // 1. Create full Laravel storage structure in /tmp (Vercel Serverless environment)
+    // Force a git commit
+    $storageDirs = [
         '/tmp/storage/app',
         '/tmp/storage/framework/cache/data',
         '/tmp/storage/framework/sessions',
