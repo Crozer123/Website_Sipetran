@@ -22,6 +22,7 @@ $config = new Illuminate\Config\Repository([
     'app' => require __DIR__.'/../config/app.php',
     'view' => require __DIR__.'/../config/view.php',
     'session' => require __DIR__.'/../config/session.php',
+    'database' => require __DIR__.'/../config/database.php',
 ]);
 $app->instance('config', $config);
 
@@ -32,5 +33,6 @@ $app->register(Illuminate\Routing\RoutingServiceProvider::class);
 $app->register(Illuminate\Cookie\CookieServiceProvider::class);
 $app->register(Illuminate\Session\SessionServiceProvider::class);
 $app->register(Illuminate\View\ViewServiceProvider::class);
+$app->register(Illuminate\Database\DatabaseServiceProvider::class);
 
 return $app;
