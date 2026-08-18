@@ -112,9 +112,6 @@
 
                 <a href="/modul" class="hover:text-white transition-colors">Program Modul</a>
                 <a href="/kegiatan" class="hover:text-white transition-colors">Kegiatan</a>
-                <a href="/admin" class="text-white/80 hover:text-white transition-colors flex items-center gap-1 font-medium bg-white/10 hover:bg-white/20 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-white/20">
-                    <i class="fa-solid fa-user-shield text-xs text-emerald-300"></i> Admin
-                </a>
             </div>
 
             <!-- Mobile Hamburger -->
@@ -122,6 +119,16 @@
                 <i class="fa-solid text-xl" :class="mobileOpen ? 'fa-xmark' : 'fa-bars'"></i>
             </button>
         </nav>
+
+        <!-- Mobile Menu Drawer -->
+        <div x-show="mobileOpen" x-transition class="fixed top-4 left-4 right-4 bg-white rounded-[2rem] shadow-2xl z-50 px-6 py-4 border border-gray-100 md:hidden text-gray-800">
+            <div class="flex flex-col gap-0">
+                <a href="/" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Beranda</a>
+                <a href="/tentang" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-sipetran-green font-bold">Tentang Program</a>
+                <a href="/modul" @click="mobileOpen=false" class="py-3 border-b border-gray-100 text-sm text-gray-700 font-medium">Program Modul</a>
+                <a href="/kegiatan" @click="mobileOpen=false" class="py-3 text-sm text-gray-700 font-medium">Kegiatan</a>
+            </div>
+        </div>
     </header>
 
     <!-- ============ HERO HEADER ============ -->
