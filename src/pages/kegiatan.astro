@@ -1,0 +1,298 @@
+---
+const kegiatan = [
+    {
+        num: 1,
+        judul: 'Koordinasi Lanjutan Pelaksanaan Program PPK Ormawa dengan Pemerintah Desa',
+        tanggal: '15 Juni 2026',
+        lokasi: 'Balai Desa Gunungsari',
+        tag: 'Koordinasi',
+        tagColor: 'blue',
+        fotos: [
+            '/images/kegiatan/keg_1_1.png',
+            '/images/kegiatan/keg_1_2.png',
+            '/images/kegiatan/keg_1_3.png',
+            '/images/kegiatan/keg_1_4.png',
+            '/images/kegiatan/keg_1_5.png'
+        ]
+    },
+    {
+        num: 2,
+        judul: 'Rapat Koordinasi Sosialisasi Program SIPETRAN',
+        tanggal: '18 Juni 2026',
+        lokasi: 'Balai Desa Gunungsari',
+        tag: 'Sosialisasi',
+        tagColor: 'purple',
+        fotos: [
+            '/images/kegiatan/keg_2_1.png',
+            '/images/kegiatan/keg_2_2.png',
+            '/images/kegiatan/keg_2_3.png',
+            '/images/kegiatan/keg_2_4.png'
+        ]
+    },
+    {
+        num: 3,
+        judul: 'Sosialisasi Program SIPETRAN Bersama Perangkat Desa dan Kelompok Divisi Sasaran',
+        tanggal: '20 Juni 2026',
+        lokasi: 'Balai Desa Gunungsari',
+        tag: 'Sosialisasi',
+        tagColor: 'purple',
+        fotos: [
+            '/images/kegiatan/keg_3_1.png',
+            '/images/kegiatan/keg_3_2.png',
+            '/images/kegiatan/keg_3_3.png',
+            '/images/kegiatan/keg_3_4.png'
+        ]
+    },
+    {
+        num: 4,
+        judul: 'Pembuatan Formulasi Nugget SIJAGO',
+        tanggal: '23 Juni 2026',
+        lokasi: 'Rumah Produksi Warga, Desa Gunungsari',
+        tag: 'Produksi',
+        tagColor: 'amber',
+        fotos: [
+            '/images/kegiatan/keg_4_1.png',
+            '/images/kegiatan/keg_4_2.png',
+            '/images/kegiatan/keg_4_3.png'
+        ]
+    },
+    {
+        num: 5,
+        judul: 'Pembuatan Formulasi Kopi SILOKA',
+        tanggal: '25 Juni 2026',
+        lokasi: 'Kebun Kopi, Dusun Kodedek, Desa Gunungsari',
+        tag: 'Produksi',
+        tagColor: 'amber',
+        fotos: [
+            '/images/kegiatan/keg_5_1.png',
+            '/images/kegiatan/keg_5_2.png',
+            '/images/kegiatan/keg_5_3.png',
+            '/images/kegiatan/keg_5_4.png'
+        ]
+    },
+    {
+        num: 6,
+        judul: 'Pelepasan dan Pembekalan Tim Pelaksana PPK Ormawa oleh Rektorat Universitas Jember',
+        tanggal: '27 Juni 2026',
+        lokasi: 'Universitas Jember',
+        tag: 'Pelepasan',
+        tagColor: 'green',
+        fotos: [
+            '/images/kegiatan/keg_6_1.png',
+            '/images/kegiatan/keg_6_2.png',
+            '/images/kegiatan/keg_6_3.png',
+            '/images/kegiatan/keg_6_4.png'
+        ]
+    },
+    {
+        num: 7,
+        judul: 'Koordinasi dengan Kelompok Petani Jagung Dusun Krajan terkait Pemanenan dan Ketersediaan Jagung',
+        tanggal: '29 Juni 2026',
+        lokasi: 'Lahan Pertanian, Dusun Krajan, Desa Gunungsari',
+        tag: 'Koordinasi',
+        tagColor: 'blue',
+        fotos: []
+    },
+    {
+        num: 8,
+        judul: 'Koordinasi dengan Warga Dusun Peh terkait Kondisi Bahan Baku Kompos (Kotoran Sapi)',
+        tanggal: '1 Juli 2026',
+        lokasi: 'Kandang Ternak, Dusun Peh, Desa Gunungsari',
+        tag: 'Koordinasi',
+        tagColor: 'blue',
+        fotos: []
+    },
+    {
+        num: 9,
+        judul: 'Rapat Koordinasi Pelatihan dan Pendampingan Kelompok Divisi Program SIPETRAN',
+        tanggal: '3 Juli 2026',
+        lokasi: 'Balai Desa Gunungsari',
+        tag: 'Pelatihan',
+        tagColor: 'teal',
+        fotos: []
+    },
+    {
+        num: 10,
+        judul: 'Koordinasi dengan Kelompok Petani Kopi Dusun Kodedek terkait Peralatan Pembuatan Kopi SILOKA',
+        tanggal: '5 Juli 2026',
+        lokasi: 'Dusun Kodedek, Desa Gunungsari',
+        tag: 'Koordinasi',
+        tagColor: 'blue',
+        fotos: []
+    },
+];
+
+const tagBg: Record<string, string> = { blue:'bg-blue-100 text-blue-800', purple:'bg-purple-100 text-purple-800', amber:'bg-amber-100 text-amber-800', green:'bg-green-100 text-green-800', teal:'bg-teal-100 text-teal-800' };
+const tagDot: Record<string, string> = { blue:'bg-blue-500', purple:'bg-purple-500', amber:'bg-amber-500', green:'bg-green-500', teal:'bg-teal-500' };
+---
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dokumentasi Kegiatan - SIPETRAN Desa Gunungsari</title>
+<meta name="description" content="Dokumentasi foto kegiatan program PPK Ormawa SIPETRAN Desa Gunungsari.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script is:inline src="https://cdn.tailwindcss.com"></script>
+<script is:inline>
+tailwind.config = { theme: { extend: { fontFamily: { heading:['Plus Jakarta Sans','sans-serif'], body:['Inter','sans-serif'] }, colors: { sipetran: { green:'#203816', dark:'#14260d', lightgreen:'#4a7c2f', cream:'#FAF8F2' } } } } }
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+body{background-color:#FAF8F2;color:#1c2417}
+.card-hover{transition:transform .3s ease,box-shadow .3s ease}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(32,56,22,.12)}
+.num-badge{background:linear-gradient(135deg,#203816,#4a7c2f);box-shadow:0 4px 15px rgba(32,56,22,.4)}
+</style>
+</head>
+<body class="font-body text-gray-800 antialiased" x-data="{ activeFilter: 'all', activeLightbox: null }">
+
+<!-- NAV -->
+<header class="absolute top-0 left-0 right-0 z-50" x-data="{ mobileOpen: false }">
+  <nav class="flex items-center justify-between py-5 px-6 max-w-6xl mx-auto">
+    <a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+      <span class="font-heading text-2xl font-extrabold text-white tracking-tight">SIPETRAN</span>
+      <span class="text-[10px] font-semibold text-emerald-300 tracking-wider uppercase border-l border-white/20 pl-2">Desa Gunungsari</span>
+    </a>
+    <div class="hidden md:flex items-center gap-7 text-sm font-medium text-white/80">
+      <a href="/" class="hover:text-white transition-colors">Beranda</a>
+      <a href="/tentang" class="hover:text-white transition-colors">Tentang Program</a>
+      <a href="/kegiatan" class="text-white font-bold border-b-2 border-emerald-400 pb-0.5">Kegiatan</a>
+      <a href="/modul" class="hover:text-white transition-colors">Program Modul</a>
+      <a href="/admin" class="text-white/90 hover:text-white flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl border border-white/20">
+        <i class="fa-solid fa-user-shield text-xs text-emerald-300"></i> Admin
+      </a>
+    </div>
+    <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-white">
+      <i class="fa-solid text-xl" :class="mobileOpen ? 'fa-xmark' : 'fa-bars'"></i>
+    </button>
+  </nav>
+  <div x-show="mobileOpen" x-transition class="md:hidden bg-sipetran-green/95 backdrop-blur-sm px-6 pb-5 space-y-3">
+    <a href="/" class="block text-white/80 hover:text-white py-2 border-b border-white/10">Beranda</a>
+    <a href="/tentang" class="block text-white/80 hover:text-white py-2 border-b border-white/10">Tentang Program</a>
+    <a href="/kegiatan" class="block text-white font-bold py-2 border-b border-white/10">Kegiatan</a>
+    <a href="/modul" class="block text-white/80 hover:text-white py-2 border-b border-white/10">Program Modul</a>
+    <a href="/admin" class="block text-white/80 hover:text-white py-2">Admin</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative bg-sipetran-green overflow-hidden pt-36 pb-20 text-center text-white">
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-sipetran-dark via-sipetran-green to-sipetran-lightgreen opacity-90"></div>
+    <div class="absolute top-10 left-10 w-64 h-64 rounded-full bg-white/5 blur-3xl"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl"></div>
+  </div>
+  <div class="relative z-10 max-w-4xl mx-auto px-6">
+    <h1 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-3">Dokumentasi <span class="text-emerald-300">Kegiatan</span></h1>
+    <p class="text-white/70 text-base max-w-2xl mx-auto leading-relaxed">Arsip foto dokumentasi langsung dari kegiatan program PPK Ormawa SIPETRAN di Desa Gunungsari.</p>
+  </div>
+  <div class="absolute bottom-0 left-0 right-0">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-12 fill-[#FAF8F2]"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/></svg>
+  </div>
+</section>
+
+<!-- FILTER -->
+<section class="sticky top-0 z-40 bg-[#FAF8F2]/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex items-center gap-2 overflow-x-auto">
+    <span class="text-xs font-bold text-gray-500 uppercase tracking-wider shrink-0 mr-1">Filter:</span>
+    {['all','Koordinasi','Sosialisasi','Produksi','Pelepasan','Pelatihan'].map(f => (
+      <button x-on:click={`activeFilter = '${f}'`}
+        x-bind:class={`activeFilter === '${f}' ? 'bg-sipetran-green text-white shadow-md' : 'bg-white text-gray-600 hover:bg-stone-100 border border-stone-200'`}
+        class="shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full transition-all duration-200">
+        {f === 'all' ? 'Semua' : f}
+      </button>
+    ))}
+  </div>
+</section>
+
+<!-- KEGIATAN GRID -->
+<main class="max-w-6xl mx-auto px-6 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {kegiatan.map((keg) => {
+      const tc = tagBg[keg.tagColor];
+      const dot = tagDot[keg.tagColor];
+      const hasPhotos = keg.fotos.length > 0;
+      return (
+        <div class="card-hover bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm flex flex-col justify-between"
+          x-show={`activeFilter === 'all' || activeFilter === '${keg.tag}'`}
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 translate-y-4"
+          x-transition:enter-end="opacity-100 translate-y-0">
+
+          <!-- Card Header & Content -->
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="num-badge text-white w-10 h-10 rounded-xl flex flex-col items-center justify-center shrink-0">
+                  <span class="text-[8px] font-bold uppercase leading-none">Keg.</span>
+                  <span class="text-base font-black leading-none">{keg.num}</span>
+                </div>
+                <span class={`inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full ${tc}`}>
+                  <span class={`w-1.5 h-1.5 rounded-full ${dot}`}></span>{keg.tag}
+                </span>
+              </div>
+              <div class="flex items-center gap-3 text-[11px] text-gray-400 font-medium">
+                <span class="flex items-center gap-1"><i class="fa-regular fa-calendar text-sipetran-green"></i>{keg.tanggal}</span>
+              </div>
+            </div>
+
+            <h2 class="font-heading text-base font-bold text-gray-900 leading-snug">{keg.judul}</h2>
+          </div>
+
+          <!-- PHOTO GALLERY AREA -->
+          <div class="p-6 pt-0">
+            {hasPhotos ? (
+              <div class={`grid gap-3 ${keg.fotos.length >= 4 ? 'grid-cols-2' : keg.fotos.length === 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                {keg.fotos.map((imgSrc, imgIdx) => (
+                  <div
+                    @click={`activeLightbox = '${imgSrc}'`}
+                    class="group relative h-32 rounded-2xl overflow-hidden cursor-pointer bg-stone-100 border border-stone-200/60 shadow-inner">
+                    <img src={imgSrc} alt={`${keg.judul} - Foto ${imgIdx + 1}`} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <div class="absolute inset-0 bg-sipetran-green/0 group-hover:bg-sipetran-green/30 transition-all flex items-center justify-center">
+                      <div class="w-8 h-8 rounded-full bg-white/90 text-sipetran-green flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                        <i class="fa-solid fa-magnifying-glass-plus text-xs"></i>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="bg-stone-50 border border-dashed border-stone-200 rounded-2xl p-5 text-center">
+                <i class="fa-regular fa-image text-stone-300 text-xl mb-1 block"></i>
+                <p class="text-xs text-stone-400 font-medium">Foto Dokumentasi Belum Diunggah</p>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</main>
+
+<!-- LIGHTBOX PREVIEW MODAL -->
+<div x-show="activeLightbox !== null"
+  x-transition:enter="transition ease-out duration-200"
+  x-transition:enter-start="opacity-0"
+  x-transition:enter-end="opacity-100"
+  x-transition:leave="transition ease-in duration-150"
+  x-transition:leave-start="opacity-100"
+  x-transition:leave-end="opacity-0"
+  class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+  @click="activeLightbox = null"
+  style="display:none;">
+  <button @click="activeLightbox = null" class="absolute top-6 right-6 text-white/80 hover:text-white text-2xl p-2">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+  <img :src="activeLightbox" class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border border-white/20 object-contain" @click.stop />
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-[#FAF8F2] pt-12 pb-8 px-6 border-t border-stone-200 text-center text-xs text-gray-500">
+  <p>&copy; 2026 SIPETRAN — Tim Pelaksana PPK ORMAWA Desa Gunungsari.</p>
+</footer>
+</body>
+</html>

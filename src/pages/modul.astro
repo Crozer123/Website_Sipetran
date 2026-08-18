@@ -2,9 +2,62 @@
 const modules = [
     {
         num: '01', icon: 'fa-bowl-food', title: 'Nugget SIJAGO', catKey: 'gizi', cat: 'Gizi & Pangan', catColor: 'amber',
-        img: '/images/sijago_nugget.png',
-        desc: 'Resep & kalkulasi gizi nugget Jagung + Singkong + Kelor pencegah stunting pada anak.',
-        detail: 'Bahan Utama: Jagung manis pipil 250g, Singkong parut 150g, Daun kelor halus 50g, Telur 2 butir, Tepung panir 100g. Mengandung 12.8g protein per porsi untuk memenuhi 35% AKG harian anak balita.',
+        img: '/images/nugget_sijago.png', iconImg: '/images/cat_nugget.png',
+        desc: 'Modul resep dan panduan pembuatan nugget sehat berbahan dasar jagung, daun kelor, dan dada ayam.',
+        detail: 'Panduan formulasi dan langkah pembuatan Nugget SIJAGO berbahan dasar Jagung, Daun Kelor, dan Dada Ayam sebagai makanan sehat berprotein tinggi untuk pencegahan stunting pada anak balita.',
+        submodul: [
+            {
+                id: 'sijago-1',
+                judul: '1. Kandungan Gizi & Pencegahan Stunting',
+                icon: 'fa-heart-pulse',
+                ringkasan: 'Keunggulan nutrisi formulasi Jagung, Daun Kelor, dan Dada Ayam untuk menunjang tumbuh kembang balita.',
+                gambar: '/images/sijago_gizi.jpg',
+                poinMateri: [
+                    { judul: 'Protein Dada Ayam', desc: 'Sumber protein hewani berkualitas tinggi pembentuk jaringan sel, otot, dan imun anak balita.' },
+                    { judul: 'Daun Kelor (Superfood Alami)', desc: 'Kaya akan mikronutrien, zat besi, kalsium, vitamin A & C, serta antioksidan alami pencegah anemia.' },
+                    { judul: 'Jagung Manis Lokal', desc: 'Sumber karbohidrat kompleks, serat alami, dan energi tahan lama untuk aktivitas harian anak.' },
+                    { judul: 'Pencegahan Stunting', desc: 'Formulasi dirancang khusus untuk memenuhi standar nutrisi MP-ASI dan perbaikan gizi balita.' }
+                ]
+            },
+            {
+                id: 'sijago-2',
+                judul: '2. Alat & Bahan Formulasi SIJAGO',
+                icon: 'fa-list-check',
+                ringkasan: 'Daftar kebutuhan peralatan dapur dan takaran bahan pangan alami.',
+                gambar: '/images/sijago_alat_bahan.jpg',
+                poinMateri: [
+                    { judul: 'Bahan Utama', desc: '250g Dada Ayam Fillet, 100g Jagung Manis Pipil, 50g Daun Kelor Segar (dicuci bersih).' },
+                    { judul: 'Bahan Pengikat & Bumbu', desc: '50g Tepung Tapioka, 1 butir Telur Ayam, 3 siung Bawang Putih, 1 sdt Garam, 1/2 sdt Merica.' },
+                    { judul: 'Bahan Baluran Outer', desc: '100g Tepung Panir / Roti, 1 butir Kocokan Telur Ayam untuk perekat.' },
+                    { judul: 'Peralatan Dapur', desc: 'Food Processor / Penggiling, Panci Kukusan, Loyang Stainless Steel, Pisau & Talenan.' }
+                ]
+            },
+            {
+                id: 'sijago-3',
+                judul: '3. Langkah Pembuatan Nugget SIJAGO',
+                icon: 'fa-kitchen-set',
+                ringkasan: 'Tahapan pencampuran adonan, pengukusan presisi, dan pembaluran tepung panir.',
+                gambar: '/images/sijago_pembuatan.jpg',
+                poinMateri: [
+                    { judul: 'Penggilingan Bahan', desc: 'Haluskan dada ayam, jagung manis pipil, dan daun kelor bersama bumbu halus menggunakan blender/chopper.' },
+                    { judul: 'Pencampuran Adonan', desc: 'Campurkan hasil gilingan dengan tepung tapioka dan kocokan telur hingga adonan merata dan kalis.' },
+                    { judul: 'Pengukusan Adonan', desc: 'Tuang adonan ke loyang yang diolesi sedikit minyak. Kukus selama 20–25 menit hingga matang padat.' },
+                    { judul: 'Pembaluran Panir', desc: 'Dinginkan adonan kukus, potong dadu/persegi. Celupkan ke kocokan telur lalu gulingkan di tepung panir.' }
+                ]
+            },
+            {
+                id: 'sijago-4',
+                judul: '4. Takaran & Porsi Sajian Balita',
+                icon: 'fa-child-reaching',
+                ringkasan: 'Panduan porsi makan harian dan daya tahan penyimpanan frozen food.',
+                gambar: '/images/sijago_sajian_ai.jpg',
+                poinMateri: [
+                    { judul: 'Porsi Makan Balita', desc: '2–3 potong nugget (±50 gram) per porsi makan sebagai lauk pendamping nasi hangat atau sup.' },
+                    { judul: 'Teknik Penggorengan', desc: 'Goreng dengan minyak hangat suhu sedang hingga berwarna kuning keemasan (deep fry 3-4 menit).' },
+                    { judul: 'Penyimpanan Frozen', desc: 'Simpan di dalam wadah kedap udara di freezer (-18°C) bertahan hingga 1 bulan tanpa pengawet.' }
+                ]
+            }
+        ],
         kegiatan: [
             {
                 num: 4,
@@ -23,25 +76,62 @@ const modules = [
         ]
     },
     {
-        num: '02', icon: 'fa-calculator', title: 'Kalkulator Gizi', catKey: 'gizi', cat: 'Gizi & Pangan', catColor: 'amber',
-        img: '/images/sijago_nugget.png',
-        desc: 'Hitung kandungan energi, protein & persentase AKG per sajian secara otomatis.',
-        detail: 'Sistem kalkulator AKG otomatis yang menghitung Energi Total (kcal), Protein (g), Karbohidrat (g), dan Lemak Sehat untuk sajian menu gizi balita Posyandu.',
-        kegiatan: [
+        num: '02', icon: 'fa-mug-hot', title: 'SILOKA (Kopi SILOKA)', catKey: 'ekraf', cat: 'Ekonomi Kreatif', catColor: 'emerald',
+        img: '/images/kopi_siloka.png', iconImg: '/images/cat_siloka.png',
+        desc: 'Modul edukasi dan promosi produk olahan Kopi SILOKA.',
+        detail: 'Modul edukasi pengolahan, pemrosesan sangrai (medium roast), racikan rempah herbal (jahe merah & sereh wangi), serta strategi promosi produk olahan Kopi SILOKA khas Desa Gunungsari.',
+        submodul: [
             {
-                num: 3,
-                judul: 'Sosialisasi Program SIPETRAN kepada Divisi Gizi & Pangan',
-                deskripsi: 'Sosialisasi program SIPETRAN bersama perangkat desa dan kelompok divisi sasaran, termasuk perkenalan tools kalkulator gizi digital untuk pemantauan AKG balita di Posyandu.',
-                icon: 'fa-people-group',
-                driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
+                id: 'siloka-1',
+                judul: '1. Formulasi & Komposisi Kopi SILOKA',
+                icon: 'fa-mug-hot',
+                ringkasan: 'Perpaduan biji kopi Robusta khas Gunungsari dengan racikan rempah jahe merah & sereh halus.',
+                gambar: '/images/siloka_komposisi.jpg',
+                poinMateri: [
+                    { judul: 'Bijih Kopi Robusta', desc: 'Dipilih dari biji kopi berkualitas yang memberikan aroma khas dan rasa yang kuat.' },
+                    { judul: 'Jahe Merah', desc: 'Memberikan sensasi hangat, aroma khas, dan membantu menjaga daya tahan tubuh.' },
+                    { judul: 'Batang Sereh Halus', desc: 'Memberikan aroma segar dan rasa ringan yang menyeimbangkan rasa kopi serta jahe merah.' },
+                    { judul: 'Manfaat Kesehatan', desc: 'Menghangatkan tubuh, melancarkan pencernaan, efek relaksasi, serta menjaga imun tubuh.' }
+                ]
+            },
+            {
+                id: 'siloka-2',
+                judul: '2. Tahapan Pemrosesan Biji & Rempah',
+                icon: 'fa-boxes-packing',
+                ringkasan: '7 Tahapan olah biji kopi pasca panen dan pengolahan serbuk jahe & sereh.',
+                gambar: '/images/siloka_pemrosesan_biji.jpg',
+                poinMateri: [
+                    { judul: '7 Langkah Olah Kopi', desc: 'Sortasi merah -> Pencucian -> Pengupasan (pulp) -> Fermentasi 12-24j -> Cuci ulang -> Pengeringan 10-12% -> Sortir akhir.' },
+                    { judul: 'Persiapan Jahe Merah', desc: 'Cuci bersih, iris tipis, keringkan sempurna (dijemur/oven), haluskan menjadi serbuk lalu ayak.' },
+                    { judul: 'Persiapan Sereh Halus', desc: 'Cuci & buang kulit luar keras, iris tipis, keringkan (dijemur/oven), haluskan menjadi serbuk lalu ayak.' }
+                ]
+            },
+            {
+                id: 'siloka-3',
+                judul: '3. Tahapan Roasting & Profil Roast',
+                icon: 'fa-fire-flame-curved',
+                ringkasan: '6 Fase suhu sangrai kopi (Green Bean hingga Finish) dan profil tingkat sangrai.',
+                gambar: '/images/siloka_roasting.jpg',
+                poinMateri: [
+                    { judul: 'Fase Suhu Roasting', desc: 'Green Bean -> Drying (100-120°C) -> First Crack (195-205°C) -> Development (205-220°C) -> Second Crack (220-230°C) -> Finish.' },
+                    { judul: 'Profil Tingkat Roast', desc: 'Light (floral/fruity), Medium (seimbang manis asam), Medium Dark (body kuat), Dark (smoky/pahit bold).' },
+                    { judul: 'Tips Penyimpanan', desc: 'Kontrol suhu sangrai stabil, langsung dinginkan kopi setelah dipanggang, dan simpan di wadah kedap udara.' }
+                ]
+            },
+            {
+                id: 'siloka-4',
+                judul: '4. Cara Penyeduhan & Saran Penyajian',
+                icon: 'fa-mug-saucer',
+                ringkasan: 'Suhu air 90-95°C dan takaran presisi 10g bubuk Kopi SILOKA.',
+                gambar: '/images/siloka_penyeduhan_ai.jpg',
+                poinMateri: [
+                    { judul: 'Takaran Bubuk Presisi', desc: 'Siapkan 10 gram (±1.5 sendok makan) bubuk Kopi SILOKA ke dalam cangkir.' },
+                    { judul: 'Suhu Air Ideal', desc: 'Panaskan 250 mL air bersih hingga suhu 90–95°C (diamkan 1 menit setelah mendidih).' },
+                    { judul: 'Teknik Penyeduhan', desc: 'Tuang air panas secara perlahan melingkar, aduk rata, lalu diamkan 2-3 menit agar rasa terekstrak sempurna.' },
+                    { judul: 'Saran Penyajian', desc: 'Nikmati murni tanpa gula atau tambah gula sesuai selera, paling nikmat diminum selagi hangat.' }
+                ]
             }
-        ]
-    },
-    {
-        num: '03', icon: 'fa-mug-hot', title: 'Kopi SILOKA', catKey: 'ekraf', cat: 'Ekonomi Kreatif', catColor: 'emerald',
-        img: '/images/siloka_coffee.png',
-        desc: 'Robusta + Jahe + Sereh — panduan lengkap dari roasting, resting, hingga penyeduhan.',
-        detail: 'Komposisi: Biji Kopi Arabika Gunungsari 70%, Jahe merah kering 20%, Sereh wangi 10%. Proses sangrai medium roast dengan masa resting 3 hari untuk aroma rempah terbaik.',
+        ],
         kegiatan: [
             {
                 num: 5,
@@ -60,91 +150,326 @@ const modules = [
         ]
     },
     {
-        num: '04', icon: 'fa-store', title: 'Pemasaran UMKM', catKey: 'ekraf', cat: 'Ekonomi Kreatif', catColor: 'emerald',
-        img: '/images/siloka_coffee.png',
-        desc: 'Strategi pemasaran offline & digital untuk meningkatkan nilai jual produk lokal Gunungsari.',
-        detail: 'Modul panduan branding kemasan pouch alumunium foil, penetapan HPP harga jual, pendaftaran NIB UMKM desa, dan promosi media sosial digital.',
+        num: '03', icon: 'fa-seedling', title: 'Kebun Gizi', catKey: 'gizi', cat: 'Gizi & Pangan', catColor: 'amber',
+        img: '/images/kebun_gizi_real.png', iconImg: '/images/cat_kebun_gizi.png',
+        desc: 'Modul panduan pembuatan dan pengelolaan kebun gizi untuk pemenuhan nutrisi pangan keluarga/masyarakat.',
+        detail: 'Panduan teknis pembuatan dan pengelolaan pekarangan kebun gizi keluarga dengan tanaman pangan bergizi tinggi, sayuran organik, serta Tanaman Obat Keluarga (TOGA) untuk pemenuhan gizi mandiri.',
+        submodul: [
+            {
+                id: 'kebun-1',
+                judul: '1. Konsep Kebun Gizi Pekarangan',
+                icon: 'fa-seedling',
+                ringkasan: 'Pemanfaatan pekarangan rumah untuk pemenuhan gizi keluarga dan ketahanan pangan mandiri.',
+                gambar: '/images/kebun_gizi_real.png',
+                poinMateri: [
+                    { judul: 'Tujuan Kebun Gizi', desc: 'Menyediakan bahan pangan sehat kaya vitamin dan mineral bebas pestisida di pekarangan rumah.' },
+                    { judul: 'Efisiensi Biaya Belanja', desc: 'Mengurangi pengeluaran harian belanja dapur rumah tangga secara signifikan.' },
+                    { judul: 'Akses Pangan Segar', desc: 'Memastikan keluarga mendapat asupan sayur dan bumbu herbal segar setiap hari.' }
+                ]
+            },
+            {
+                id: 'kebun-2',
+                judul: '2. Jenis Tanaman Pangan & TOGA',
+                icon: 'fa-plant-wilt',
+                ringkasan: 'Ragam pilihan sayuran daun, buah bergizi, dan Tanaman Obat Keluarga.',
+                gambar: '/images/cat_kebun_gizi.png',
+                poinMateri: [
+                    { judul: 'Sayuran Daun Bergizi', desc: 'Bayam, Kangkung, Sawi, Katuk (baik untuk ibu menyusui), dan Daun Kelor.' },
+                    { judul: 'Sayuran Buah & Bumbu', desc: 'Cabai Rawit, Tomat Sayur, Terung, Serai Dapur, dan Lengkuas.' },
+                    { judul: 'Tanaman Obat (TOGA)', desc: 'Jahe Merah, Kunyit, Temulawak, dan Kencur untuk ketahanan imun keluarga.' }
+                ]
+            },
+            {
+                id: 'kebun-3',
+                judul: '3. Media Tanam & Perawatan Pekarangan',
+                icon: 'fa-fill-drip',
+                ringkasan: 'Formulasi media tanam polybag dan jadwal pemupukan rutin.',
+                gambar: '/images/kebun_gizi_real.png',
+                poinMateri: [
+                    { judul: 'Media Tanam Polybag', desc: 'Campurkan Tanah Topsoil (2 bagian) : Kompos Organik (1 bagian) : Sekam Padi (1 bagian).' },
+                    { judul: 'Penyiraman & Penyinaran', desc: 'Siram 2x sehari (pagi & sore). Pastikan tanaman mendapat sinar matahari minimal 5-6 jam.' },
+                    { judul: 'Pemupukan Organik', desc: 'Beri pupuk kompos atau Pupuk Organik Cair (POC) setiap 2 minggu sekali.' }
+                ]
+            }
+        ],
         kegiatan: [
             {
-                num: 2,
-                judul: 'Pelepasan & Pembekalan Tim Pelaksana PPK Ormawa',
-                deskripsi: 'Acara pelepasan resmi dan pembekalan tim pelaksana PPK Ormawa oleh Rektorat Universitas Jember sebagai persiapan program pemberdayaan ekonomi kreatif masyarakat Desa Gunungsari.',
-                icon: 'fa-flag',
+                num: 3,
+                judul: 'Sosialisasi Program Kebun Gizi & Pangan Desa',
+                deskripsi: 'Sosialisasi program SIPETRAN bersama perangkat desa dan kelompok wanita tani terkait pengelolaan kebun gizi pekarangan rumah tangga.',
+                icon: 'fa-people-group',
                 driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
             }
         ]
     },
     {
-        num: '05', icon: 'fa-heart-pulse', title: 'PHBS & Posyandu', catKey: 'kesehatan', cat: 'Kesehatan', catColor: 'teal',
-        img: '/images/posyandu_health.png',
-        desc: '10 indikator Perilaku Hidup Bersih & Sehat untuk seluruh keluarga di Desa Gunungsari.',
-        detail: 'Panduan 10 Indikator Utama PHBS Rumah Tangga: Persalinan nakes, ASI eksklusif, menimbang balita tiap bulan, air bersih, cuci tangan air mengalir, jamban sehat, memberantas jentik nyamuk, makan buah & sayur, aktivitas fisik harian, tidak merokok dalam rumah.',
+        num: '04', icon: 'fa-heart-pulse', title: 'PHBS (Perilaku Hidup Bersih dan Sehat)', catKey: 'kesehatan', cat: 'Kesehatan', catColor: 'teal',
+        img: '/images/phbs_10_indikator.jpg', iconImg: '/images/cat_phbs.png',
+        desc: 'Modul materi dan panduan penerapan Perilaku Hidup Bersih dan Sehat di lingkungan masyarakat.',
+        detail: 'Panduan 10 Indikator Utama PHBS Rumah Tangga & Lingkungan: persalinan oleh nakes, pemberian ASI eksklusif, penimbangan balita rutin, penggunaan air bersih, cuci tangan pakai sabun (CTPS), jamban sehat, memberantas jentik nyamuk, makan buah & sayur, aktivitas fisik, serta tidak merokok dalam rumah.',
+        submodul: [
+            {
+                id: 'phbs-1',
+                judul: '1. 10 Indikator Utama PHBS Rumah Tangga',
+                icon: 'fa-heart-pulse',
+                ringkasan: 'Panduan 10 standar Perilaku Hidup Bersih dan Sehat di lingkungan keluarga.',
+                gambar: '/images/phbs_10_indikator.jpg',
+                poinMateri: [
+                    { judul: 'Kesehatan Ibu & Anak', desc: 'Persalinan oleh Nakes, ASI Eksklusif 6 bulan, dan Menimbang Balita rutin tiap bulan di Posyandu.' },
+                    { judul: 'Sanitasi & Kebersihan', desc: 'Menggunakan Air Bersih, Cuci Tangan Pakai Sabun (CTPS), dan Menggunakan Jamban Sehat.' },
+                    { judul: 'Gaya Hidup Sehat', desc: 'Memberantas jentik nyamuk (3M Plus), Makan buah & sayur harian, Aktivitas fisik 30 menit, dan Bebas asap rokok di rumah.' }
+                ]
+            },
+            {
+                id: 'phbs-2',
+                judul: '2. Panduan Cuci Tangan Pakai Sabun (CTPS)',
+                icon: 'fa-hands-bubbles',
+                ringkasan: 'Langkah tepat CTPS 6 tahap menurut WHO untuk mencegah kuman penyakit.',
+                gambar: '/images/phbs_cuci_tangan.jpg',
+                poinMateri: [
+                    { judul: 'Waktu Wajib CTPS', desc: 'Sebelum makan, sebelum mengolah makanan, setelah dari toilet, dan setelah memegang sampah/hewan.' },
+                    { judul: '6 Langkah WHO', desc: 'Gosok telapak tangan, punggung tangan, sela-sela jari, kunci antar jari, putar ibu jari, dan gosok ujung kuku di telapak.' },
+                    { judul: 'Bilas Air Mengalir', desc: 'Bilas dengan air bersih mengalir selama 20-30 detik lalu keringkan dengan lap bersih.' }
+                ]
+            },
+            {
+                id: 'phbs-3',
+                judul: '3. Penanganan Diare & Pembuatan Oralit',
+                icon: 'fa-kit-medical',
+                ringkasan: 'Pertolongan pertama cegah dehidrasi pada anak dengan larutan gula garam.',
+                gambar: '/images/phbs_oralit.jpg',
+                poinMateri: [
+                    { judul: 'Waspada Dehidrasi', desc: 'Diare ditandai BAB cair >3 kali sehari, anak lemas, haus berlebihan, dan mata cekung.' },
+                    { judul: 'Resep Larutan Gula Garam (LGG)', desc: '200 mL air matang + 1 sdt gula pasir + 1/4 sdt garam halus, aduk hingga larut.' },
+                    { judul: 'Pemberian Oralit', desc: 'Berikan setiap kali anak selesai BAB (1/2 hingga 1 gelas) untuk menggantikan cairan tubuh.' }
+                ]
+            }
+        ],
         kegiatan: [
             {
                 num: 1,
-                judul: 'Koordinasi Lanjutan dengan Pemerintah Desa Gunungsari',
-                deskripsi: 'Koordinasi lanjutan pelaksanaan program PPK Ormawa dengan pemerintah Desa Gunungsari, membahas integrasi kegiatan PHBS dan Posyandu dalam program SIPETRAN.',
+                judul: 'Koordinasi Program PHBS dengan Pemerintah Desa Gunungsari',
+                deskripsi: 'Koordinasi lanjutan pelaksanaan program PPK Ormawa dengan pemerintah Desa Gunungsari, membahas integrasi kegiatan PHBS dan Posyandu.',
                 icon: 'fa-handshake',
                 foto: ['https://drive.google.com/thumbnail?id=1uqLTHhdMMj4ra_JmWnenMzZh3mc-5YJE&sz=w400'],
                 driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
             },
             {
                 num: 3,
-                judul: 'Sosialisasi Program SIPETRAN kepada Perangkat Desa',
-                deskripsi: 'Rapat koordinasi sosialisasi program SIPETRAN kepada seluruh pemangku kepentingan desa, termasuk kader Posyandu dan bidan desa terkait program kesehatan masyarakat.',
+                judul: 'Sosialisasi PHBS kepada Kader Kesehatan & Masyarakat',
+                deskripsi: 'Rapat koordinasi dan sosialisasi penerapan 10 indikator PHBS bersama kader Posyandu dan bidan desa.',
                 icon: 'fa-person-chalkboard',
                 driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
             }
         ]
     },
     {
-        num: '06', icon: 'fa-hands-bubbles', title: 'Cuci Tangan & Oralit', catKey: 'kesehatan', cat: 'Kesehatan', catColor: 'teal',
-        img: '/images/posyandu_health.png',
-        desc: '6 langkah cuci tangan WHO & panduan larutan oralit darurat untuk pencegahan diare.',
-        detail: 'Tata cara 6 Langkah Cuci Tangan Pakai Sabun (CTPS) standar WHO & Resep Oralit Darurat Rumah Tangga: 200ml air matang + 1/2 sendok teh garam + 2 sendok teh gula pasir.',
-        kegiatan: [
+        num: '05', icon: 'fa-recycle', title: 'Biopori', catKey: 'lingkungan', cat: 'Lingkungan', catColor: 'green',
+        img: '/images/biopori_diagram.jpg', iconImg: '/images/cat_biopori.png',
+        desc: 'Modul langkah-langkah pembuatan lubang resapan biopori untuk pengolahan sampah organik dan resapan air.',
+        detail: 'Spesifikasi & Langkah Pembuatan Lubang Resapan Biopori (LRB): Penggunaan pipa PVC berlubang diameter 10cm dengan kedalaman 80-100cm. Berguna mempercepat resapan air hujan mencegah genangan serta mengolah sampah dapur organik menjadi kompos alami.',
+        submodul: [
             {
-                num: 3,
-                judul: 'Sosialisasi Program Kesehatan kepada Kelompok Sasaran',
-                deskripsi: 'Sosialisasi program SIPETRAN bidang kesehatan bersama perangkat desa dan kelompok divisi sasaran, termasuk demonstrasi 6 langkah cuci tangan standar WHO dan cara pembuatan oralit darurat.',
-                icon: 'fa-soap',
-                driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
-            }
-        ]
-    },
-    {
-        num: '07', icon: 'fa-recycle', title: 'Pemilahan Sampah & Biopori', catKey: 'lingkungan', cat: 'Lingkungan', catColor: 'green',
-        img: '/images/biopori_eco.png',
-        desc: 'Klasifikasi 4 jenis sampah + lubang biopori & kompos EM4 untuk pengelolaan organik.',
-        detail: 'Spesifikasi Lubang Resapan Biopori (LRB): Pipa PVC berlubang diameter 10cm, kedalaman 80-100cm. Mempercepat resapan air hujan & mengolah sampah dapur menjadi pupuk kompos EM4.',
-        kegiatan: [
-            {
-                num: 8,
-                judul: 'Koordinasi Bahan Baku Kompos (Kotoran Sapi) Dusun Peh',
-                deskripsi: 'Koordinasi dengan warga Dusun Peh terkait kondisi dan ketersediaan bahan baku kompos organik berupa kotoran sapi untuk pembuatan pupuk kompos EM4 program lingkungan SIPETRAN.',
-                icon: 'fa-seedling',
-                driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
+                id: 'biopori-1',
+                judul: '1. Pengenalan & Manfaat Biopori',
+                icon: 'fa-recycle',
+                ringkasan: 'Teknologi resapan air hujan dan pengolahan sampah organik langsung di dalam tanah.',
+                gambar: '/images/biopori_diagram.jpg',
+                poinMateri: [
+                    { judul: 'Mencegah Genangan', desc: 'Mempercepat daya resap air hujan ke dalam tanah sehingga mengurangi risiko genangan air.' },
+                    { judul: 'Pembuatan Kompos Alami', desc: 'Sampah dapur organik di dalam pipa akan diurai mikroorganisme menjadi kompos humus berkualitas.' },
+                    { judul: 'Menjaga Cadangan Air', desc: 'Meningkatkan cadangan air tanah sumur warga saat memasuki musim kemarau.' }
+                ]
             },
             {
+                id: 'biopori-2',
+                judul: '2. Alat & Bahan Pembuatan Biopori',
+                icon: 'fa-screwdriver-wrench',
+                ringkasan: 'Spesifikasi pipa PVC, bor biopori manual, dan jenis sampah organik.',
+                gambar: '/images/cat_biopori.png',
+                poinMateri: [
+                    { judul: 'Peralatan Utama', desc: 'Bor tanah / bor biopori manual diameter 10cm, linggis, dan gayung air.' },
+                    { judul: 'Pipa PVC Berlubang', desc: 'Pipa PVC diameter 10cm (4 inchi) panjang 80–100cm yang dilubangi kecil sekelilingnya.' },
+                    { judul: 'Tutup Pipa', desc: 'Tutup pipa PVC berlubang agar aman dipijak dan tidak dimasuki hewan peliharaan.' }
+                ]
+            },
+            {
+                id: 'biopori-3',
+                judul: '3. Langkah Pengeboran & Perawatan',
+                icon: 'fa-layer-group',
+                ringkasan: 'Prosedur pembuatan lubang resapan dan jadwal pemanenan kompos.',
+                gambar: '/images/biopori_diagram.jpg',
+                poinMateri: [
+                    { judul: 'Pengeboran Tanah', desc: 'Siram tanah dengan air, bor tegak lurus hingga kedalaman 80–100 cm.' },
+                    { judul: 'Pemasangan Pipa', desc: 'Masukan pipa PVC berlubang ke dalam tanah hingga rata dengan permukaan tanah.' },
+                    { judul: 'Pengisian & Pemanenan', desc: 'Isi pipa dengan sampah dapur hingga padat. Panen pupuk kompos setiap 2–3 bulan sekali.' }
+                ]
+            }
+        ],
+        kegiatan: [
+            {
                 num: 9,
-                judul: 'Rapat Koordinasi Pelatihan Kelompok Divisi Lingkungan',
-                deskripsi: 'Rapat koordinasi pelatihan dan pendampingan kelompok divisi program SIPETRAN bidang lingkungan, membahas teknis pembuatan biopori dan sistem pemilahan sampah 4 jenis.',
+                judul: 'Pelatihan Pembuatan Biopori & Pemilahan Sampah',
+                deskripsi: 'Pelatihan teknis pembuatan lubang biopori dan penerapan sistem pemilahan sampah organik rumah tangga bagi kelompok divisi lingkungan.',
                 icon: 'fa-comments',
                 driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
             }
         ]
     },
     {
-        num: '08', icon: 'fa-fire', title: 'Incinerator Drum', catKey: 'lingkungan', cat: 'Lingkungan', catColor: 'green',
-        img: '/images/biopori_eco.png',
-        desc: 'Teknologi pembakaran sampah minim asap dari drum bekas dengan cerobong udara sirkulasi.',
-        detail: 'Rancangan Incinerator Sederhana: Drum besi 200 liter dengan kisi-kisi alas pembakaran, lubang sirkulasi udara bawah, dan cerobong pipa 2 meter pengurang pembentukan asap.',
+        num: '06', icon: 'fa-fire', title: 'Alat Pembakar Sampah', catKey: 'lingkungan', cat: 'Lingkungan', catColor: 'green',
+        img: '/images/pembakar_sampah_diagram.jpg', iconImg: '/images/cat_alat_pembakar.png',
+        desc: 'Modul panduan pembuatan dan pengoperasian alat pemusnah/pembakar sampah sederhana yang minim polusi.',
+        detail: 'Panduan Rancang Bangun & Pengoperasian Incinerator Sederhana: Dibuat dari drum besi 200 liter dengan sirkulasi udara bawah dan cerobong pipa vertikal 2 meter untuk pengolahan sampah kering non-organik dengan efek polusi asap minimal.',
+        submodul: [
+            {
+                id: 'incinerator-1',
+                judul: '1. Rancang Bangun Pembakar Sampah',
+                icon: 'fa-fire',
+                ringkasan: 'Konstruksi drum besi 200 Liter ber-cerobong tinggi minim asap polusi.',
+                gambar: '/images/pembakar_sampah_diagram.jpg',
+                poinMateri: [
+                    { judul: 'Konstruksi Drum', desc: 'Drum besi bekas 200 Liter dilengkapi saringan plat besi di bagian bawah.' },
+                    { judul: 'Cerobong Asap Vertikal', desc: 'Pipa seng vertikal 2 meter untuk mengalirkan sisa asap ke udara bagian atas.' },
+                    { judul: 'Sirkulasi Udara Bawah', desc: 'Lubang suplai udara di bawah drum menciptakan pembakaran suhu tinggi efisien.' }
+                ]
+            },
+            {
+                id: 'incinerator-2',
+                judul: '2. Cara Pengoperasian & Keamanan',
+                icon: 'fa-shield-halved',
+                ringkasan: 'Prosedur penyalaan api bertahap dan pemadaman abu sisa.',
+                gambar: '/images/cat_alat_pembakar.png',
+                poinMateri: [
+                    { judul: 'Penyalaan Api Dasar', desc: 'Masukan kertas/ranting kering di dasar drum lalu nyalakan api hingga stabil.' },
+                    { judul: 'Pengisian Sampah Bertahap', desc: 'Masukan sampah kering sedikit demi sedikit agar tidak memadamkan sirkulasi api.' },
+                    { judul: 'Penutupan Drum', desc: 'Tutup bagian atas drum agar asap mengalir teratur melewati cerobong tinggi.' }
+                ]
+            },
+            {
+                id: 'incinerator-3',
+                judul: '3. Pemilahan Sampah Sebelum Pembakaran',
+                icon: 'fa-trash-can',
+                ringkasan: 'Jenis sampah yang aman dibakar vs sampah berbahaya dilarang dibakar.',
+                gambar: '/images/pembakar_sampah_diagram.jpg',
+                poinMateri: [
+                    { judul: 'Sampah Aman Dibakar', desc: 'Kertas bekas, kardus kering, daun kering, dan kayu ranting kecil.' },
+                    { judul: 'DILARANG Dibakar', desc: 'Plastik PVC, styrofoam, karet/ban, kaleng aerosol, dan batu baterai (B3).' }
+                ]
+            }
+        ],
         kegiatan: [
             {
                 num: 1,
-                judul: 'Koordinasi Lanjutan Program Lingkungan dengan Pemerintah Desa',
-                deskripsi: 'Koordinasi lanjutan terkait program lingkungan SIPETRAN termasuk rencana pemasangan incinerator drum di titik-titik strategis Desa Gunungsari bersama perangkat desa.',
+                judul: 'Koordinasi Rencana Pembakaran Sampah Minim Asap',
+                deskripsi: 'Koordinasi lanjutan terkait rencana perakitan dan penempatan drum pembakar sampah minim polusi di lingkungan tempat tinggal warga.',
                 icon: 'fa-handshake',
+                driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
+            }
+        ]
+    },
+    {
+        num: '07', icon: 'fa-store', title: 'Pemasaran', catKey: 'ekraf', cat: 'Ekonomi Kreatif', catColor: 'emerald',
+        img: '/images/cat_pemasaran.png', iconImg: '/images/cat_pemasaran.png',
+        desc: 'Modul panduan strategi pemasaran produk digital, penjualan online, serta link ke berbagai marketplace/sosial media.',
+        detail: 'Panduan Pemasaran Digital UMKM Desa: Pemanfaatan platform media sosial, foto produk digital, penetapan HPP & harga jual, integrasi link e-commerce/marketplace online, serta pendaftaran perizinan NIB usaha.',
+        submodul: [
+            {
+                id: 'pemasaran-1',
+                judul: '1. Pemasaran Digital & E-Commerce',
+                icon: 'fa-store',
+                ringkasan: 'Pemanfaatan platform marketplace Shopee, Tokopedia, Bukalapak, dan TikTok Shop.',
+                gambar: '/images/cat_pemasaran.png',
+                poinMateri: [
+                    { judul: 'Pembuatan Toko Online', desc: 'Pendaftaran toko UMKM resmi di marketplace e-commerce nasional.' },
+                    { judul: 'Foto Produk Digital', desc: 'Pengambilan foto produk menarik dengan pencahayaan terang dan latar bersih.' },
+                    { judul: 'Deskripsi Lengkap', desc: 'Menyantumkan komposisi, nomor legalitas NIB/Halal, dan tanggal kadaluarsa.' }
+                ]
+            },
+            {
+                id: 'pemasaran-2',
+                judul: '2. Penghitungan HPP & Harga Jual',
+                icon: 'fa-calculator',
+                ringkasan: 'Rumus Harga Pokok Produksi dan penentuan margin keuntungan usaha.',
+                gambar: '/images/pemasaran_sijago.jpg',
+                poinMateri: [
+                    { judul: 'Komponen Biaya HPP', desc: 'Biaya bahan baku + biaya kemasan + biaya tenaga kerja + operasional.' },
+                    { judul: 'Penentuan Harga Jual', desc: 'Harga Jual = HPP + Profit Margin (20% – 35%).' },
+                    { judul: 'Stiker Branding', desc: 'Desain stiker produk yang informatif dan memiliki daya tarik visual tinggi.' }
+                ]
+            },
+            {
+                id: 'pemasaran-3',
+                judul: '3. Perizinan Usaha NIB & Legalitas',
+                icon: 'fa-file-signature',
+                ringkasan: 'Panduan pendaftaran Nomor Induk Berusaha (NIB) gratis via portal OSS.',
+                gambar: '/images/pemasaran_siloka.jpg',
+                poinMateri: [
+                    { judul: 'Pendaftaran NIB Online', desc: 'Pendaftaran NIB gratis melalui sistem OSS (oss.go.id) menggunakan KTP.' },
+                    { judul: 'Sertifikasi Halal Self-Declare', desc: 'Pengajuan sertifikat Halal gratis melalui program SEHATI Kemenag.' },
+                    { judul: 'Izin Edar P-IRT', desc: 'Pendaftaran izin industri rumah tangga pada Dinas Kesehatan daerah.' }
+                ]
+            }
+        ],
+        kegiatan: [
+            {
+                num: 2,
+                judul: 'Pembekalan & Pemasaran Produk Hasil UMKM Desa',
+                deskripsi: 'Pembekalan strategi pemasaran produk lokal Gunungsari (SIJAGO & SILOKA) pada pelepasan tim pelaksana PPK Ormawa.',
+                icon: 'fa-flag',
+                driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
+            }
+        ]
+    },
+    {
+        num: '08', icon: 'fa-leaf', title: 'Kompos Kotoran Hewan', catKey: 'lingkungan', cat: 'Lingkungan', catColor: 'green',
+        img: '/images/cat_kompos.png', iconImg: '/images/cat_kompos.png',
+        desc: 'Modul tata cara pembuatan pupuk kompos memanfaatkan limbah kotoran ternak/hewan.',
+        detail: 'Tata Cara & Prosedur Fermentasi Kompos Kotoran Ternak: Pengolahan kotoran sapi/kambing menggunakan bioaktivator EM4, penambahan dedak dan sekam padi untuk pupuk organik berkuantitas & berkualitas tinggi.',
+        submodul: [
+            {
+                id: 'kompos-1',
+                judul: '1. Manfaat Pupuk Organik Kotoran Ternak',
+                icon: 'fa-leaf',
+                ringkasan: 'Pengolahan limbah kotoran sapi/kambing menjadi pupuk organik penyubur tanah.',
+                gambar: '/images/kompos_diagram.jpg',
+                poinMateri: [
+                    { judul: 'Memperbaiki Struktur Tanah', desc: 'Meningkatkan daya simpan air dan kegemburan tanah pertanian warga.' },
+                    { judul: 'Menghemat Biaya Pupuk', desc: 'Mengurangi ketergantungan pada pupuk anorganik sintetis yang mahal.' },
+                    { judul: 'Sanitasi Kandang', desc: 'Mengurangi penumpukan limbah bau kotoran ternak di area pemukiman.' }
+                ]
+            },
+            {
+                id: 'kompos-2',
+                judul: '2. Bahan & Bioaktivator Fermentasi',
+                icon: 'fa-flask-vial',
+                ringkasan: 'Komposisi kotoran hewan, dedak halus, sekam padi, dan EM4.',
+                gambar: '/images/cat_kompos.png',
+                poinMateri: [
+                    { judul: 'Bahan Utama', desc: '100 kg Kotoran Sapi/Kambing agak kering (tidak basah becek).' },
+                    { judul: 'Bahan Campuran C/N', desc: '10 kg Dedak halus + 10 kg Sekam Padi / serbuk gergaji.' },
+                    { judul: 'Larutan Aktivator EM4', desc: '200 mL EM4 Pertanian + 200 mL Molase / Air Gula + 10 Liter Air Bersih.' }
+                ]
+            },
+            {
+                id: 'kompos-3',
+                judul: '3. Prosedur Fermentasi & Ciri Matang',
+                icon: 'fa-clock-rotate-left',
+                ringkasan: 'Pembalikan rutin tumpukan dan kriteria kompos matang siap pakai.',
+                gambar: '/images/kompos_diagram.jpg',
+                poinMateri: [
+                    { judul: 'Pencampuran & Penyiraman', desc: 'Aduk rata semua bahan, siramkan larutan EM4 hingga kelembaban ±40% (lembab tidak menetes).' },
+                    { judul: 'Penutupan Terpal', desc: 'Tumpuk adonan setinggi 60-80cm lalu tutup rapat dengan terpal gelap.' },
+                    { judul: 'Ciri Kompos Matang (2-3 Minggu)', desc: 'Warna remah kehitaman, suhu dingin/normal, dan berbau harum tanah.' }
+                ]
+            }
+        ],
+        kegiatan: [
+            {
+                num: 8,
+                judul: 'Koordinasi Bahan Baku Kompos Kotoran Sapi Dusun Peh',
+                deskripsi: 'Koordinasi dengan warga dan peternak Dusun Peh terkait ketersediaan limbah kotoran sapi untuk pengolahan pupuk kompos organik.',
+                icon: 'fa-seedling',
                 driveLink: 'https://drive.google.com/drive/folders/17bF6vdEX947vZnX1-RvoEvrIcKg2LPJI'
             }
         ]
@@ -245,7 +570,24 @@ const colorMap = {
     </style>
 </head>
 
-<body class="font-body text-gray-800 antialiased" x-data="{ activeCat: 'all', activeModalModul: null }">
+<body class="font-body text-gray-800 antialiased" x-data="{
+    activeCat: 'all',
+    activeModalModul: null,
+    activeSubIdx: 0,
+    activeTab: 'content',
+    isFullscreen: false,
+    openReader(mod) {
+        this.activeModalModul = mod;
+        this.activeSubIdx = 0;
+        this.activeTab = 'content';
+        this.isFullscreen = false;
+        document.body.style.overflow = 'hidden';
+    },
+    closeReader() {
+        this.activeModalModul = null;
+        document.body.style.overflow = 'auto';
+    }
+}">
 
     <!-- ============ NAVIGATION ============ -->
     <header class="absolute top-0 left-0 right-0 z-50" x-data="{ mobileOpen: false }">
@@ -278,8 +620,6 @@ const colorMap = {
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <span class="text-xs font-bold text-emerald-300 uppercase tracking-[0.3em] mb-4 inline-block">KATALOG 8 MODUL EDUSIP</span>
-
             <h1 class="font-display text-white text-5xl sm:text-6xl md:text-7xl font-black leading-tight tracking-tight">
                 MODUL EDUKASI
                 <br>
@@ -320,12 +660,12 @@ const colorMap = {
                 <button @click="activeCat = 'kesehatan'"
                     :class="activeCat === 'kesehatan' ? 'bg-emerald-800 text-white shadow-lg scale-105 font-black' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50 font-semibold'"
                     class="text-xs md:text-sm px-6 py-3 rounded-full transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-heart-pulse"></i> Kesehatan (2)
+                    <i class="fa-solid fa-heart-pulse"></i> Kesehatan (1)
                 </button>
                 <button @click="activeCat = 'lingkungan'"
                     :class="activeCat === 'lingkungan' ? 'bg-green-800 text-white shadow-lg scale-105 font-black' : 'bg-white text-gray-700 border border-stone-200 hover:bg-stone-50 font-semibold'"
                     class="text-xs md:text-sm px-6 py-3 rounded-full transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-seedling"></i> Lingkungan (2)
+                    <i class="fa-solid fa-seedling"></i> Lingkungan (3)
                 </button>
             </div>
 
@@ -341,26 +681,27 @@ const colorMap = {
                             class="module-card bg-white rounded-[2.2rem] overflow-hidden shadow-sm border border-stone-200 flex flex-col hover:shadow-xl">
                             <div class="relative overflow-hidden" style="height: 170px;">
                                 <img src={mod.img} alt={mod.title} class="w-full h-full object-cover" />
-                                <span class="absolute top-3 right-3 text-[10px] font-black text-gray-800 bg-white/90 px-3 py-1 rounded-full backdrop-blur-sm shadow-xs uppercase tracking-wider">
-                                    Modul {mod.num}
-                                </span>
                             </div>
 
                             <div class="p-5 flex flex-col flex-1 gap-3">
                                 <div class="flex items-center justify-between">
-                                    <div class={`w-9 h-9 rounded-xl ${c.bg} ${c.icon} flex items-center justify-center shrink-0 border border-stone-100`}>
-                                        <i class={`fa-solid ${mod.icon} text-sm`}></i>
+                                    <div class={`w-9 h-9 rounded-xl ${c.bg} flex items-center justify-center shrink-0 border border-stone-100 p-1 overflow-hidden`}>
+                                        {mod.iconImg ? (
+                                            <img src={mod.iconImg} alt={mod.title} class="w-full h-full object-contain" />
+                                        ) : (
+                                            <i class={`fa-solid ${mod.icon} text-sm ${c.icon}`}></i>
+                                        )}
                                     </div>
-                                    <span class={`text-[10px] font-bold ${c.badge} px-2.5 py-0.5 rounded-full uppercase tracking-wider`}>{mod.cat}</span>
                                 </div>
                                 <div>
                                     <h3 class="font-display font-black text-gray-900 text-lg leading-tight mb-1">{mod.title}</h3>
                                     <p class="text-xs text-gray-500 leading-relaxed font-body line-clamp-3">{mod.desc}</p>
                                 </div>
                                 <div class="mt-auto pt-2">
-                                    <button @click={`activeModalModul = ${JSON.stringify(mod)}`}
-                                        class="w-full bg-stone-100 hover:bg-sipetran-green hover:text-white text-gray-700 font-bold text-xs py-2.5 px-4 rounded-xl transition-colors flex items-center justify-center gap-2">
-                                        <span>Baca Modul Lengkap</span>
+                                    <button @click={`openReader(${JSON.stringify(mod)})`}
+                                        class="w-full bg-stone-100 hover:bg-sipetran-green hover:text-white text-gray-700 font-bold text-xs py-2.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
+                                        <i class="fa-solid fa-book-open text-emerald-600 group-hover:text-white"></i>
+                                        <span>Baca Modul Selengkapnya</span>
                                         <i class="fa-solid fa-arrow-right text-[10px]"></i>
                                     </button>
                                 </div>
@@ -372,115 +713,165 @@ const colorMap = {
         </div>
     </section>
 
-    <!-- ============ POPUP MODAL DETAIL READER ============ -->
+    <!-- ============ POPUP MODAL SMARTPHONE READER ============ -->
     <div x-show="activeModalModul" x-transition.opacity
-        class="fixed inset-0 z-[100] modal-backdrop flex items-center justify-center p-4"
-        @click.self="activeModalModul = null" style="display:none;">
+        class="fixed inset-0 z-[100] modal-backdrop flex items-center justify-center p-2 sm:p-4"
+        @click.self="closeReader()"
+        @keydown.escape.window="closeReader()"
+        style="display:none;">
 
-        <div class="bg-white rounded-[2.5rem] max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-stone-100 relative overflow-y-auto max-h-[90vh] text-gray-800"
-            x-show="activeModalModul"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
-            x-transition:enter-end="opacity-100 scale-100 translate-y-0">
+        <!-- Outer Smartphone Frame Container -->
+        <div class="relative w-full transition-all duration-300 flex items-center justify-center"
+            :class="isFullscreen ? 'max-w-4xl h-[95vh]' : 'max-w-[420px] sm:max-w-[460px] h-[92vh] max-h-[850px]'">
 
-            <button @click="activeModalModul = null" class="sticky top-0 float-right w-9 h-9 rounded-full bg-stone-100 text-gray-500 hover:bg-stone-200 flex items-center justify-center transition-colors z-10">
-                <i class="fa-solid fa-xmark text-sm"></i>
-            </button>
+            <!-- Mobile Phone Shell Frame -->
+            <div class="bg-gray-950 rounded-[3rem] p-3 sm:p-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] border-4 border-stone-700/50 w-full h-full flex flex-col relative overflow-hidden ring-1 ring-white/10">
 
-            <template x-if="activeModalModul">
-                <div class="space-y-5">
-                    <!-- Header -->
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-black uppercase tracking-widest text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full" x-text="'Modul ' + activeModalModul.num"></span>
-                        <h3 class="font-display font-black text-2xl md:text-3xl text-gray-900 leading-tight" x-text="activeModalModul.title"></h3>
-                        <p class="text-xs text-gray-500 font-medium" x-text="activeModalModul.desc"></p>
+                <!-- Dynamic Island / Phone Speaker Notch -->
+                <div class="absolute top-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black px-4 py-1 rounded-full border border-stone-800 shadow-inner pointer-events-none">
+                    <div class="w-2.5 h-2.5 rounded-full bg-stone-900 border border-stone-700"></div>
+                    <div class="w-12 h-1.5 rounded-full bg-stone-900"></div>
+                </div>
+
+                <!-- Inner Smartphone Screen -->
+                <div class="bg-[#FAF8F2] w-full h-full rounded-[2.2rem] flex flex-col overflow-hidden relative border border-stone-200 shadow-inner">
+
+                    <!-- 1. Status Bar -->
+                    <div class="bg-sipetran-dark text-stone-300 px-6 pt-3 pb-1 flex justify-between items-center text-[11px] font-semibold tracking-wider shrink-0 z-20">
+                        <span x-text="new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})">09:41</span>
+                        <div class="flex items-center gap-2 text-stone-300 text-[10px]">
+                            <i class="fa-solid fa-wifi"></i>
+                            <span class="font-bold text-[9px] bg-emerald-600 text-white px-1 rounded">5G</span>
+                            <i class="fa-solid fa-battery-full text-xs text-emerald-400"></i>
+                        </div>
                     </div>
 
-                    <!-- Materi Detail -->
-                    <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-book-open text-sipetran-green"></i> Materi & Informasi Detail
-                        </h4>
-                        <p class="text-xs text-gray-700 leading-relaxed font-body" x-text="activeModalModul.detail"></p>
-                    </div>
-
-                    <!-- Kegiatan Section -->
-                    <template x-if="activeModalModul.kegiatan && activeModalModul.kegiatan.length > 0">
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-2">
-                                <div class="h-px flex-1 bg-stone-200"></div>
-                                <span class="text-[10px] font-black uppercase tracking-widest text-sipetran-green flex items-center gap-1.5">
-                                    <i class="fa-solid fa-camera"></i> Dokumentasi Kegiatan
-                                </span>
-                                <div class="h-px flex-1 bg-stone-200"></div>
-                            </div>
-
-                            <template x-for="(keg, kIdx) in activeModalModul.kegiatan" :key="kIdx">
-                                <div class="bg-gradient-to-br from-emerald-50 to-stone-50 rounded-2xl border border-emerald-100 overflow-hidden">
-                                    <!-- Kegiatan Header -->
-                                    <div class="p-4 pb-2">
-                                        <div class="flex items-start gap-3">
-                                            <div class="w-9 h-9 rounded-xl bg-sipetran-green text-white flex flex-col items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                                                <i class="fa-solid text-xs" :class="keg.icon || 'fa-camera'"></i>
-                                                <span class="text-[8px] font-black leading-none mt-0.5" x-text="'K.' + (keg.num || (kIdx+1))"></span>
-                                            </div>
-                                            <div>
-                                                <span class="text-[9px] font-bold uppercase tracking-wider text-emerald-700" x-text="'Kegiatan ' + (keg.num || (kIdx+1))"></span>
-                                                <h5 class="text-sm font-bold text-gray-900 leading-snug" x-text="keg.judul"></h5>
-                                                <p class="text-xs text-gray-500 mt-1 leading-relaxed" x-text="keg.deskripsi"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Photo Grid -->
-                                    <template x-if="keg.foto && keg.foto.length > 0">
-                                        <div class="px-4 pb-3">
-                                            <div class="grid gap-1.5" :class="keg.foto.length === 1 ? 'grid-cols-1' : keg.foto.length === 2 ? 'grid-cols-2' : keg.foto.length === 3 ? 'grid-cols-3' : 'grid-cols-2'">
-                                                <template x-for="(foto, fIdx) in keg.foto.slice(0, 4)" :key="fIdx">
-                                                    <a :href="keg.driveLink" target="_blank" rel="noopener"
-                                                        class="relative block overflow-hidden rounded-xl group cursor-pointer"
-                                                        :style="keg.foto.length === 1 ? 'height:160px' : 'height:100px'">
-                                                        <img :src="foto" :alt="keg.judul"
-                                                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                                            @error="$el.style.display='none'; $el.nextElementSibling.style.display='flex'"
-                                                        />
-                                                        <!-- Fallback jika foto gagal load -->
-                                                        <div class="w-full h-full bg-stone-200 items-center justify-center flex-col gap-1 text-stone-400" style="display:none">
-                                                            <i class="fa-solid fa-image text-xl"></i>
-                                                            <span class="text-[9px] font-medium">Lihat di Drive</span>
-                                                        </div>
-                                                        <!-- Overlay -->
-                                                        <div class="absolute inset-0 bg-sipetran-green/0 group-hover:bg-sipetran-green/30 transition-all flex items-center justify-center">
-                                                            <i class="fa-solid fa-magnifying-glass text-white opacity-0 group-hover:opacity-100 transition-opacity text-sm"></i>
-                                                        </div>
-                                                        <!-- Badge jumlah sisa foto di tile ke-4 jika > 4 -->
-                                                        <template x-if="fIdx === 3 && keg.foto.length > 4">
-                                                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                                                <span class="text-white font-black text-lg" x-text="'+' + (keg.foto.length - 4)"></span>
-                                                            </div>
-                                                        </template>
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </template>
-
-                                    <!-- Drive Link -->
-                                    <div class="px-4 pb-4">
-                                        <a :href="keg.driveLink" target="_blank" rel="noopener"
-                                            class="inline-flex items-center gap-2 text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-white border border-emerald-200 hover:border-emerald-400 px-3 py-1.5 rounded-lg transition-all">
-                                            <i class="fa-brands fa-google-drive text-sm"></i>
-                                            Lihat Semua Foto di Google Drive
-                                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                                        </a>
-                                    </div>
+                    <!-- 2. Top App Bar Header -->
+                    <div class="bg-sipetran-green text-white px-4 py-3 flex items-center justify-between shrink-0 shadow-md z-20">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <button @click="closeReader()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors shrink-0" title="Kembali">
+                                <i class="fa-solid fa-arrow-left text-xs"></i>
+                            </button>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="font-handwriting text-lg text-emerald-300 font-bold leading-none">SIPETRAN</span>
+                                    <span class="text-[9px] bg-emerald-500/30 text-emerald-200 px-1.5 py-0.5 rounded font-mono uppercase">Modul</span>
                                 </div>
+                                <h4 class="text-xs font-bold text-white truncate max-w-[170px] sm:max-w-[220px]" x-text="activeModalModul ? activeModalModul.title : ''"></h4>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button @click="isFullscreen = !isFullscreen" title="Ubah Ukuran Layar" class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-stone-200 transition-colors text-xs">
+                                <i class="fa-solid" :class="isFullscreen ? 'fa-compress' : 'fa-expand'"></i>
+                            </button>
+                            <button @click="closeReader()" title="Tutup Modul" class="w-7 h-7 rounded-lg bg-red-500/20 hover:bg-red-500/40 text-red-200 flex items-center justify-center transition-colors text-xs">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Sub-Modul Horizontal Pill Selector Bar -->
+                    <template x-if="activeModalModul && activeModalModul.submodul && activeModalModul.submodul.length > 0">
+                        <div class="bg-stone-100 border-b border-stone-200 p-2 shrink-0 z-10 overflow-x-auto scrollbar-none flex gap-1.5">
+                            <template x-for="(sub, sIdx) in activeModalModul.submodul" :key="sIdx">
+                                <button @click="activeSubIdx = sIdx"
+                                    class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 shrink-0"
+                                    :class="activeSubIdx === sIdx ? 'bg-sipetran-green text-white shadow-sm scale-[1.02]' : 'bg-white text-stone-600 border border-stone-200 hover:bg-stone-50'">
+                                    <i class="fa-solid text-[10px]" :class="sub.icon || 'fa-book-bookmark'"></i>
+                                    <span x-text="'Sub ' + (sIdx + 1)"></span>
+                                </button>
                             </template>
                         </div>
                     </template>
+
+                    <!-- 4. Scrollable Content Body -->
+                    <div class="flex-1 overflow-y-auto p-4 space-y-4 text-stone-800 bg-[#FAF8F2]">
+
+                        <!-- SUB-MODUL READER -->
+                        <template x-if="activeModalModul && activeModalModul.submodul && activeModalModul.submodul[activeSubIdx]">
+                            <div class="space-y-4 pb-2">
+
+                                <!-- Sub-modul Header Card -->
+                                <div class="bg-gradient-to-r from-sipetran-green via-emerald-800 to-sipetran-dark text-white p-4 rounded-2xl shadow-sm relative overflow-hidden">
+                                    <div class="absolute -right-4 -bottom-4 opacity-10 text-white text-7xl">
+                                        <i class="fa-solid" :class="activeModalModul.submodul[activeSubIdx].icon"></i>
+                                    </div>
+                                    <div class="relative z-10 space-y-1">
+                                        <div class="flex items-center gap-2">
+                                            <span class="bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full"
+                                                x-text="'Sub-Modul ' + (activeSubIdx + 1) + ' dari ' + activeModalModul.submodul.length"></span>
+                                        </div>
+                                        <h3 class="font-display font-black text-lg text-white leading-tight" x-text="activeModalModul.submodul[activeSubIdx].judul"></h3>
+                                        <p class="text-xs text-emerald-100/90 leading-relaxed" x-text="activeModalModul.submodul[activeSubIdx].ringkasan"></p>
+                                    </div>
+                                </div>
+
+                                <!-- Submodul Media Banner Image -->
+                                <template x-if="activeModalModul.submodul[activeSubIdx].gambar">
+                                    <div class="rounded-2xl overflow-hidden shadow-sm border border-stone-200 bg-stone-900 max-h-[210px] relative group">
+                                        <img :src="activeModalModul.submodul[activeSubIdx].gambar" :alt="activeModalModul.submodul[activeSubIdx].judul" class="w-full h-full object-cover">
+                                        <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded-lg flex items-center gap-1 font-mono">
+                                            <i class="fa-solid fa-image text-emerald-400"></i> Panduan Visual
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Material Section / Points List -->
+                                <div class="bg-white rounded-2xl p-4 shadow-sm border border-stone-200 space-y-3">
+                                    <div class="flex items-center justify-between border-b border-stone-100 pb-2">
+                                        <h4 class="text-xs font-black uppercase tracking-wider text-sipetran-green flex items-center gap-2">
+                                            <i class="fa-solid fa-list-check text-emerald-600"></i> Materi & Panduan Pelaksanaan
+                                        </h4>
+                                        <span class="text-[10px] text-stone-400 font-mono" x-text="activeModalModul.submodul[activeSubIdx].poinMateri.length + ' Poin'"></span>
+                                    </div>
+
+                                    <div class="space-y-2.5">
+                                        <template x-for="(pt, pIdx) in activeModalModul.submodul[activeSubIdx].poinMateri" :key="pIdx">
+                                            <div class="bg-stone-50 hover:bg-emerald-50/50 p-3 rounded-xl border border-stone-200/80 transition-colors flex items-start gap-3">
+                                                <div class="w-6 h-6 rounded-lg bg-sipetran-green text-white text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 shadow-sm"
+                                                    x-text="pIdx + 1"></div>
+                                                <div class="space-y-0.5 flex-1 min-w-0">
+                                                    <h5 class="text-xs font-bold text-stone-900" x-text="pt.judul"></h5>
+                                                    <p class="text-xs text-stone-600 leading-relaxed" x-text="pt.desc"></p>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Next / Previous Sub-modul Navigation Buttons -->
+                                <div class="flex items-center justify-between pt-2">
+                                    <button @click="activeSubIdx = Math.max(0, activeSubIdx - 1)"
+                                        :disabled="activeSubIdx === 0"
+                                        class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+                                        :class="activeSubIdx === 0 ? 'bg-stone-100 text-stone-300 cursor-not-allowed' : 'bg-white text-stone-700 border border-stone-200 hover:bg-stone-100 shadow-sm'">
+                                        <i class="fa-solid fa-chevron-left text-[10px]"></i>
+                                        <span>Sebelumnya</span>
+                                    </button>
+
+                                    <span class="text-[11px] font-bold text-stone-400 font-mono"
+                                        x-text="(activeSubIdx + 1) + ' / ' + activeModalModul.submodul.length"></span>
+
+                                    <button @click="activeSubIdx = Math.min(activeModalModul.submodul.length - 1, activeSubIdx + 1)"
+                                        :disabled="activeSubIdx === activeModalModul.submodul.length - 1"
+                                        class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5"
+                                        :class="activeSubIdx === activeModalModul.submodul.length - 1 ? 'bg-stone-100 text-stone-300 cursor-not-allowed' : 'bg-sipetran-green text-white hover:bg-emerald-900 shadow-sm'">
+                                        <span>Selanjutnya</span>
+                                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </template>
+
+                    </div>
+
                 </div>
-            </template>
+
+            </div>
+
         </div>
+
     </div>
 
     <!-- ============ FOOTER ============ -->
